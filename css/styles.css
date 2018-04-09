@@ -11,9 +11,15 @@ height: 200px;
 padding: 0;
 margin-top: 10px;
 margin-bottom: 10px;
-background-color: fuchsia;
-
-}    
+background-color: #fcfcfc;
+box-shadow: 3px 3px #cccccc;
+} 
+.d-content:hover{
+    background-color: 		hsl(0, 0%, 98%);
+}
+.d-content:active{
+    background-color:	hsl(0, 0%, 95%);
+}
 
 .d-topbar{
 position:relative;
@@ -79,6 +85,12 @@ background-color:#BDBDBD;
 color:#ffffff;
 }
 
-.d-card{
-
+@keyframes anim-d-button{
+    from{background-color: red;}
+    to{background-color: yellow;}
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
 }
