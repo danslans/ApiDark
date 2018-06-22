@@ -1,3 +1,4 @@
+window.addEventListener("load",appDark,false);
 
 var attributes = ["d-goto", "d-click"];
 var tags = ["d-button", "d-topbar","d-content"];
