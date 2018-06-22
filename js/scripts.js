@@ -43,6 +43,7 @@ function createElementButton(config) {
 		var variable=arrayStr[0].replace("$","");
 		functs.push({variable:arrayStr[1]});*/
 		butt.onclick = function() {
+			
 			eval(config.event_click.funct);
 			//alert(config.event_click.funct.replace("$","var "));
 		};
