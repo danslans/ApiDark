@@ -1,22 +1,49 @@
-window.addEventListener("load",appDark,false);
+window.addEventListener("load", appDark, false);
 
 var attributes = ["d-goto", "d-click"];
-var tags = ["d-button", "d-topbar","d-content"];
-var functs=[];
+var tags = ["d-button", "d-topbar", "d-content"];
+var functs = [];
 function appDark() {
-	for (var t in tags) {
-		switch (tags[t]) {
-			case "d-button":
-				createDButton(tags[t]);
-				break;
-			case "d-topbar":
-				createDTopbar(tags[t]);
-                break;
-            case "d-content":
-                createDContent(tags[t]);
-                break;
-				
+	for (const item of document.body.children) {
+		decideTypeElement(item.localName, item);
+	}
+}
+
+function decideTypeElement(tagName, tagElement) {
+	switch (tagName) {
+		case "d-button":
+			createElement(tagName, tagElement);
+			break;
+		case "d-topbar":
+			createElement(tagName, tagElement);
+			break;
+		case "d-content":
+			createElement(tagName, tagElement);
+			break;
+			case "d-content-section":
+			createElement(tagName, tagElement);
+			break;
+	}
+}
+
+function createElement(tagName, tagElement) {
+	let div = document.createElement("div");
+	div.className = tagName;
+	if (tagElement.children.length > 0) {
+		while (tagElement.firstElementChild) {
+			div.appendChild(tagElement.firstElementChild);
 		}
+		tagElement.appendChild(div);
+		loopTagElement(div);
+	} else {
+		tagElement.appendChild(div);
+	}
+}
+
+function loopTagElement(tagElement) {
+	for (const tag of tagElement.children)
+	{
+		decideTypeElement(tag.localName,tag);
 	}
 }
 
@@ -38,12 +65,11 @@ function createElementButton(config) {
 	var butt = document.createElement("button");
 	butt.innerHTML = config.text;
 	if (config.event_click.state) {
-		debugger;
 		/*var arrayStr=config.event_click.funct.split("=");
 		var variable=arrayStr[0].replace("$","");
 		functs.push({variable:arrayStr[1]});*/
-		butt.onclick = function() {
-			
+		butt.onclick = function () {
+
 			eval(config.event_click.funct);
 			//alert(config.event_click.funct.replace("$","var "));
 		};
@@ -52,7 +78,7 @@ function createElementButton(config) {
 }
 
 function decideTypeButton(divB, text, item) {
-	
+
 	var att = item.getAttribute(attributes[0]);
 	if (att != null) {
 		var a = document.createElement("a");
@@ -66,7 +92,7 @@ function decideTypeButton(divB, text, item) {
 }
 
 function getAttibutes(item, text, divB, att) {
-	
+
 	var listAtt = item.attributes;
 	if (listAtt.length > 0) {
 		for (var li = 0; li < listAtt.length; li++) {
@@ -92,7 +118,7 @@ function getAttibutes(item, text, divB, att) {
 					break;
 			}
 		}
-	}else{
+	} else {
 		createElementButton({
 			text: text,
 			divB: divB,
@@ -104,29 +130,29 @@ function getAttibutes(item, text, divB, att) {
 
 
 }
-function createDTopbar(nameTag){
-	var tagsDTopBar= document.getElementsByTagName(nameTag);
-	for(var tag =0;tag< tagsDTopBar.length;tag++){
-		var div=document.createElement("div");
-		div.className="d-topbar";
+function createDTopbar(nameTag) {
+	var tagsDTopBar = document.getElementsByTagName(nameTag);
+	for (var tag = 0; tag < tagsDTopBar.length; tag++) {
+		var div = document.createElement("div");
+		div.className = "d-topbar";
 		tagsDTopBar[tag].appendChild(div);
 	}
 }
 
-function createDContent(nameTag){
-    var tagsDContent=document.getElementsByTagName(nameTag);
-    for(var tag=0;tag<tagsDContent.length;tag++){
-        var div=document.createElement("div");
-        div.className="d-content";
-        tagsDContent[tag].appendChild(div);
-    }
+function createDContent(nameTag) {
+	var tagsDContent = document.getElementsByTagName(nameTag);
+	for (var tag = 0; tag < tagsDContent.length; tag++) {
+		var div = document.createElement("div");
+		div.className = "d-content";
+		tagsDContent[tag].appendChild(div);
+	}
 }
 
 function holamundo() {
-	return"hola mundo";
+	return "hola mundo";
 }
 
-function showStorage(resul){
+function showStorage(resul) {
 	alert(resul);
 }
 

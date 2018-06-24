@@ -1,3 +1,12 @@
+:root{
+    --d-color-toolbar:#757575;
+    --d-color-sombra-toolbar:#fffefe;
+    --d-color-content:#fcfcfc;
+    --d-color-sombra-content:#ffffff;
+    --d-color-content-hover:hsl(0, 0%, 98%);
+    --d-color-content-active:hsl(0, 0%, 95%);
+    --d-color-content-section:rgb(27, 219, 53);
+}
 body{
 font-size:50px;
 margin: 0;
@@ -6,19 +15,28 @@ box-sizing: content-box;
 .d-content{
 position: relative;
 margin: 0 auto;
+padding: 0;
 width: 99%;
 height: 200px;
-padding: 0;
 margin-top: 10px;
 margin-bottom: 10px;
-background-color: #fcfcfc;
-box-shadow: 3px 3px #cccccc;
+background-color: var(--d-color-content);
+box-shadow: 3px 3px var(--d-color-sombra-content);
 } 
 .d-content:hover{
-    background-color: 		hsl(0, 0%, 98%);
+    background-color:var(--d-color-content-hover);
 }
 .d-content:active{
-    background-color:	hsl(0, 0%, 95%);
+    background-color:var(--d-color-content-active);
+}
+
+.d-content-section{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    margin-bottom: 1px;
+    background-color:var(--d-color-content-section);
 }
 
 .d-topbar{
@@ -26,8 +44,8 @@ position:relative;
 margin:0;
 padding-left: 100%;
 padding-top: 60px;
-background-color:#757575;
-box-shadow: 0px 2px #cccccc;
+background-color:var(--d-color-toolbar);
+box-shadow: 0px 2px var(--d-color-sombra-toolbar);
 }
 .d-button{
 position:relative;
@@ -35,7 +53,7 @@ width:200px;
 height:70px;
 margin:5px;
 padding:0px;
-background-color:red;
+background-color:tomato;
 }
 .d-button>button{
 position:absolute;
@@ -68,9 +86,12 @@ width:100%;
 height:100%;
 line-height:70px;
 }
+.d-button:hover{
+    background-color:#EEEEEE;
+}
 
 .d-button>button:hover{
-background-color:#EEEEEE;
+    background-color:#EEEEEE;
 }
 .d-button>button:active{
 background-color:#BDBDBD;
@@ -85,12 +106,12 @@ background-color:#BDBDBD;
 color:#ffffff;
 }
 
-@keyframes anim-d-button{
+/*@keyframes anim-d-button{
     from{background-color: red;}
     to{background-color: yellow;}
 }
 /* Safari 4.0 - 8.0 */
-@-webkit-keyframes example {
+/*@-webkit-keyframes example {
     from {background-color: red;}
     to {background-color: yellow;}
-}
+}*/
