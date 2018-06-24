@@ -23,6 +23,9 @@ function decideTypeElement(tagName, tagElement) {
 			case "d-content-section":
 			createElement(tagName, tagElement);
 			break;
+			case "d-principal-content":
+			createElement(tagName, tagElement);
+			break;
 	}
 }
 
