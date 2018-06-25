@@ -1,6 +1,14 @@
 window.addEventListener("load", appDark, false);
+window.addEventListener("scroll", function(event){
+	if(window.scrollY>0){
+		var elements =document.getElementsByTagName("d-content");
+		for(let element of elements){
+			alert(element.f
+		}
+	}
+},false);
 
-var attributes = ["d-goto", "d-click"];
+var attributes = ["goto", "click","static"];
 var tags = ["d-button", "d-topbar", "d-content"];
 var functs = [];
 function appDark() {
@@ -32,6 +40,9 @@ function decideTypeElement(tagName, tagElement) {
 function createElement(tagName, tagElement) {
 	let div = document.createElement("div");
 	div.className = tagName;
+	
+	loopDecideAttributesFromElement(tagElement,div);
+	
 	if (tagElement.children.length > 0) {
 		while (tagElement.firstElementChild) {
 			div.appendChild(tagElement.firstElementChild);
@@ -40,6 +51,18 @@ function createElement(tagName, tagElement) {
 		loopTagElement(div);
 	} else {
 		tagElement.appendChild(div);
+	}
+}
+
+function loopDecideAttributesFromElement(tagElement,div){
+	if(tagElement.attributes.length > 0){
+		for(let att of tagElement.attributes){
+			switch(att.name){
+				case "static":
+				div.style="position:fixed;z-index:1";
+				break;
+			}
+		}
 	}
 }
 
