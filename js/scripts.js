@@ -3,7 +3,7 @@ window.addEventListener("scroll", function(event){
 	if(window.scrollY>0){
 		var elements =document.getElementsByTagName("d-content");
 		for(let element of elements){
-			alert(element.f
+			
 		}
 	}
 },false);
