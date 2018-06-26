@@ -1,11 +1,11 @@
 :root{
-    --d-color-toolbar:rgb(62, 103, 190);
+    --d-color-toolbar:rgb(0, 163, 0);
     --d-color-sombra-toolbar:#fffefe;
-    --d-color-content:rgb(214, 25, 25);
-    --d-color-sombra-content:rgb(230, 230, 230);
+    --d-color-content:rgb(255, 255, 255);
+    --d-color-sombra-content:rgb(255, 255, 255);
     --d-color-content-hover:#ffffff;
     --d-color-content-active:#5436F5;
-    --d-color-content-section:rgb(13, 156, 121);
+    --d-color-content-section:rgb(233, 233, 233);
 	--d-color-button:#cccccc;
 }
 body{
@@ -122,6 +122,20 @@ background-color:#BDBDBD;
 color:#ffffff;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(216, 216, 216, 0.247); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(139, 139, 139); 
+}
 /*@keyframes anim-d-button{
     from{background-color: red;}
     to{background-color: yellow;}
