@@ -1,15 +1,14 @@
 :root{
-    --d-color-toolbar:#1DD000;
+    --d-color-toolbar:#0795D0;
     --d-color-sombra-toolbar:#fffefe;
-    --d-color-content:#fcfcfc;
-    --d-color-sombra-content:#ffffff;
+    --d-color-content:#20DB4A;
+    --d-color-sombra-content:#D9261A;
     --d-color-content-hover:#ffffff;
     --d-color-content-active:#5436F5;
     --d-color-content-section:#F6F6F6;
 	--d-color-button:#cccccc;
 }
 body{
-font-size:50px;
 margin: 0;
 box-sizing: content-box;
 }
@@ -18,7 +17,6 @@ position: relative;
 margin: 0 auto;
 padding: 0;
 width: 99vw;
-height:300px;
 margin-top: 10px;
 margin-bottom: 10px;
 background-color: var(--d-color-content);
@@ -28,7 +26,7 @@ box-shadow: 3px 3px var(--d-color-sombra-content);
 .d-content{
   display:flex;
   flex-direction:column;
-  overflow:auto;
+  background-color:var(--d-color-content)
 }
 
 .d-content:hover{
@@ -41,7 +39,8 @@ box-shadow: 3px 3px var(--d-color-sombra-content);
 .d-content-section{
     position: relative;
     width: 100%;
-    overflow: scroll;
+	height:200px;
+    overflow-y:scroll;
     margin-bottom: 1px;
     background-color:var(--d-color-content-section);
 }
