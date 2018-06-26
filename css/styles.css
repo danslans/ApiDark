@@ -1,11 +1,11 @@
 :root{
-    --d-color-toolbar:#0795D0;
+    --d-color-toolbar:rgb(62, 103, 190);
     --d-color-sombra-toolbar:#fffefe;
-    --d-color-content:#20DB4A;
-    --d-color-sombra-content:#D9261A;
+    --d-color-content:rgb(214, 25, 25);
+    --d-color-sombra-content:rgb(230, 230, 230);
     --d-color-content-hover:#ffffff;
     --d-color-content-active:#5436F5;
-    --d-color-content-section:#F6F6F6;
+    --d-color-content-section:rgb(13, 156, 121);
 	--d-color-button:#cccccc;
 }
 body{
@@ -16,7 +16,7 @@ box-sizing: content-box;
 position: relative;
 margin: 0 auto;
 padding: 0;
-width: 99vw;
+width: 100%;
 margin-top: 10px;
 margin-bottom: 10px;
 background-color: var(--d-color-content);
@@ -40,7 +40,7 @@ box-shadow: 3px 3px var(--d-color-sombra-content);
     position: relative;
     width: 100%;
 	height:200px;
-    overflow-y:scroll;
+    overflow: auto;
     margin-bottom: 1px;
     background-color:var(--d-color-content-section);
 }
@@ -49,6 +49,7 @@ box-shadow: 3px 3px var(--d-color-sombra-content);
   top:65px;
   position:relative;
   display:flex;
+  padding: 10px;
   flex-direction:column;
   flex-wrap:nowrap;
   justify-content:center;
