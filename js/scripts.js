@@ -34,6 +34,9 @@ function decideTypeElement(tagName, tagElement) {
 			case "d-principal-content":
 			createElement(tagName, tagElement);
 			break;
+		default:
+		loopDecideAttributesFromElement(tagElement,tagElement);
+		break;
 	}
 }
 
@@ -60,6 +63,21 @@ function loopDecideAttributesFromElement(tagElement,div){
 			switch(att.name){
 				case "static":
 				div.style="position:fixed;z-index:1";
+				break;
+				case "orientation":
+					var style="display:flex;";
+					switch(att.value) {
+						case "vertical":
+						style += "flex-direction:column";
+						break;
+						case "horizontal":
+						style += "flex-direction:row;";
+						break;
+						default:
+						style += "flex-direction:row;";
+						break;
+					}
+				div.style=style;
 				break;
 			}
 		}
