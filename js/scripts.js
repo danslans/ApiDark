@@ -1,14 +1,14 @@
 window.addEventListener("load", appDark, false);
-window.addEventListener("scroll", function(event){
-	if(window.scrollY>0){
-		var elements =document.getElementsByTagName("d-content");
-		for(let element of elements){
-		
+window.addEventListener("scroll", function (event) {
+	if (window.scrollY > 0) {
+		var elements = document.getElementsByTagName("d-content");
+		for (let element of elements) {
+
 		}
 	}
-},false);
+}, false);
 
-var attributes = ["goto", "click","static"];
+var attributes = ["goto", "click", "static"];
 var tags = ["d-button", "d-topbar", "d-content"];
 var functs = [];
 function appDark() {
@@ -28,24 +28,25 @@ function decideTypeElement(tagName, tagElement) {
 		case "d-content":
 			createElement(tagName, tagElement);
 			break;
-			case "d-content-section":
+		case "d-content-section":
 			createElement(tagName, tagElement);
 			break;
-			case "d-principal-content":
+		case "d-principal-content":
 			createElement(tagName, tagElement);
 			break;
 		default:
-		loopDecideAttributesFromElement(tagElement,tagElement);
-		break;
+			loopDecideAttributesFromElement(tagElement, tagElement);
+			loopTagElement(tagElement);
+			break;
 	}
 }
 
 function createElement(tagName, tagElement) {
 	let div = document.createElement("div");
 	div.className = tagName;
-	
-	loopDecideAttributesFromElement(tagElement,div);
-	
+
+	loopDecideAttributesFromElement(tagElement, div);
+
 	if (tagElement.children.length > 0) {
 		while (tagElement.firstElementChild) {
 			div.appendChild(tagElement.firstElementChild);
@@ -57,40 +58,41 @@ function createElement(tagName, tagElement) {
 	}
 }
 
-function loopDecideAttributesFromElement(tagElement,div){
-	if(tagElement.attributes.length > 0){
-		for(let att of tagElement.attributes){
-			switch(att.name){
+
+function loopDecideAttributesFromElement(tagElement, div) {
+	if (tagElement.attributes.length > 0) {
+		var style = "display:flex;";
+		for (let att of tagElement.attributes) {
+			switch (att.name) {
 				case "static":
-				div.style="position:fixed;z-index:1";
-				break;
+					div.style = "position:fixed;z-index:1";
+					break;
 				case "orientation":
-					var style="display:flex;";
-					switch(att.value) {
+					switch (att.value) {
 						case "vertical":
-						style += "flex-direction:column;";
-						break;
+							style += "flex-direction:column;";
+							break;
 						case "horizontal":
-						style += "flex-direction:row;";
-						break;
+							style += "flex-direction:row;";
+							break;
 						default:
-						style += "flex-direction:row;";
-						break;
+							style += "flex-direction:row;";
+							break;
 					}
-				div.style=style;
-				break;
-				case "":
-					
-				break;
+					div.style = style;
+					break;
+				case "align":
+					style+="justify-content: center;";
+					div.style = style;
+					break;
 			}
 		}
 	}
 }
 
 function loopTagElement(tagElement) {
-	for (const tag of tagElement.children)
-	{
-		decideTypeElement(tag.localName,tag);
+	for (const tag of tagElement.children) {
+		decideTypeElement(tag.localName, tag);
 	}
 }
 
