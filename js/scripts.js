@@ -68,7 +68,7 @@ function loopDecideAttributesFromElement(tagElement,div){
 					var style="display:flex;";
 					switch(att.value) {
 						case "vertical":
-						style += "flex-direction:column";
+						style += "flex-direction:column;";
 						break;
 						case "horizontal":
 						style += "flex-direction:row;";
@@ -78,6 +78,9 @@ function loopDecideAttributesFromElement(tagElement,div){
 						break;
 					}
 				div.style=style;
+				break;
+				case "":
+					
 				break;
 			}
 		}
