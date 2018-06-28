@@ -73,17 +73,27 @@ function loopDecideAttributesFromElement(tagElement, div) {
 							style += "flex-direction:column;";
 							break;
 						case "horizontal":
-							style += "flex-direction:row;";
+							style += "flex-direction:row; flex-wrap:wrap;";
 							break;
 						default:
-							style += "flex-direction:row;";
+							style += "flex-direction:row; flex-wrap:wrap;";
 							break;
 					}
 					div.style = style;
 					break;
 				case "align":
-					style+="justify-content: center;";
+					var arrayAtt= att.value.split(" ");
+					if(arrayAtt.length>0){
+						style+="justify-content:"+arrayAtt[0]+"; align-content:"+arrayAtt[1]+";";
+						alert(style);
+					}else{
+					style+="justify-content:"+arrayAtt[0]+";";
+					}
 					div.style = style;
+					break;
+				case "height":
+				style+= "height:"+att.value+"px;";
+				div.style=style;
 					break;
 			}
 		}
@@ -179,23 +189,7 @@ function getAttibutes(item, text, divB, att) {
 
 
 }
-function createDTopbar(nameTag) {
-	var tagsDTopBar = document.getElementsByTagName(nameTag);
-	for (var tag = 0; tag < tagsDTopBar.length; tag++) {
-		var div = document.createElement("div");
-		div.className = "d-topbar";
-		tagsDTopBar[tag].appendChild(div);
-	}
-}
 
-function createDContent(nameTag) {
-	var tagsDContent = document.getElementsByTagName(nameTag);
-	for (var tag = 0; tag < tagsDContent.length; tag++) {
-		var div = document.createElement("div");
-		div.className = "d-content";
-		tagsDContent[tag].appendChild(div);
-	}
-}
 
 function holamundo() {
 	return "hola mundo";
