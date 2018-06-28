@@ -102,9 +102,18 @@ function loopDecideAttributesFromElement(tagElement, div) {
 				case "loop":
 				debugger;
 				var parent = tagElement.parentNode;
-					for (let i = 0; i < att.value; i++) {
-						parent.appendChild(tagElement);
-					}
+				var divLoop = document.createElement(tagElement.localName);
+				for(let atri of tagElement.attributes){
+					alert(atri.name);
+					divLoop.createAttribute(atri.name).value=atri.value;
+				}
+				div.createAttribute();
+				
+				alert(divLopp);
+					/*for (let i = 0; i < att.value; i++) {
+						
+						parent.appendChild();
+					}*/
 					break;
 			}
 		}
