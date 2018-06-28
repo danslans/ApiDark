@@ -5,7 +5,7 @@
     --d-color-sombra-content:rgb(255, 255, 255);
     --d-color-content-hover:#ffffff;
     --d-color-content-active:#5436F5;
-    --d-color-content-section:rgb(233, 233, 233);
+    --d-color-content-section:rgb(156, 156, 156);
 	--d-color-button:#cccccc;
 }
 body{
@@ -33,7 +33,7 @@ box-shadow: 3px 3px var(--d-color-sombra-content);
     background-color:var(--d-color-content-hover);
 }
 .d-content:active{
-    background-color:var(--d-color-content-section);
+    background-color:var(--d-color-content-hover);
 }
 
 .d-content-section{

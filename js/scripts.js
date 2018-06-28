@@ -96,24 +96,30 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + " !important;";
 					} else if (arrayAtt[0] == "") {
 						style += "height:" + arrayAtt[1] + "px;";
+					}else{
+						style += "width:" + arrayAtt[0] + "px;";
 					}
 					div.style = style;
 					break;
 				case "loop":
-				debugger;
-				var parent = tagElement.parentNode;
-				var divLoop = document.createElement(tagElement.localName);
-				for(let atri of tagElement.attributes){
-					alert(atri.name);
-					divLoop.createAttribute(atri.name).value=atri.value;
-				}
-				div.createAttribute();
-				
-				alert(divLopp);
-					/*for (let i = 0; i < att.value; i++) {
-						
-						parent.appendChild();
-					}*/
+					var parent = tagElement.parentElement;
+					var divLoop = document.createElement(tagElement.localName);
+
+					for (let atri of tagElement.attributes) {
+						if(atri.name != "loop"){
+							var attr = document.createAttribute(atri.name);
+							attr.value = atri.value;
+							divLoop.setAttributeNode(attr);
+						}
+					}
+
+					for (const tagEl of tagElement.children) {
+						divLoop.appendChild(tagEl);
+					}
+					for (let i = 0; i < att.value; i++) {
+
+						parent.appendChild(divLoop);
+					}
 					break;
 			}
 		}
