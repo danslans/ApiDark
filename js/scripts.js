@@ -92,7 +92,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					break;
 				case "size":
 					debugger;
-					var arrayAtt = att.value.split(" ");
+					var arrayAtt = att.value.split(",");
 					if (arrayAtt.length > 1 && arrayAtt[0] != "") {
 						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + " !important;";
 					} else if (arrayAtt[0] == "") {
@@ -101,8 +101,9 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					div.style = style;
 					break;
 				case "loop":
-					/*for (let i = 0; i < att.value; i++) {
-						
+					/*alert(tagElement.length);
+					for (let i = 0; i < tagElement.length; i++) {
+						alert(tagElement[i]);
 					}*/
 					break;
 			}
