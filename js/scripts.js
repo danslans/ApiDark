@@ -91,7 +91,6 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					div.style = style;
 					break;
 				case "size":
-					debugger;
 					var arrayAtt = att.value.split(",");
 					if (arrayAtt.length > 1 && arrayAtt[0] != "") {
 						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + " !important;";
@@ -101,10 +100,11 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					div.style = style;
 					break;
 				case "loop":
-					/*alert(tagElement.length);
-					for (let i = 0; i < tagElement.length; i++) {
-						alert(tagElement[i]);
-					}*/
+				debugger;
+				var parent = tagElement.parentNode;
+					for (let i = 0; i < att.value; i++) {
+						parent.appendChild(tagElement);
+					}
 					break;
 			}
 		}
