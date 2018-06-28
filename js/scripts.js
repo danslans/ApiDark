@@ -82,18 +82,28 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					div.style = style;
 					break;
 				case "align":
-					var arrayAtt= att.value.split(" ");
-					if(arrayAtt.length>0){
-						style+="justify-content:"+arrayAtt[0]+"; align-content:"+arrayAtt[1]+";";
-						alert(style);
-					}else{
-					style+="justify-content:"+arrayAtt[0]+";";
+					var arrayAtt = att.value.split(" ");
+					if (arrayAtt.length > 1) {
+						style += "justify-content:" + arrayAtt[0] + "; align-content:" + arrayAtt[1] + ";";
+					} else {
+						style += "align-items:" + arrayAtt[0] + ";";
 					}
 					div.style = style;
 					break;
-				case "height":
-				style+= "height:"+att.value+"px;";
-				div.style=style;
+				case "size":
+					debugger;
+					var arrayAtt = att.value.split(" ");
+					if (arrayAtt.length > 1 && arrayAtt[0] != "") {
+						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + " !important;";
+					} else if (arrayAtt[0] == "") {
+						style += "height:" + arrayAtt[1] + "px;";
+					}
+					div.style = style;
+					break;
+				case "loop":
+					/*for (let i = 0; i < att.value; i++) {
+						
+					}*/
 					break;
 			}
 		}

@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=3.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<link href="css/styles.css" rel="stylesheet">
-	<script src="js/scripts.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="js/scripts.js"></script>
+</head>
 
-  <body>
-	<d-topbar static>
-	  <d-menu>
-		<d-item-menu></d-item-menu>
-	  </d-menu>
-	</d-topbar>
-	<d-principal-content>
-	  <d-content>
-		<d-content-section orientation="vertical" height="300" >
-		  <input type="text" placeholder="numeros">
-		  <div align="center flex-start" orientation>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			<d-button></d-button>
-			
-		  </div>
-		</d-content-section>
-	  </d-content>
-	</d-principal-content>
+<body>
+  <d-topbar static>
+    <d-menu>
+      <d-item-menu></d-item-menu>
+    </d-menu>
+  </d-topbar>
+  <d-principal-content>
+    <d-content>
+      <d-content-section orientation="vertical" size=",100">
+        <input type="text" placeholder="numeros">
+        <div align="center center">
+          <div orientation="vertical" loop="5">
+            <ul orientation>
+              <li orientation>1</li>
+              <li orientation>1</li>
+              <li orientation>1</li>
+              <li orientation>1</li>
+              <li orientation>1</li>
+            </ul>
+            <ul orientation>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+            </ul>
+            <ul orientation>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+            </ul>
+            <ul orientation>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+              <li orientation>2</li>
+            </ul>
+          </div>
+        </div>
+      </d-content-section>
+    </d-content>
+  </d-principal-content>
 
-	<!--<d-content>
+  <!--<d-content>
 	</d-content>
 
 	<h1>My site</h1>
@@ -47,6 +67,6 @@
 	<d-button d-goto="appDark.html">ir a</d-button>
 	<d-button d-click="result=holamundo()">Enviar</d-button>
 	<d-button d-click="showStorage(result)">Boton</d-button>-->
-  </body>
+</body>
 
 </html>
