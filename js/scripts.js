@@ -1,12 +1,4 @@
 window.addEventListener("load", appDark, false);
-window.addEventListener("scroll", function (event) {
-	if (window.scrollY > 0) {
-		var elements = document.getElementsByTagName("d-content");
-		for (let element of elements) {
-
-		}
-	}
-}, false);
 
 var attributes = ["goto", "click", "static"];
 var tags = ["d-button", "d-topbar", "d-content"];
@@ -18,6 +10,11 @@ function appDark() {
 }
 
 function decideTypeElement(tagName, tagElement) {
+	var tagWithColor=tagName.split("#");
+	if(tagWithColor.length>1){
+		createAttribute("color",tagWithColor[1],tagElement);
+		tagName=tagWithColor[0];
+	}
 	switch (tagName) {
 		case "d-button":
 			createElement(tagName, tagElement);
@@ -60,9 +57,11 @@ function createElement(tagName, tagElement) {
 
 
 function loopDecideAttributesFromElement(tagElement, div) {
+	alert(tagElement.localName);
 	if (tagElement.attributes.length > 0) {
 		var style = "display:flex;";
 		for (let att of tagElement.attributes) {
+			alert(att.name);
 			switch (att.name) {
 				case "static":
 					div.style = "position:fixed;z-index:1";
@@ -107,9 +106,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 
 					for (let atri of tagElement.attributes) {
 						if(atri.name != "loop"){
-							var attr = document.createAttribute(atri.name);
-							attr.value = atri.value;
-							divLoop.setAttributeNode(attr);
+							createAttribute(atri.name,atri.value,divLoop);
 						}
 					}
 
@@ -124,6 +121,12 @@ function loopDecideAttributesFromElement(tagElement, div) {
 			}
 		}
 	}
+}
+
+function createAttribute(name,value,element){
+	var attr = document.createAttribute(name);
+	attr.value = value;
+	element.setAttributeNode(attr);
 }
 
 function loopTagElement(tagElement) {
