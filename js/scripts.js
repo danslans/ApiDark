@@ -10,11 +10,6 @@ function appDark() {
 }
 
 function decideTypeElement(tagName, tagElement) {
-	var tagWithColor=tagName.split("#");
-	if(tagWithColor.length>1){
-		createAttribute("color",tagWithColor[1],tagElement);
-		tagName=tagWithColor[0];
-	}
 	switch (tagName) {
 		case "d-button":
 			createElement(tagName, tagElement);
@@ -57,37 +52,33 @@ function createElement(tagName, tagElement) {
 
 
 function loopDecideAttributesFromElement(tagElement, div) {
-	alert(tagElement.localName);
 	if (tagElement.attributes.length > 0) {
-		var style = "display:flex;";
+		var style = "";
 		for (let att of tagElement.attributes) {
-			alert(att.name);
 			switch (att.name) {
 				case "static":
-					div.style = "position:fixed;z-index:1";
+					style += "display:flex;position:fixed;z-index:1;";
 					break;
 				case "orientation":
 					switch (att.value) {
 						case "vertical":
-							style += "flex-direction:column;";
+							style += "display:flex;flex-direction:column;";
 							break;
 						case "horizontal":
-							style += "flex-direction:row; flex-wrap:wrap;";
+							style += "display:flex;flex-direction:row; flex-wrap:wrap;";
 							break;
 						default:
-							style += "flex-direction:row; flex-wrap:wrap;";
+							style += "display:flex;flex-direction:row; flex-wrap:wrap;";
 							break;
 					}
-					div.style = style;
 					break;
 				case "align":
 					var arrayAtt = att.value.split(" ");
 					if (arrayAtt.length > 1) {
-						style += "justify-content:" + arrayAtt[0] + "; align-content:" + arrayAtt[1] + ";";
+						style += "display:flex;justify-content:" + arrayAtt[0] + "; align-content:" + arrayAtt[1] + ";";
 					} else {
-						style += "align-items:" + arrayAtt[0] + ";";
+						style += "display:flex;align-items:" + arrayAtt[0] + ";";
 					}
-					div.style = style;
 					break;
 				case "size":
 					var arrayAtt = att.value.split(",");
@@ -95,18 +86,17 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + " !important;";
 					} else if (arrayAtt[0] == "") {
 						style += "height:" + arrayAtt[1] + "px;";
-					}else{
+					} else {
 						style += "width:" + arrayAtt[0] + "px;";
 					}
-					div.style = style;
 					break;
 				case "loop":
 					var parent = tagElement.parentElement;
 					var divLoop = document.createElement(tagElement.localName);
 
 					for (let atri of tagElement.attributes) {
-						if(atri.name != "loop"){
-							createAttribute(atri.name,atri.value,divLoop);
+						if (atri.name != "loop") {
+							createAttribute(atri.name, atri.value, divLoop);
 						}
 					}
 
@@ -117,13 +107,20 @@ function loopDecideAttributesFromElement(tagElement, div) {
 
 						parent.appendChild(divLoop);
 					}
+					div.a
+					break;
+				case "color":
+					debugger;
+					let objectAtt= att.value.search("/\b{/");
+					style += "background-color:" + att.value+";";
 					break;
 			}
-		}
+		}		
+		div.style = style;
 	}
 }
 
-function createAttribute(name,value,element){
+function createAttribute(name, value, element) {
 	var attr = document.createAttribute(name);
 	attr.value = value;
 	element.setAttributeNode(attr);
