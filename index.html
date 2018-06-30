@@ -10,20 +10,24 @@
   <script src="js/scripts.js"></script>
 </head>
 
-<body>
-  <d-topbar color="rgb(204, 153, 255)" static >
+  <body>
+  <d-topbar color="rgb(100, 203, 255)" static >
 	<h2 color="{text:red,backgroundColor:blue}">title</h2>
     <d-menu>
       <d-item-menu></d-item-menu>
     </d-menu>
   </d-topbar>
-  <d-principal-content>
+	<d-principal-content color="rgb(224, 224, 224)">
     <d-content>
-      <d-topbar color="red"></d-topbar>
-      <d-content-section color="#cccccc" orientation="vertical" size=",100">
-        <input type="text" placeholder="numeros">
-        <div align="center" orientation="vertical" loop="5">
-          <d-button></d-button>
+      <d-topbar align="center" size=",50" color="rgb(145,234,255)">
+		<p>title</p>
+	  </d-topbar>
+      <d-content-section color="#FFFFFF" orientation="vertical" >
+        <input type="text" color="#FFFFFF" size=",100" placeholder="numeros">
+        <div loop="5">
+          <d-button color="rgb(200, 103, 255)"></d-button>
+		  <d-button color="rgb(200, 103, 255)"></d-button>
+		  <d-button color="rgb(200, 103, 255)"></d-button>
         </div>
       </d-content-section>
     </d-content>
