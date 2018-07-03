@@ -12,6 +12,9 @@ body{
 margin: 0;
 box-sizing: content-box;
 }
+/**{
+  margin:0;
+}*/
 .d-content{
 position: relative;
 margin: 0 auto;
@@ -20,7 +23,7 @@ width: 100%;
 margin-top: 10px;
 margin-bottom: 10px;
 background-color: var(--d-color-content);
-box-shadow: 3px 3px var(--d-color-sombra-content);
+/*box-shadow: 3px 3px var(--d-color-sombra-content);*/
 } 
 
 .d-content{

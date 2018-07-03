@@ -65,7 +65,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 							style += "display:flex;flex-direction:column;";
 							break;
 						case "horizontal":
-							style += "display:flex;flex-direction:row; flex-wrap:wrap;";
+							style += "display:flex;flex-direction:row; ";
 							break;
 						default:
 							style += "display:flex;flex-direction:row; flex-wrap:wrap;";
