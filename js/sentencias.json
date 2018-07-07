@@ -1,3 +1,8 @@
-sent:[
-
-];
+[
+{name:"d-topbar",config:[]},
+{name:"d-principal-content",config:[]},
+{name:"d-content",config:[]},
+{name:"d-content-section",config:[]},
+{name:"d-menu",config:[]},
+{name:"d-item-menu",config:[]},
+]

@@ -11,9 +11,6 @@ function appDark() {
 
 function decideTypeElement(tagName, tagElement) {
 	switch (tagName) {
-		case "d-button":
-			createElement(tagName, tagElement);
-			break;
 		case "d-topbar":
 			createElement(tagName, tagElement);
 			break;
@@ -24,6 +21,12 @@ function decideTypeElement(tagName, tagElement) {
 			createElement(tagName, tagElement);
 			break;
 		case "d-principal-content":
+			createElement(tagName, tagElement);
+			break;
+		case "d-menu":
+			createElement(tagName, tagElement);
+			break;
+		case "d-item-menu":
 			createElement(tagName, tagElement);
 			break;
 		default:
@@ -57,37 +60,37 @@ function loopDecideAttributesFromElement(tagElement, div) {
 		for (let att of tagElement.attributes) {
 			switch (att.name) {
 				case "static":
-					style += "display:flex;position:fixed;z-index:1;";
+					style += "display:flex !important;position:fixed !important;z-index:1 !important;";
 					break;
 				case "orientation":
 					switch (att.value) {
 						case "vertical":
-							style += "display:flex;flex-direction:column;";
+							style += "display:flex !important;flex-direction:column !important;";
 							break;
 						case "horizontal":
-							style += "display:flex;flex-direction:row; ";
+							style += "display:flex !important;flex-direction:row !important;";
 							break;
 						default:
-							style += "display:flex;flex-direction:row; flex-wrap:wrap;";
+							style += "display:flex !important;flex-direction:row !important; flex-wrap:wrap !important;";
 							break;
 					}
 					break;
 				case "align":
-					var arrayAtt = att.value.split(" ");
-					if (arrayAtt.length > 1) {
-						style += "display:flex;justify-content:" + arrayAtt[0] + "; align-content:" + arrayAtt[1] + ";";
+					var arrayAttry = att.value.split(" ");
+					if (arrayAttry.length > 1) {
+						style += "display:flex !important;justify-content:" + arrayAttry[0] + " !important; align-items:" + arrayAttry[1] + " !important;";
 					} else {
-						style += "display:flex;align-items:" + arrayAtt[0] + ";";
+						style += "display:flex !important;justify-content:" + arrayAttry[0] + " !important;";
 					}
 					break;
 				case "size":
 					var arrayAtt = att.value.split(",");
 					if (arrayAtt.length > 1 && arrayAtt[0] != "") {
-						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + " !important;";
+						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + "px !important;";
 					} else if (arrayAtt[0] == "") {
-						style += "height:" + arrayAtt[1] + "px;";
+						style += "height:" + arrayAtt[1] + "px !important;";
 					} else {
-						style += "width:" + arrayAtt[0] + "px;";
+						style += "width:" + arrayAtt[0] + "px !important;";
 					}
 					break;
 				case "loop":
@@ -111,8 +114,14 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					break;
 				case "color":
 					debugger;
-					let objectAtt= att.value.search("/\b{/");
-					style += "background-color:" + att.value+";";
+					let objectAtt= att.value.search("(\{)");
+					if(objectAtt>=0){
+						var valueColor=JSON.stringify(att.value);
+						var json= JSON.parse(valueColor);
+						style+="background-color:"+json.backgroundColor;
+						//alert(json.text);
+					}
+					style += "background-color:" + att.value+" !important;";
 					break;
 			}
 		}		
