@@ -1,13 +1,66 @@
 window.addEventListener("load", appDark, false);
-
+window.stateMenu = false;
 var attributes = ["goto", "click", "static"];
 var tags = ["d-button", "d-topbar", "d-content"];
+var tagMenu = null;
+var nPixelsMoveMenu = 0;
 var functs = [];
+function dMemu() {
+	debugger;
+	tagMenu = document.querySelector(".d-menu");
+	if (!window.stateMenu) {
+		tagMenu.style =
+			"display: inline;" +
+			" animation: animation-menu-show 0.5s";
+		window.stateMenu = true;
+	} else {
+		nPixelsMoveMenu = tagMenu.clientWidth;
+		new Promise((resolve, reject) => {
+			setInterval(() => {
+				tagMenu.style = "display: inline;width: " + nPixelsMoveMenu + "px;";
+				nPixelsMoveMenu--;
+				if (nPixelsMoveMenu == 0) {
+					resolve("¡Éxito!");
+				}
+			}, 1);
+		}).then(() => {
+			tagMenu.style = "display:none !important;";
+		});
+		window.stateMenu = false;
+	}
+}
+
 function appDark() {
 	for (const item of document.body.children) {
 		decideTypeElement(item.localName, item);
 	}
 }
+
+function rgbToHsl(r, g, b) {
+	r /= 255, g /= 255, b /= 255;
+	var max = Math.max(r, g, b), min = Math.min(r, g, b);
+	var h, s, l = (max + min) / 2;
+
+	if (max == min) {
+		h = s = 0; // achromatic
+	} else {
+		var d = max - min;
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+		switch (max) {
+			case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+			case g: h = (b - r) / d + 2; break;
+			case b: h = (r - g) / d + 4; break;
+		}
+		h /= 6;
+	}
+
+	return [h, s, l];
+}
+
+function hex2rgb(hex) {
+	return ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
+}
+
 
 function decideTypeElement(tagName, tagElement) {
 	switch (tagName) {
@@ -113,18 +166,19 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					div.a
 					break;
 				case "color":
-					debugger;
-					let objectAtt= att.value.search("(\{)");
-					if(objectAtt>=0){
-						var valueColor=JSON.stringify(att.value);
-						var json= JSON.parse(valueColor);
-						style+="background-color:"+json.backgroundColor;
+					let objectAtt = att.value.search("(\{)");
+					if (objectAtt >= 0) {
+						var valueColor = JSON.stringify(att.value);
+						var json = JSON.parse(valueColor);
+						style += "background-color:" + json.backgroundColor;
 						//alert(json.text);
 					}
-					style += "background-color:" + att.value+" !important;";
+					style += "background-color:" + att.value + " !important;";
+					break;
+				case "":
 					break;
 			}
-		}		
+		}
 		div.style = style;
 	}
 }

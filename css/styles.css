@@ -87,8 +87,9 @@ button:active,input[type=button]:active{
 }
 
 .d-menu{
+    display: none;
   position:fixed;
-  width:80%;
+  width:30vw;
   height:100%;
   z-index:2;
   left:0;
@@ -96,7 +97,7 @@ button:active,input[type=button]:active{
   background-color:var(--d-color-principal)
 }
 .d-item-menu{
-  position:relative
+  position:relative;
   width:100%;
   height:60px;
   margin-top:1px;
@@ -119,9 +120,13 @@ button:active,input[type=button]:active{
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(139, 139, 139); 
 }
-/*@keyframes anim-d-button{
-    from{background-color: red;}
-    to{background-color: yellow;}
+@keyframes animation-menu-show{
+    from {width: 0px;}
+    to {width: 30vw;}
+}
+@keyframes animation-menu-hidden{
+    from {width: 30vw;}
+    to {width: 0px;}
 }
 /* Safari 4.0 - 8.0 */
 /*@-webkit-keyframes example {
