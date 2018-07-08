@@ -11,22 +11,22 @@
 </head>
 
 <body>
-
+  <d-menu>
+	<d-item-menu onclick="dMemu()"></d-item-menu>
+	<d-item-menu></d-item-menu>
+	<d-item-menu></d-item-menu>
+  </d-menu>
   <d-topbar color="rgb(100, 203, 255)" static>
-    <h2 color="{text:red,backgroundColor:blue}">title</h2>
-    <d-menu>
-      <d-item-menu onclick="dMemu()"></d-item-menu>
-      <d-item-menu></d-item-menu>
-      <d-item-menu></d-item-menu>
-    </d-menu>
+    
+	<h2 color="{text:red,backgroundColor:blue}">title</h2>
   </d-topbar>
   <d-principal-content color="rgb(224, 224, 224)">
     <d-content>
       <d-topbar align="center center" size=",50" color="rgb(145,234,255)">
         <h1>title</h1>
-        <d-button></d-button>
-        <d-button></d-button>
-        <d-button></d-button>
+        <button onclick="dMenu()">menu</button>
+        <button>menu2</button>
+        <button>menu3</button>
       </d-topbar>
       <d-content-section color="#FFFFFF" orientation="vertical">
         <input type="text" color="#FFFFFF" size=",100" placeholder="numeros">

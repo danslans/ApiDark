@@ -11,21 +11,11 @@ function dMemu() {
 	if (!window.stateMenu) {
 		tagMenu.style =
 			"display: inline;" +
-			" animation: animation-menu-show 0.5s";
+			" animation: animation-menu-show 0.3s";
 		window.stateMenu = true;
 	} else {
 		nPixelsMoveMenu = tagMenu.clientWidth;
-		new Promise((resolve, reject) => {
-			setInterval(() => {
-				tagMenu.style = "display: inline;width: " + nPixelsMoveMenu + "px;";
-				nPixelsMoveMenu--;
-				if (nPixelsMoveMenu == 0) {
-					resolve("¡Éxito!");
-				}
-			}, 1);
-		}).then(() => {
-			tagMenu.style = "display:none !important;";
-		});
+		tagMenu.style = "display:none;";
 		window.stateMenu = false;
 	}
 }
