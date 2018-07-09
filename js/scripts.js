@@ -2,25 +2,25 @@ window.addEventListener("load", appDark, false);
 window.stateMenu = false;
 var attributes = ["goto", "click", "static"];
 var tags = ["d-button", "d-topbar", "d-content"];
-var tagMenu = null;
-var nPixelsMoveMenu = 0;
 var functs = [];
-function dMemu() {
-	debugger;
-	tagMenu = document.querySelector(".d-menu");
+function dMenu() {
+	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
 		tagMenu.style =
 			"display: inline;" +
 			" animation: animation-menu-show 0.3s";
 		window.stateMenu = true;
 	} else {
-		nPixelsMoveMenu = tagMenu.clientWidth;
 		tagMenu.style = "display:none;";
 		window.stateMenu = false;
 	}
 }
 
 function appDark() {
+	var script= document.createElement("script");
+	script.src = "/js/sentencias.json";
+	document.children[0].childNodes[0].appendChild(script);
+	
 	for (const item of document.body.children) {
 		decideTypeElement(item.localName, item);
 	}
