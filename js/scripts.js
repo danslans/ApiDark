@@ -156,21 +156,35 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					div.a
 					break;
 				case "color":
-					let objectAtt = att.value.search("(\{)");
+					let objectAtt = att.value.search("{");
 					if (objectAtt >= 0) {
-						var valueColor = JSON.stringify(att.value);
-						var json = JSON.parse(valueColor);
-						style += "background-color:" + json.backgroundColor;
-						//alert(json.text);
+						var valueColor = att.value;
+						var json = convertStringToJson(valueColor);
+						style += "background-color:" + json.backgroundColor+";"+
+						"color:"+json.text+";";
 					}
 					style += "background-color:" + att.value + " !important;";
-					break;
-				case "":
 					break;
 			}
 		}
 		div.style = style;
 	}
+}
+
+function convertStringToJson(valueToConvert){
+	var regex = /\w+/gm;
+	var stringJson='{';
+	var texts=valueToConvert.match(regex);
+	for(var item in texts){
+		if(item%2==0){
+			stringJson+='"'+texts[item]+'":';
+		}else{
+			stringJson+='"'+texts[item]+'",';
+		}	
+	}
+	stringJson = stringJson.substring(0,stringJson.length-1);
+	stringJson += "}";
+	return JSON.parse(stringJson);
 }
 
 function createAttribute(name, value, element) {
