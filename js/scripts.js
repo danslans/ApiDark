@@ -17,10 +17,10 @@ function dMenu() {
 }
 
 function appDark() {
-	var script= document.createElement("script");
+	var script = document.createElement("script");
 	script.src = "/js/sentencias.json";
 	document.children[0].childNodes[0].appendChild(script);
-	
+
 	for (const item of document.body.children) {
 		decideTypeElement(item.localName, item);
 	}
@@ -160,8 +160,8 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					if (objectAtt >= 0) {
 						var valueColor = att.value;
 						var json = convertStringToJson(valueColor);
-						style += "background-color:" + json.backgroundColor+";"+
-						"color:"+json.text+";";
+						style += "background-color:" + json.backgroundColor + ";" +
+							"color:" + json.text + ";";
 					}
 					style += "background-color:" + att.value + " !important;";
 					break;
@@ -171,18 +171,18 @@ function loopDecideAttributesFromElement(tagElement, div) {
 	}
 }
 
-function convertStringToJson(valueToConvert){
-	var regex = /\w+/gm;
-	var stringJson='{';
-	var texts=valueToConvert.match(regex);
-	for(var item in texts){
-		if(item%2==0){
-			stringJson+='"'+texts[item]+'":';
-		}else{
-			stringJson+='"'+texts[item]+'",';
-		}	
+function convertStringToJson(valueToConvert) {
+	var regex = /[a-zA-Z0-9_\#\-\(\)\%]+/gm;
+	var stringJson = '{';
+	var texts = valueToConvert.match(regex);
+	for (var item in texts) {
+		if (item % 2 == 0) {
+			stringJson += '"' + texts[item] + '":';
+		} else {
+			stringJson += '"' + texts[item] + '",';
+		}
 	}
-	stringJson = stringJson.substring(0,stringJson.length-1);
+	stringJson = stringJson.substring(0, stringJson.length - 1);
 	stringJson += "}";
 	return JSON.parse(stringJson);
 }

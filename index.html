@@ -11,21 +11,23 @@
 </head>
 
 <body>
+  <d-def>
+    styleText={text:white,backgroundColor:red}
+  </d-def>
   <d-menu>
 	<d-item-menu onclick="dMenu()"></d-item-menu>
 	<d-item-menu></d-item-menu>
 	<d-item-menu></d-item-menu>
   </d-menu>
   <d-topbar align="start center" color="rgb(100, 203, 255)" static>
-    
-	<h2 color="{text:red}">title</h2>
+	<h2 color="{text:#FFFFFF}">title</h2>
   </d-topbar>
   <d-principal-content color="rgb(224, 224, 224)">
     <d-content>
       <d-topbar align="center center" size=",50" color="rgb(145,234,255)">
         <h1>title</h1>
-        <button color="{text:white}" onclick="dMenu()">menu</button>
-        <button color="{text:white}" >menu2</button>
+        <button color="{text:#FFFFFF}" onclick="dMenu()">menu</button>
+        <button color="{text:#FFFFFF}" >menu2</button>
         <button>menu3</button>
       </d-topbar>
       <d-content-section color="#FFFFFF" orientation="vertical">
