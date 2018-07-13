@@ -11,34 +11,42 @@
 </head>
 
 <body>
-  <d-def>
-    styleText={text:white,backgroundColor:red}
-  </d-def>
   <d-menu>
 	<d-item-menu onclick="dMenu()"></d-item-menu>
 	<d-item-menu></d-item-menu>
 	<d-item-menu></d-item-menu>
   </d-menu>
   <d-topbar align="start center" color="rgb(100, 203, 255)" static>
-	<h2 color="{text:#FFFFFF}">title</h2>
+	<h2 color="{text:#FFFFFF,backgroundColor:#99b3ff}">title</h2>
   </d-topbar>
   <d-principal-content color="rgb(224, 224, 224)">
     <d-content>
       <d-topbar align="center center" size=",50" color="rgb(145,234,255)">
         <h1>title</h1>
-        <button color="{text:#FFFFFF}" onclick="dMenu()">menu</button>
+        <button color="{text:#ff99cc}" onclick="dMenu()">menu</button>
         <button color="{text:#FFFFFF}" >menu2</button>
         <button>menu3</button>
       </d-topbar>
-      <d-content-section color="#FFFFFF" orientation="vertical">
-        <input type="text" color="#FFFFFF" size=",100" placeholder="numeros">
-        <div color="blue" size=",400" align="center" orientation="vertical">
-          <button size="100,100" onclick="dMenu()" color="rgb(100, 203, 255)">1</button>
-          <button size="100,100" color="rgb(100, 203, 255)">3</button>
-          <button size="100,100" color="rgb(100, 203, 255)">2</button>
-        </div>
+      <d-content-section size=",200" color="#FFFFFF" orientation="horizontal">
+          <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">1</button>
+          <button size="150,50" color="rgb(100, 203, 255)">2</button>
+          <button size="150,50" color="rgb(100, 203, 255)">3</button>
+		  <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">4</button>
+		  <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">5</button>
+		  <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
+          <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
+		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">4</button>
+		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">5</button>
+		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
+		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
       </d-content-section>
     </d-content>
+	
+	<d-content color="red">
+	  <d-content-section>
+		<button>hola mundo</button>
+	  </d-content-section>
+	</d-content>
   </d-principal-content>
 
   <!--<d-content>

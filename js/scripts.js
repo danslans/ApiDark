@@ -1,8 +1,6 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
-var attributes = ["goto", "click", "static"];
-var tags = ["d-button", "d-topbar", "d-content"];
-var functs = [];
+var functs ={"d-topbar":"hola","d-principal-content":"principal"};
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
@@ -17,6 +15,7 @@ function dMenu() {
 }
 
 function appDark() {
+	alert(functs["d-topbar"]);
 	var script = document.createElement("script");
 	script.src = "/js/sentencias.json";
 	document.children[0].childNodes[0].appendChild(script);

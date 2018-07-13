@@ -96,7 +96,7 @@ button:active, input[type=button]:active {
     display: none;
     position: fixed;
     width: var(--d-width-menu);
-    height: 100%;
+    height: 100vh;
     z-index: 2;
     left: 0;
     padding: 5px;
