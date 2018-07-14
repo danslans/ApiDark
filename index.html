@@ -16,50 +16,25 @@
 	<d-item-menu></d-item-menu>
 	<d-item-menu></d-item-menu>
   </d-menu>
-  <d-topbar align="start center" color="rgb(100, 203, 255)" static>
-	<h2 color="{text:#FFFFFF,backgroundColor:#99b3ff}">title</h2>
+  <d-topbar align="start center" color="{shadow: 0px 3px 10px #3333ff}" static>
+	<h2>title</h2>
   </d-topbar>
   <d-principal-content color="rgb(224, 224, 224)">
     <d-content>
-      <d-topbar align="center center" size=",50" color="rgb(145,234,255)">
+      <d-topbar align="start center" size=",50" color="rgb(145,234,255)">
         <h1>title</h1>
-        <button color="{text:#ff99cc}" onclick="dMenu()">menu</button>
-        <button color="{text:#FFFFFF}" >menu2</button>
-        <button>menu3</button>
       </d-topbar>
       <d-content-section size=",200" color="#FFFFFF" orientation="horizontal">
-          <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">1</button>
-          <button size="150,50" color="rgb(100, 203, 255)">2</button>
-          <button size="150,50" color="rgb(100, 203, 255)">3</button>
-		  <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">4</button>
-		  <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">5</button>
-		  <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
-          <button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
-		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">4</button>
-		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">5</button>
-		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
-		<button size="150,50" onclick="dMenu()" color="rgb(100, 203, 255)">6</button>
+    
       </d-content-section>
     </d-content>
 	
 	<d-content>
-	  <d-content-section color="#cccccc">
-		<button>hola mundo</button>
+	  <d-content-section size=",600" color="#cccccc">
+		<button onclick="dMenu()">hola mundo</button>
 	  </d-content-section>
 	</d-content>
   </d-principal-content>
-
-  <!--<d-content>
-	</d-content>
-
-	<h1>My site</h1>
-
-	<d-button>
-    hola mundo
-	</d-button>
-	<d-button d-goto="appDark.html">ir a</d-button>
-	<d-button d-click="result=holamundo()">Enviar</d-button>
-	<d-button d-click="showStorage(result)">Boton</d-button>-->
 </body>
 
 </html>

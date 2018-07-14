@@ -20,10 +20,6 @@ function dMenu() {
 }
 
 function appDark() {
-	var script = document.createElement("script");
-	script.src = "/js/sentencias.json";
-	document.children[0].childNodes[0].appendChild(script);
-
 	for (const item of document.body.children) {
 		validateTags(item);
 	}
@@ -145,9 +141,11 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						var valueColor = att.value;
 						var json = convertStringToJson(valueColor);
 						style += "background-color:" + json.backgroundColor + ";" +
-							"color:" + json.text + ";";
-					}
+							"color:" + json.text + ";"+
+							"box-shadow:"+json.shadow+" !important;";
+					}else{
 					style += "background-color:" + att.value + " !important;";
+					}
 					break;
 			}
 		}
@@ -156,7 +154,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 }
 
 function convertStringToJson(valueToConvert) {
-	var regex = /[a-zA-Z0-9_\#\-\(\)\%]+/gm;
+	var regex = /[a-zA-Z0-9_\#\-\(\)\%\s]+/gm;
 	var stringJson = '{';
 	var texts = valueToConvert.match(regex);
 	for (var item in texts) {
