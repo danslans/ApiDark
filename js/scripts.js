@@ -1,6 +1,11 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
-var functs ={"d-topbar":"hola","d-principal-content":"principal"};
+var functs ={"d-topbar":"",
+"d-principal-content":"",
+"d-content":"",
+"d-content-section":"",
+"d-menu":"",
+"d-item-menu":""};
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
@@ -15,14 +20,22 @@ function dMenu() {
 }
 
 function appDark() {
-	alert(functs["d-topbar"]);
 	var script = document.createElement("script");
 	script.src = "/js/sentencias.json";
 	document.children[0].childNodes[0].appendChild(script);
 
 	for (const item of document.body.children) {
-		decideTypeElement(item.localName, item);
+		validateTags(item);
 	}
+}
+
+function validateTags(tag){
+	if(functs[tag.localName] !=null){
+			createElement(tag.localName, tag);
+		}else{
+			loopDecideAttributesFromElement(tag, tag);
+			loopTagElement(tag);
+		}
 }
 
 function rgbToHsl(r, g, b) {
@@ -48,34 +61,6 @@ function rgbToHsl(r, g, b) {
 
 function hex2rgb(hex) {
 	return ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
-}
-
-
-function decideTypeElement(tagName, tagElement) {
-	switch (tagName) {
-		case "d-topbar":
-			createElement(tagName, tagElement);
-			break;
-		case "d-content":
-			createElement(tagName, tagElement);
-			break;
-		case "d-content-section":
-			createElement(tagName, tagElement);
-			break;
-		case "d-principal-content":
-			createElement(tagName, tagElement);
-			break;
-		case "d-menu":
-			createElement(tagName, tagElement);
-			break;
-		case "d-item-menu":
-			createElement(tagName, tagElement);
-			break;
-		default:
-			loopDecideAttributesFromElement(tagElement, tagElement);
-			loopTagElement(tagElement);
-			break;
-	}
 }
 
 function createElement(tagName, tagElement) {
@@ -194,7 +179,7 @@ function createAttribute(name, value, element) {
 
 function loopTagElement(tagElement) {
 	for (const tag of tagElement.children) {
-		decideTypeElement(tag.localName, tag);
+		validateTags(tag);
 	}
 }
 

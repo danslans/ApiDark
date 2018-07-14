@@ -78,10 +78,9 @@ body {
 
 button, input[type=button] {
     position: relative;
-    width: 80px;
     height: 40px;
     margin: 5px;
-    padding: 0px;
+    padding: 10px;
     background-color: var(--d-color-button);
     border: 0;
     outline: none;
