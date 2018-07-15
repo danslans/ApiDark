@@ -9,12 +9,12 @@ var functs ={"d-topbar":"",
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
-		tagMenu.style =
+		tagMenu.style = tagMenu.style.cssText+
 			"display: inline;" +
 			" animation: animation-menu-show 0.3s";
 		window.stateMenu = true;
 	} else {
-		tagMenu.style = "display:none;";
+		tagMenu.style = tagMenu.style.cssText+"display:none;";
 		window.stateMenu = false;
 	}
 }
