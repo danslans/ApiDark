@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link href="css/styles.css" rel="stylesheet">
@@ -18,13 +18,13 @@
 	<d-item-menu></d-item-menu>
 	<d-item-menu></d-item-menu>
   </d-menu>
-  <d-topbar static align="start center" >
-	<h2>title</h2>
+  <d-topbar static align="start center" color="{shadow:0px 3px 5px #cccccc,backgroundColor:red}">
+	<h2 color="{text:white}">title</h2>
   </d-topbar>
   <d-principal-content>
     <d-content>
       <d-topbar align="start center" size=",50">
-        <h1>title</h1>
+        <h1 color="{text:white}">title</h1>
       </d-topbar>
       <d-content-section size=",200" color="{backgroundColor:#FFFFFF,shadow:2px 2px 50px 0px #cccccc}" orientation="horizontal">
     
@@ -32,6 +32,17 @@
     </d-content>
 	
 	<d-content>
+	  <d-topbar align="start center" scroll>
+		<d-sub-menu>
+		  
+		</d-sub-menu>
+		<button>menu</button>
+		<button>menu</button>
+		<button>menu</button>
+		<button>menu</button>
+		<button>menu</button>
+		<button>menu</button>
+	  </d-topbar>
 	  <d-content-section size=",300" color="#EFEFEF">
 		<button onclick="dMenu()">hola mundo</button>
 	  </d-content-section>

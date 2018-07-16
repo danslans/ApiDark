@@ -152,6 +152,9 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						style += "background-color:" + att.value + " !important;";
 					}
 					break;
+				case "scroll":
+					style += "overflow:auto;";
+					break;
 			}
 		}
 		div.style = style;
