@@ -1,20 +1,22 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
-var functs ={"d-topbar":"",
-"d-principal-content":"",
-"d-content":"",
-"d-content-section":"",
-"d-menu":"",
-"d-item-menu":""};
+var functs = {
+	"d-topbar": "",
+	"d-principal-content": "",
+	"d-content": "",
+	"d-content-section": "",
+	"d-menu": "",
+	"d-item-menu": ""
+};
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
-		tagMenu.style = tagMenu.style.cssText+
+		tagMenu.style = tagMenu.style.cssText +
 			"display: inline;" +
 			" animation: animation-menu-show 0.3s";
 		window.stateMenu = true;
 	} else {
-		tagMenu.style = tagMenu.style.cssText+"display:none;";
+		tagMenu.style = tagMenu.style.cssText + "display:none;";
 		window.stateMenu = false;
 	}
 }
@@ -25,13 +27,13 @@ function appDark() {
 	}
 }
 
-function validateTags(tag){
-	if(functs[tag.localName] !=null){
-			createElement(tag.localName, tag);
-		}else{
-			loopDecideAttributesFromElement(tag, tag);
-			loopTagElement(tag);
-		}
+function validateTags(tag) {
+	if (functs[tag.localName] != null) {
+		createElement(tag.localName, tag);
+	} else {
+		loopDecideAttributesFromElement(tag, tag);
+		loopTagElement(tag);
+	}
 }
 
 function rgbToHsl(r, g, b) {
@@ -85,7 +87,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 				case "static":
 					style += "display:flex !important;position:fixed !important;z-index:1 !important;";
 					var pContentDesign = document.getElementsByTagName("d-principal-content");
-					pContentDesign[0].style="margin-top:65px !important;";
+					pContentDesign[0].style = "margin-top:65px !important;";
 					break;
 				case "orientation":
 					switch (att.value) {
@@ -143,10 +145,11 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						var valueColor = att.value;
 						var json = convertStringToJson(valueColor);
 						style += "background-color:" + json.backgroundColor + ";" +
-							"color:" + json.text + ";"+
-							"box-shadow:"+json.shadow+" !important;";
-					}else{
-					style += "background-color:" + att.value + " !important;";
+							"color:" + json.text + ";" +
+							"box-shadow:" + json.shadow + " !important;"+
+							":hover{background-color:red;}";
+					} else {
+						style += "background-color:" + att.value + " !important;";
 					}
 					break;
 			}
