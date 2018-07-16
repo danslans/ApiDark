@@ -84,6 +84,8 @@ function loopDecideAttributesFromElement(tagElement, div) {
 			switch (att.name) {
 				case "static":
 					style += "display:flex !important;position:fixed !important;z-index:1 !important;";
+					var pContentDesign = document.getElementsByTagName("d-principal-content");
+					pContentDesign[0].style="margin-top:65px !important;";
 					break;
 				case "orientation":
 					switch (att.value) {
