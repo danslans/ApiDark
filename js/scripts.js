@@ -6,7 +6,8 @@ var functs = {
 	"d-content": "",
 	"d-content-section": "",
 	"d-menu": "",
-	"d-item-menu": ""
+	"d-item-menu" : "",
+	"d-sub-menu" : {principalElement:{name:"div",childs:[{name:"label"},{name:"input",type:"text"}]}}
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
