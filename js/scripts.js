@@ -1,13 +1,13 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
 var functs = {
-	"d-topbar": [{element:{name:"div"}}],
-	"d-principal-content":[{element:{name:"div"}}] ,
-	"d-content": [{element:{name:"div"}}],
-	"d-content-section": [{element:{name:"div"}}],
-	"d-menu": [{element:{name:"div"}}],
-	"d-item-menu" : [{element:{name:"div"}}],
-	"d-input" : [{element:{name:"div",childs:[{name:"label"},{name:"input",type:"text"}]}}]
+	"d-topbar": [{ element: { name: "div",className:"d-topbar" } }],
+	"d-principal-content": [{ element: { name: "div",className:"d-principal-content" } }],
+	"d-content": [{ element: { name: "div",className:"d-content" } }],
+	"d-content-section": [{ element: { name: "div",className:"d-content-section" } }],
+	"d-menu": [{ element: { name: "div" ,className:"d-menu",childs:[{name:"div",className:"d-header-menu"}]} }],
+	"d-item-menu": [{ element: { name: "div",className:"d-item-menu" } }],
+	"d-input": [{ element: { name: "div", childs: [{ name: "label" }, { name: "input", type: "text" }] ,className:"d-input"} }]
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
@@ -63,32 +63,30 @@ function hex2rgb(hex) {
 }
 
 function createElement(tagName, tagElement, config) {
-	config.forEach(itemElement=>{
-	//alert(JSON.stringify(itemElement.element.name));
-	let div = document.createElement(itemElement.element.name);
-	div.className = tagName;
-
-	loopDecideAttributesFromElement(tagElement, div);
-
-	if (tagElement.children.length > 0) {
-		while (tagElement.firstElementChild) {
-			div.appendChild(tagElement.firstElementChild);
+	config.forEach(itemElement => {
+		//alert(JSON.stringify(itemElement.element.name));
+		let div = document.createElement(itemElement.element.name);
+		div.className =   itemElement.element.className;
+		loopDecideAttributesFromElement(tagElement, div);
+		createChildsElement(itemElement.element.childs, div);
+		if (tagElement.children.length > 0) {
+			while (tagElement.firstElementChild) {
+				div.appendChild(tagElement.firstElementChild);
+			}
+			tagElement.appendChild(div);
+			loopTagElement(div);
+		} else {
+			tagElement.appendChild(div);
 		}
-		tagElement.appendChild(div);
-		loopTagElement(div);
-	} else {
-		tagElement.appendChild(div);
-	}
-	//createChildsElement(config.element.childs,div);
 	});
 }
 
-function createChildsElement(listChild, principalElement){
-	if(listChild != null){
-		listChild.forEach(item=>{
-			alert(item.name);
+function createChildsElement(listChild, principalElement) {
+	if (listChild != null) {
+		listChild.forEach(item => {
 			let element = document.createElement(item.name);
-			element.innerHTML="";
+			element.className = item.className!=null?item.className:null;
+			element.type = item.type != null? item.type : null;
 			principalElement.appendChild(element);
 		});
 	}
@@ -161,7 +159,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						var json = convertStringToJson(valueColor);
 						style += "background-color:" + json.backgroundColor + ";" +
 							"color:" + json.text + ";" +
-							"box-shadow:" + json.shadow + " !important;"+
+							"box-shadow:" + json.shadow + " !important;" +
 							":hover{background-color:red;}";
 					} else {
 						style += "background-color:" + att.value + " !important;";
