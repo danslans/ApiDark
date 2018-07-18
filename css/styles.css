@@ -132,7 +132,7 @@ button:active, input[type=button]:active {
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(8, 8, 8, 0.705);
+    background: rgba(8, 8, 8, 0.1);
 }
 
 /* Handle on hover */

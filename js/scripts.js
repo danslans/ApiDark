@@ -1,13 +1,13 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
 var functs = {
-	"d-topbar": "",
-	"d-principal-content": "",
-	"d-content": "",
-	"d-content-section": "",
-	"d-menu": "",
-	"d-item-menu" : "",
-	"d-sub-menu" : {principalElement:{name:"div",childs:[{name:"label"},{name:"input",type:"text"}]}}
+	"d-topbar": [{element:{name:"div"}}],
+	"d-principal-content":[{element:{name:"div"}}] ,
+	"d-content": [{element:{name:"div"}}],
+	"d-content-section": [{element:{name:"div"}}],
+	"d-menu": [{element:{name:"div"}}],
+	"d-item-menu" : [{element:{name:"div"}}],
+	"d-input" : [{element:{name:"div",childs:[{name:"label"},{name:"input",type:"text"}]}}]
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
@@ -30,7 +30,7 @@ function appDark() {
 
 function validateTags(tag) {
 	if (functs[tag.localName] != null) {
-		createElement(tag.localName, tag);
+		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
 		loopDecideAttributesFromElement(tag, tag);
 		loopTagElement(tag);
@@ -62,8 +62,10 @@ function hex2rgb(hex) {
 	return ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
 }
 
-function createElement(tagName, tagElement) {
-	let div = document.createElement("div");
+function createElement(tagName, tagElement, config) {
+	config.forEach(itemElement=>{
+	//alert(JSON.stringify(itemElement.element.name));
+	let div = document.createElement(itemElement.element.name);
 	div.className = tagName;
 
 	loopDecideAttributesFromElement(tagElement, div);
@@ -77,8 +79,20 @@ function createElement(tagName, tagElement) {
 	} else {
 		tagElement.appendChild(div);
 	}
+	//createChildsElement(config.element.childs,div);
+	});
 }
 
+function createChildsElement(listChild, principalElement){
+	if(listChild != null){
+		listChild.forEach(item=>{
+			alert(item.name);
+			let element = document.createElement(item.name);
+			element.innerHTML="";
+			principalElement.appendChild(element);
+		});
+	}
+}
 
 function loopDecideAttributesFromElement(tagElement, div) {
 	if (tagElement.attributes.length > 0) {
