@@ -7,7 +7,7 @@ var functs = {
 	"d-content-section": [{ element: { name: "div",className:"d-content-section" } }],
 	"d-menu": [{ element: { name: "div" ,className:"d-menu",childs:[{name:"div",className:"d-header-menu"}]} }],
 	"d-item-menu": [{ element: { name: "div",className:"d-item-menu" } }],
-	"d-input": [{ element: { name: "div", childs: [{ name: "label" }, { name: "input", type: "text" }] ,className:"d-input"} }]
+	"d-input": [{ element: { name: "div", childs: [{ name: "label" , value:"" }, { name: "input", type: "text" }] ,className:"d-input"} }]
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
@@ -159,8 +159,11 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						var json = convertStringToJson(valueColor);
 						style += "background-color:" + json.backgroundColor + ";" +
 							"color:" + json.text + ";" +
-							"box-shadow:" + json.shadow + " !important;" +
-							":hover{background-color:red;}";
+							"box-shadow:" + json.shadow + " !important;";
+							if(json.header!=null){
+								document.querySelector(".d-header-menu")
+								.style.backgroundColor="";
+							}
 					} else {
 						style += "background-color:" + att.value + " !important;";
 					}

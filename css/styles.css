@@ -9,6 +9,7 @@
     --d-color-button: #cccccc;
     --d-color-button-active: #E3E3E3;
     --d-color-principal: #FFFFFF;
+	--d-color-segcundario:#00E602;
     --d-width-menu: 30vw;
 }
 
@@ -93,7 +94,13 @@ button, input[type=button] {
 button:active, input[type=button]:active {
     background-color: var(--d-color-button-active);
 }
-
+.d-header-menu{
+  position:relative.
+  width:100%;
+  height:30vh;
+  background-color:var(--d-color-segcundario);
+  
+}
 .d-menu {
     display: none;
     position: fixed;
@@ -101,7 +108,7 @@ button:active, input[type=button]:active {
     height: 100vh;
     z-index: 2;
     left: 0;
-    padding: 5px;
+    padding: 0px;
     background-color: var(--d-color-principal)
 }
 
@@ -121,6 +128,37 @@ button:active, input[type=button]:active {
 
 .d-item-menu:active{
   background-color: var(--d-color-button-active) !important;
+}
+
+.d-input{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  height:100px;
+  background-color:Blue;
+}
+.d-input>label{
+  position:relative;
+  height:25px;
+  top:37px;
+  background-color:Red;
+  z-index:1;
+}
+.d-input>input[type=text]{
+  position:relative;
+  border:none;
+  outline:none;
+  height:40px;
+  background-color:#DFDFDF;
+  font-size:20px;
+  padding:5px;
+}
+
+
+
+.d-input>label{
+  animation:animation-input-text 0.5s;
 }
 
 /* width */
@@ -182,6 +220,16 @@ button:active, input[type=button]:active {
         width: 0px;
     }
 }
+
+@keyframes animation-input-text {
+    from {
+        top:37px;
+    }
+    to {
+        top: 0px;
+    }
+}
+
 
 /* Safari 4.0 - 8.0 */
 
