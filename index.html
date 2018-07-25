@@ -12,7 +12,10 @@
 
 <body>
   <d-menu color="{backgroungColorHeader:red}">
-    <d-item-menu onclick="dMenu()" color="{text:#ffffff}"><h2>home</h2></d-item-menu>
+    <d-item-menu onclick="dMenu()" color="{text:#ffffff}">
+      <h2>home</h2>
+      <d-input></d-input>
+    </d-item-menu>
   </d-menu>
   <d-topbar static align="start center" color="{shadow:0px 3px 5px #cccccc,backgroundColor:red}">
 	<h2 color="{text:white}">title</h2>
@@ -22,7 +25,7 @@
       <d-topbar align="start center" size=",50">
         <h1 color="{text:white}">title</h1>
       </d-topbar>
-      <d-content-section size=",200" color="{backgroundColor:yellow,shadow:2px 2px 50px 0px #cccccc}" orientation="horizontal">
+      <d-content-section size=",200" color="{backgroundColor:#EFEFEF,shadow:2px 2px 50px 0px #cccccc}" orientation="horizontal">
           <d-input value="nombre" placeholder="nombre"></d-input>
       </d-content-section>
     </d-content>
@@ -39,7 +42,7 @@
 		<button>menu</button>
 		<button>menu</button>
 	  </d-topbar>
-	  <d-content-section size=",300" color="#EFEFEF">
+	  <d-content-section size=",200" color="{backgroundColor:#EFEFEF,shadow:2px 2px 50px 0px #cccccc}">
 		<button onclick="dMenu()">hola mundo</button>
 	  </d-content-section>
 	</d-content>
