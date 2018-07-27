@@ -7,7 +7,7 @@ var functs = {
 	"d-content-section": [{ element: { name: "div",className:"d-content-section" } }],
 	"d-menu": [{ element: { name: "div" ,className:"d-menu",childs:[{name:"div",className:"d-header-menu"}]} }],
 	"d-item-menu": [{ element: { name: "div",className:"d-item-menu" } }],
-	"d-input": [{ element: { name: "div", childs: [{ name: "label" , value:"",className:"d-input-title" }, { name: "input", type: "text",className:"d-input" }] ,className:"d-input-content"} }]
+	"d-input": [{ element: { name: "div", childs: [{ name: "label" , value:"hola mubdo",className:"d-input-title" }, { name: "input", type: "text",className:"d-input" }] ,className:"d-input-content"} }]
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
@@ -66,7 +66,9 @@ function createElement(tagName, tagElement, config) {
 	config.forEach(itemElement => {
 		//alert(JSON.stringify(itemElement.element.name));
 		let div = document.createElement(itemElement.element.name);
-		div.className =   itemElement.element.className;
+		div.className = itemElement.element.className;
+		div.value=itemElement.element.value;
+		//alert(JSON.stringify(itemElement));
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div);
 		if (tagElement.children.length > 0) {
@@ -87,6 +89,8 @@ function createChildsElement(listChild, principalElement) {
 			let element = document.createElement(item.name);
 			element.className = item.className!=null?item.className:null;
 			element.type = item.type != null? item.type : null;
+			element.value = item.value != null ? item.value : null;
+			alert(element.value);
 			principalElement.appendChild(element);
 		});
 	}

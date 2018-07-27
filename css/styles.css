@@ -138,8 +138,8 @@ button:active, input[type=button]:active {
     height: 30px;
 }
 .d-input{
-    width: 100%;
-    height: 100%;
+    width: 10%;
+    height: 10%;
     outline: none;
     font-size: 25px;
     border: none;
