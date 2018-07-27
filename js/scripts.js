@@ -86,11 +86,11 @@ function createElement(tagName, tagElement, config) {
 function createChildsElement(listChild, principalElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
+			debugger;
 			let element = document.createElement(item.name);
 			element.className = item.className!=null?item.className:null;
 			element.type = item.type != null? item.type : null;
-			element.value = item.value != null ? item.value : null;
-			alert(element.value);
+			element.textContent = item.value != null ? item.value : null;
 			principalElement.appendChild(element);
 		});
 	}
