@@ -7,7 +7,8 @@ var functs = {
 	"d-content-section": [{ element: { name: "div",className:"d-content-section" } }],
 	"d-menu": [{ element: { name: "div" ,className:"d-menu",childs:[{name:"div",className:"d-header-menu"}]} }],
 	"d-item-menu": [{ element: { name: "div",className:"d-item-menu" } }],
-	"d-input": [{ element: { name: "div", childs: [{ name: "label" , value:"hola mubdo",className:"d-input-title" }, { name: "input", type: "text",className:"d-input" }] ,className:"d-input-content"} }]
+	"d-input": [{ element: { name: "div", childs: [{ name: "label" , value:"hola mubdo",className:"d-input-title" }, { name: "input", type: "text",className:"d-input" }] ,className:"d-input-content"} }],
+	"d-icon" : [{element:{name:"div",className:"d-icon"}}]
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");

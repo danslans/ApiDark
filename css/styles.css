@@ -135,10 +135,11 @@ button:active, input[type=button]:active {
     position: relative;
     background-color: rebeccapurple;
     width: 200px;
-    height: 30px;
+    height: 50px;
+	display:flex;
+	flex-direction:column;
 }
 .d-input{
-    width: 10%;
     height: 10%;
     outline: none;
     font-size: 25px;
@@ -148,7 +149,6 @@ button:active, input[type=button]:active {
 .d-input-title{
     position:relative;
     width: 200px;
-    height: 200px;
     background-color: #00E602;
 }
 
