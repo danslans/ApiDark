@@ -129,14 +129,22 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					}
 					break;
 				case "size":
-					var arrayAtt = att.value.split(",");
+					alert(tagElement.parentElement.clientWidth);
+					var styleCom=document.defaultView.getComputedStyle(tagElement.parentElement);
+					alert(styleCom.getPropertyValue('width'));
+					let arrayAtt = att.value.split(",");
 					if (arrayAtt.length > 1 && arrayAtt[0] != "") {
-						style += "width:" + arrayAtt[0] + "px !important; height:" + arrayAtt[1] + "px !important;";
+						let x = arrayAtt[0].search("%")>0?arrayAtt[0]:arrayAtt[0]+"px";
+						let y = arrayAtt[1].search("%")>0?arrayAtt[1]:arrayAtt[1]+"px";
+						style += "width:" + x + " !important; height:" + y + " !important;";
 					} else if (arrayAtt[0] == "") {
-						style += "height:" + arrayAtt[1] + "px !important;";
+						let y = arrayAtt[1].search("%")>0?arrayAtt[1]:arrayAtt[1]+"px";
+						style += "height:" + y + " !important;";
 					} else {
-						style += "width:" + arrayAtt[0] + "px !important;";
+						let x = arrayAtt[0].search("%")>0?arrayAtt[0]:arrayAtt[0]+"px";
+						style += "width:" + x + " !important;";
 					}
+					//alert(style);
 					break;
 				case "loop":
 					var parent = tagElement.parentElement;
