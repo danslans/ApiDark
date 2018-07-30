@@ -1,14 +1,14 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
 var functs = {
-	"d-topbar": [{ element: { name: "div",className:"d-topbar" } }],
-	"d-principal-content": [{ element: { name: "div",className:"d-principal-content" } }],
-	"d-content": [{ element: { name: "div",className:"d-content" } }],
-	"d-content-section": [{ element: { name: "div",className:"d-content-section" } }],
-	"d-menu": [{ element: { name: "div" ,className:"d-menu",childs:[{name:"div",className:"d-header-menu"}]} }],
-	"d-item-menu": [{ element: { name: "div",className:"d-item-menu" } }],
-	"d-input": [{ element: { name: "div", childs: [{ name: "label" , value:"hola mubdo",className:"d-input-title" }, { name: "input", type: "text",className:"d-input" }] ,className:"d-input-content"} }],
-	"d-icon" : [{element:{name:"div",className:"d-icon"}}]
+	"d-topbar": [{ element: { name: "div", className: "d-topbar" } }],
+	"d-principal-content": [{ element: { name: "div", className: "d-principal-content" } }],
+	"d-content": [{ element: { name: "div", className: "d-content" } }],
+	"d-content-section": [{ element: { name: "div", className: "d-content-section" } }],
+	"d-menu": [{ element: { name: "div", className: "d-menu", childs: [{ name: "div", className: "d-header-menu" }] } }],
+	"d-item-menu": [{ element: { name: "div", className: "d-item-menu" } }],
+	"d-input": [{ element: { name: "div", childs: [{ name: "label", value: "hola mubdo", className: "d-input-title" }, { name: "input", type: "text", className: "d-input" }], className: "d-input-content" } }],
+	"d-icon": [{ element: { name: "div", className: "d-icon" } }]
 };
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
@@ -68,7 +68,7 @@ function createElement(tagName, tagElement, config) {
 		//alert(JSON.stringify(itemElement.element.name));
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
-		div.value=itemElement.element.value;
+		div.value = itemElement.element.value;
 		//alert(JSON.stringify(itemElement));
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div);
@@ -87,10 +87,9 @@ function createElement(tagName, tagElement, config) {
 function createChildsElement(listChild, principalElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
-			debugger;
 			let element = document.createElement(item.name);
-			element.className = item.className!=null?item.className:null;
-			element.type = item.type != null? item.type : null;
+			element.className = item.className != null ? item.className : null;
+			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			principalElement.appendChild(element);
 		});
@@ -129,22 +128,33 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					}
 					break;
 				case "size":
-					alert(tagElement.parentElement.clientWidth);
+					/*alert(tagElement.parentElement.clientWidth);
 					var styleCom=document.defaultView.getComputedStyle(tagElement.parentElement);
-					alert(styleCom.getPropertyValue('width'));
-					let arrayAtt = att.value.split(",");
-					if (arrayAtt.length > 1 && arrayAtt[0] != "") {
-						let x = arrayAtt[0].search("%")>0?arrayAtt[0]:arrayAtt[0]+"px";
-						let y = arrayAtt[1].search("%")>0?arrayAtt[1]:arrayAtt[1]+"px";
-						style += "width:" + x + " !important; height:" + y + " !important;";
-					} else if (arrayAtt[0] == "") {
-						let y = arrayAtt[1].search("%")>0?arrayAtt[1]:arrayAtt[1]+"px";
-						style += "height:" + y + " !important;";
+					alert(styleCom.getPropertyValue('width'));*/
+					if (att.value.search("{") >= 0) {
+						let json = convertStringToJson(att.value);
+						let paddings= json.padding.split(" ");
+						style += "width:"+json.x+" !important;"+
+						"height:"+json.y+" !important;"+
+						"padding-top:"+ (paddings[0]!=null?paddings[0]:"0px")+ " !important;"+
+						"padding-bottom:"+ (paddings[1]!=null?paddings[1]:"0px")+ " !important;"+
+						"padding-left:"+ (paddings[2]!=null?paddings[2]:"0px")+ " !important;"+
+						"padding-right:"+ (paddings[3]!=null?paddings[3]:"0px")+ " !important;";
 					} else {
-						let x = arrayAtt[0].search("%")>0?arrayAtt[0]:arrayAtt[0]+"px";
-						style += "width:" + x + " !important;";
+						let arrayAtt = att.value.split(",");
+						if (arrayAtt.length > 1 && arrayAtt[0] != "") {
+							let x = arrayAtt[0].search("%") > 0 ? arrayAtt[0] : arrayAtt[0] + "px";
+							let y = arrayAtt[1].search("%") > 0 ? arrayAtt[1] : arrayAtt[1] + "px";
+							style += "width:" + x + " !important; height:" + y + " !important;";
+						} else if (arrayAtt[0] == "") {
+							let y = arrayAtt[1].search("%") > 0 ? arrayAtt[1] : arrayAtt[1] + "px";
+							style += "height:" + y + " !important;";
+						} else {
+							let x = arrayAtt[0].search("%") > 0 ? arrayAtt[0] : arrayAtt[0] + "px";
+							style += "width:" + x + " !important;";
+						}
 					}
-					//alert(style);
+
 					break;
 				case "loop":
 					var parent = tagElement.parentElement;
@@ -173,10 +183,10 @@ function loopDecideAttributesFromElement(tagElement, div) {
 						style += "background-color:" + json.backgroundColor + ";" +
 							"color:" + json.text + ";" +
 							"box-shadow:" + json.shadow + " !important;";
-							if(json.header!=null){
-								document.querySelector(".d-header-menu")
-								.style.backgroundColor="";
-							}
+						if (json.header != null) {
+							document.querySelector(".d-header-menu")
+								.style.backgroundColor = "";
+						}
 					} else {
 						style += "background-color:" + att.value + " !important;";
 					}
