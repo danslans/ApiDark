@@ -7,7 +7,7 @@ var functs = {
 	"d-content-section": [{ element: { name: "div", className: "d-content-section" } }],
 	"d-menu": [{ element: { name: "div", className: "d-menu", childs: [{ name: "div", className: "d-header-menu" }] } }],
 	"d-item-menu": [{ element: { name: "div", className: "d-item-menu" } }],
-	"d-input": [{ element: { name: "div", childs: [{ name: "label", value: "hola mubdo", className: "d-input-title" }, { name: "input", type: "text", className: "d-input" }], className: "d-input-content" } }],
+	"d-input": [{ element: { name: "div", childs: [{ name: "label", value: "hola mundo1", className: "d-input-title" }, { name: "input", type: "text",value:"hola mundo", className: "d-input" }], className: "d-input-content" } }],
 	"d-icon": [{ element: { name: "div", className: "d-icon" } }]
 };
 function dMenu() {
@@ -91,6 +91,7 @@ function createChildsElement(listChild, principalElement) {
 			element.className = item.className != null ? item.className : null;
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
+			element.value = item.value != null ? item.value : null;
 			principalElement.appendChild(element);
 		});
 	}
@@ -226,6 +227,13 @@ function loopTagElement(tagElement) {
 	for (const tag of tagElement.children) {
 		validateTags(tag);
 	}
+}
+
+function styleStatic(element){
+	let style += "display:flex !important;position:fixed !important;z-index:1 !important;";
+	var pContentDesign = document.getElementsByTagName("d-principal-content");
+	pContentDesign[0].style = "margin-top:65px !important;";
+	element.style=style;
 }
 
 function createDButton(tag) {
