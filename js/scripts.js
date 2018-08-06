@@ -7,7 +7,7 @@ var functs = {
 	"d-content-section": [{ element: { name: "div", className: "d-content-section" } }],
 	"d-menu": [{ element: { name: "div", className: "d-menu", childs: [{ name: "div", className: "d-header-menu" }] } }],
 	"d-item-menu": [{ element: { name: "div", className: "d-item-menu" } }],
-	"d-input": [{ element: { name: "div", childs: [{ name: "label", value: "hola mundo1", className: "d-input-title" }, { name: "input", type: "text",value:"hola mundo", className: "d-input" }], className: "d-input-content" } }],
+	"d-input": [{ element: { name: "div", childs: [{ name: "label", value: "hola mundo1", className: "d-input-title" }, { name: "input", type: "text", value: "hola mundo", className: "d-input" }], className: "d-input-content" } }],
 	"d-icon": [{ element: { name: "div", className: "d-icon" } }]
 };
 function dMenu() {
@@ -101,6 +101,13 @@ function loopDecideAttributesFromElement(tagElement, div) {
 	if (tagElement.attributes.length > 0) {
 		var style = "";
 		for (let att of tagElement.attributes) {
+			/*style += styleStatic();
+			style += styleOrientation(att.value);
+			style += styleAlign(att.value);
+			style += styleSize(att.value);
+			styleLoop(tagElement,att.value,div);
+			style += styleColor(att.value);
+			style += styleScroll();*/
 			switch (att.name) {
 				case "static":
 					style += "display:flex !important;position:fixed !important;z-index:1 !important;";
@@ -134,13 +141,13 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					alert(styleCom.getPropertyValue('width'));*/
 					if (att.value.search("{") >= 0) {
 						let json = convertStringToJson(att.value);
-						let paddings= json.padding.split(" ");
-						style += "width:"+json.x+" !important;"+
-						"height:"+json.y+" !important;"+
-						"padding-top:"+ (paddings[0]!=null?paddings[0]:"0px")+ " !important;"+
-						"padding-bottom:"+ (paddings[1]!=null?paddings[1]:"0px")+ " !important;"+
-						"padding-left:"+ (paddings[2]!=null?paddings[2]:"0px")+ " !important;"+
-						"padding-right:"+ (paddings[3]!=null?paddings[3]:"0px")+ " !important;";
+						let paddings = json.padding.split(" ");
+						style += "width:" + json.x + " !important;" +
+							"height:" + json.y + " !important;" +
+							"padding-top:" + (paddings[0] != null ? paddings[0] : "0px") + " !important;" +
+							"padding-bottom:" + (paddings[1] != null ? paddings[1] : "0px") + " !important;" +
+							"padding-left:" + (paddings[2] != null ? paddings[2] : "0px") + " !important;" +
+							"padding-right:" + (paddings[3] != null ? paddings[3] : "0px") + " !important;";
 					} else {
 						let arrayAtt = att.value.split(",");
 						if (arrayAtt.length > 1 && arrayAtt[0] != "") {
@@ -229,11 +236,99 @@ function loopTagElement(tagElement) {
 	}
 }
 
-function styleStatic(element){
-	let style += "display:flex !important;position:fixed !important;z-index:1 !important;";
+function styleStatic() {
+	let style = "display:flex !important;position:fixed !important;z-index:1 !important;";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
 	pContentDesign[0].style = "margin-top:65px !important;";
-	element.style=style;
+	return style;
+}
+
+function styleOrientation(value) {
+	switch (value) {
+		case "vertical":
+			return "display:flex !important;flex-direction:column !important;";
+		case "horizontal":
+			return "display:flex !important;flex-direction:row !important;";
+		default:
+			return "display:flex !important;flex-direction:row !important; flex-wrap:wrap !important;";
+	}
+
+}
+function styleAlign(value) {
+	var arrayAttry = value.split(" ");
+	if (arrayAttry.length > 1) {
+		return "display:flex !important;justify-content:" + arrayAttry[0] + " !important; align-items:" + arrayAttry[1] + " !important;";
+	} else {
+		return "display:flex !important;justify-content:" + arrayAttry[0] + " !important;";
+	}
+}
+function styleSize(value) {
+	/*alert(tagElement.parentElement.clientWidth);
+					var styleCom=document.defaultView.getComputedStyle(tagElement.parentElement);
+					alert(styleCom.getPropertyValue('width'));*/
+	if (value.search("{") >= 0) {
+		let json = convertStringToJson(value);
+		let paddings = json.padding.split(" ");
+		return "width:" + json.x + " !important;" +
+			"height:" + json.y + " !important;" +
+			"padding-top:" + (paddings[0] != null ? paddings[0] : "0px") + " !important;" +
+			"padding-bottom:" + (paddings[1] != null ? paddings[1] : "0px") + " !important;" +
+			"padding-left:" + (paddings[2] != null ? paddings[2] : "0px") + " !important;" +
+			"padding-right:" + (paddings[3] != null ? paddings[3] : "0px") + " !important;";
+	} else {
+		let arrayAtt = value.split(",");
+		if (arrayAtt.length > 1 && arrayAtt[0] != "") {
+			let x = arrayAtt[0].search("%") > 0 ? arrayAtt[0] : arrayAtt[0] + "px";
+			let y = arrayAtt[1].search("%") > 0 ? arrayAtt[1] : arrayAtt[1] + "px";
+			return "width:" + x + " !important; height:" + y + " !important;";
+		} else if (arrayAtt[0] == "") {
+			let y = arrayAtt[1].search("%") > 0 ? arrayAtt[1] : arrayAtt[1] + "px";
+			return "height:" + y + " !important;";
+		} else {
+			let x = arrayAtt[0].search("%") > 0 ? arrayAtt[0] : arrayAtt[0] + "px";
+			return "width:" + x + " !important;";
+		}
+	}
+}
+function styleLoop(tagElement, value, div) {
+	var parent = tagElement.parentElement;
+	var divLoop = document.createElement(tagElement.localName);
+
+	for (let atri of tagElement.attributes) {
+		if (atri.name != "loop") {
+			createAttribute(atri.name, atri.value, divLoop);
+		}
+	}
+
+	for (const tagEl of tagElement.children) {
+		divLoop.appendChild(tagEl);
+	}
+	for (let i = 0; i < value; i++) {
+
+		parent.appendChild(divLoop);
+	}
+	div.a;
+}
+function styleColor(value) {
+	let objectAtt = value.search("{");
+	let style = "";
+	if (objectAtt >= 0) {
+		var valueColor = value;
+		var json = convertStringToJson(valueColor);
+		style += "background-color:" + json.backgroundColor + ";" +
+			"color:" + json.text + ";" +
+			"box-shadow:" + json.shadow + " !important;";
+		if (json.header != null) {
+			document.querySelector(".d-header-menu")
+				.style.backgroundColor = "";
+		}
+	} else {
+		style += "background-color:" + value + " !important;";
+	}
+	return style;
+}
+function styleScroll() {
+	return "overflow:auto;";
 }
 
 function createDButton(tag) {
