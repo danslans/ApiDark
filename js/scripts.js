@@ -110,97 +110,25 @@ function loopDecideAttributesFromElement(tagElement, div) {
 			style += styleScroll();*/
 			switch (att.name) {
 				case "static":
-					style += "display:flex !important;position:fixed !important;z-index:1 !important;";
-					var pContentDesign = document.getElementsByTagName("d-principal-content");
-					pContentDesign[0].style = "margin-top:65px !important;";
+					style += styleStatic();
 					break;
 				case "orientation":
-					switch (att.value) {
-						case "vertical":
-							style += "display:flex !important;flex-direction:column !important;";
-							break;
-						case "horizontal":
-							style += "display:flex !important;flex-direction:row !important;";
-							break;
-						default:
-							style += "display:flex !important;flex-direction:row !important; flex-wrap:wrap !important;";
-							break;
-					}
+					style += styleOrientation(att.value);
 					break;
 				case "align":
-					var arrayAttry = att.value.split(" ");
-					if (arrayAttry.length > 1) {
-						style += "display:flex !important;justify-content:" + arrayAttry[0] + " !important; align-items:" + arrayAttry[1] + " !important;";
-					} else {
-						style += "display:flex !important;justify-content:" + arrayAttry[0] + " !important;";
-					}
+					style += styleAlign(att.value);
 					break;
 				case "size":
-					/*alert(tagElement.parentElement.clientWidth);
-					var styleCom=document.defaultView.getComputedStyle(tagElement.parentElement);
-					alert(styleCom.getPropertyValue('width'));*/
-					if (att.value.search("{") >= 0) {
-						let json = convertStringToJson(att.value);
-						let paddings = json.padding.split(" ");
-						style += "width:" + json.x + " !important;" +
-							"height:" + json.y + " !important;" +
-							"padding-top:" + (paddings[0] != null ? paddings[0] : "0px") + " !important;" +
-							"padding-bottom:" + (paddings[1] != null ? paddings[1] : "0px") + " !important;" +
-							"padding-left:" + (paddings[2] != null ? paddings[2] : "0px") + " !important;" +
-							"padding-right:" + (paddings[3] != null ? paddings[3] : "0px") + " !important;";
-					} else {
-						let arrayAtt = att.value.split(",");
-						if (arrayAtt.length > 1 && arrayAtt[0] != "") {
-							let x = arrayAtt[0].search("%") > 0 ? arrayAtt[0] : arrayAtt[0] + "px";
-							let y = arrayAtt[1].search("%") > 0 ? arrayAtt[1] : arrayAtt[1] + "px";
-							style += "width:" + x + " !important; height:" + y + " !important;";
-						} else if (arrayAtt[0] == "") {
-							let y = arrayAtt[1].search("%") > 0 ? arrayAtt[1] : arrayAtt[1] + "px";
-							style += "height:" + y + " !important;";
-						} else {
-							let x = arrayAtt[0].search("%") > 0 ? arrayAtt[0] : arrayAtt[0] + "px";
-							style += "width:" + x + " !important;";
-						}
-					}
-
+					style += styleSize(att.value);
 					break;
 				case "loop":
-					var parent = tagElement.parentElement;
-					var divLoop = document.createElement(tagElement.localName);
-
-					for (let atri of tagElement.attributes) {
-						if (atri.name != "loop") {
-							createAttribute(atri.name, atri.value, divLoop);
-						}
-					}
-
-					for (const tagEl of tagElement.children) {
-						divLoop.appendChild(tagEl);
-					}
-					for (let i = 0; i < att.value; i++) {
-
-						parent.appendChild(divLoop);
-					}
-					div.a
+					styleLoop(tagElement,att.value,div);
 					break;
 				case "color":
-					let objectAtt = att.value.search("{");
-					if (objectAtt >= 0) {
-						var valueColor = att.value;
-						var json = convertStringToJson(valueColor);
-						style += "background-color:" + json.backgroundColor + ";" +
-							"color:" + json.text + ";" +
-							"box-shadow:" + json.shadow + " !important;";
-						if (json.header != null) {
-							document.querySelector(".d-header-menu")
-								.style.backgroundColor = "";
-						}
-					} else {
-						style += "background-color:" + att.value + " !important;";
-					}
+					style += styleColor(att.value);
 					break;
 				case "scroll":
-					style += "overflow:auto;";
+					style += styleScroll();
 					break;
 			}
 		}
@@ -269,12 +197,18 @@ function styleSize(value) {
 	if (value.search("{") >= 0) {
 		let json = convertStringToJson(value);
 		let paddings = json.padding.split(" ");
+		let margins = json.margin.split(" ");
+		alert(margins);
 		return "width:" + json.x + " !important;" +
 			"height:" + json.y + " !important;" +
 			"padding-top:" + (paddings[0] != null ? paddings[0] : "0px") + " !important;" +
 			"padding-bottom:" + (paddings[1] != null ? paddings[1] : "0px") + " !important;" +
 			"padding-left:" + (paddings[2] != null ? paddings[2] : "0px") + " !important;" +
-			"padding-right:" + (paddings[3] != null ? paddings[3] : "0px") + " !important;";
+			"padding-right:" + (paddings[3] != null ? paddings[3] : "0px") + " !important;" +
+			"margin-top:" + (margins[0] != null ? margins[0] : "0px") + " !important;" +
+			"margin-bottom:" + (margins[1] != null ? margins[1] : "0px") + " !important;" +
+			"margin-left:" + (margins[2] != null ? margins[2] : "0px") + " !important;" +
+			"margin-right:" + (margins[3] != null ? margins[3] : "0px") + " !important;";
 	} else {
 		let arrayAtt = value.split(",");
 		if (arrayAtt.length > 1 && arrayAtt[0] != "") {
