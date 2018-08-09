@@ -100,6 +100,7 @@ function createChildsElement(listChild, principalElement) {
 function loopDecideAttributesFromElement(tagElement, div) {
 	if (tagElement.attributes.length > 0) {
 		var style = "";
+		//var class = "";
 		for (let att of tagElement.attributes) {
 			/*style += styleStatic();
 			style += styleOrientation(att.value);
@@ -130,10 +131,14 @@ function loopDecideAttributesFromElement(tagElement, div) {
 				case "scroll":
 					style += styleScroll();
 					break;
+				//case "type":
+					//alert(att.value);
+					//class += styleType(att.value);
+				//	break;
 			}
 		}
 		div.style = style;
-	}
+		//div.classList.add(class);
 }
 
 function convertStringToJson(valueToConvert) {
@@ -196,9 +201,9 @@ function styleSize(value) {
 					alert(styleCom.getPropertyValue('width'));*/
 	if (value.search("{") >= 0) {
 		let json = convertStringToJson(value);
-		let paddings = json.padding.split(" ");
-		let margins = json.margin.split(" ");
-		alert(margins);
+		let paddings = json.padding != null? json.padding.split(" "):[];
+		let margins = json.margin != null? json.margin.split(" "):[];
+		
 		return "width:" + json.x + " !important;" +
 			"height:" + json.y + " !important;" +
 			"padding-top:" + (paddings[0] != null ? paddings[0] : "0px") + " !important;" +
@@ -224,6 +229,10 @@ function styleSize(value) {
 		}
 	}
 }
+function recortExpresion(valueToRecort){
+	
+}
+
 function styleLoop(tagElement, value, div) {
 	var parent = tagElement.parentElement;
 	var divLoop = document.createElement(tagElement.localName);
@@ -261,8 +270,18 @@ function styleColor(value) {
 	}
 	return style;
 }
+
 function styleScroll() {
 	return "overflow:auto;";
+}
+
+function styleType(value){
+	switch(value){
+		case "search":
+			return "d-icon-search";
+		case "subMenu":
+			return "d-icon-sub-menu";
+	}
 }
 
 function createDButton(tag) {
