@@ -1,0 +1,16 @@
+body
+{
+  font-size: 100pt;
+}
+.div{
+  position:relative;
+  height:300px;
+  width:300px;
+  background-color:red;
+}
+#inject{
+  width:400px;
+  height:400px;
+  position:relative;
+  background-color:Yellow;
+}
