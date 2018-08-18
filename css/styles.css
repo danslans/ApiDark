@@ -185,8 +185,8 @@ button:active, input[type=button]:active {
   background-color:White;
   top:8px;
   left:13px;
-  -moz-transform: rotate(-40deg); 
- -webkit-transform: rotate(-40deg);
+  -moz-transform: rotate(-45deg); 
+ -webkit-transform: rotate(-45deg);
 }
 
 /* width */

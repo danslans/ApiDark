@@ -200,7 +200,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 			}
 		}
 		div.style = style;
-		//div.classList.add(className);
+		className!=""?div.className=className:className="";
 	}
 }
 
