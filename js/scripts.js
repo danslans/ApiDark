@@ -6,6 +6,11 @@ var functs = {
 			name: "div",
 			className: "d-topbar"
 		}
+	},{
+		element: {
+			name: "div",
+			className: "d-topbar"
+		}
 	}],
 	"d-principal-content": [{
 		element: {
@@ -60,7 +65,10 @@ var functs = {
 	"d-icon": [{
 		element: {
 			name: "div",
-			className: "d-icon"
+			className: "d-icon",
+			childs:[{
+				name:"div",
+			}]
 		}
 	}]
 };
@@ -195,6 +203,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					break;
 				case "type":
 					//alert(att.value);
+					className += tagElement.localName + " ";
 					className += styleType(att.value);
 					break;
 			}

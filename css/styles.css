@@ -163,9 +163,10 @@ button:active, input[type=button]:active {
   position:relative;
   width:50px;
   height:50px;
-  background-color:Blue;
+  top:0px;
+  background-color:red;
 }
-
+/**********search**********/
 .d-icon-search{
   content:'';
   position:relative;
@@ -188,6 +189,38 @@ button:active, input[type=button]:active {
   -moz-transform: rotate(-45deg); 
  -webkit-transform: rotate(-45deg);
 }
+/**********************/
+
+/***********************/
+
+.d-icon-sub-menu{
+  position:relative;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background-color:var(--d-color-principal)
+}
+
+.d-icon-sub-menu::after{
+  content:'';
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  top:8px;
+  background-color:var(--d-color-principal)
+}
+.d-icon-sub-menu:before{
+  content:'';
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  top:-8px;
+  background-color:var(--d-color-principal)
+}
+
+/************************/
 
 /* width */
 
