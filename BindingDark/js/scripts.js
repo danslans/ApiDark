@@ -1,12 +1,12 @@
-	this.titlePage="my first page";
+	var titlePage="my first pagecita";
 	window.addEventListener("load",function(event){
-		let evaluateExp = /[a-zA-Z\.]+/gm;
 		for (let item of document.body.children){
 			let txtElement =item.textContent;
 			let resultExp = txtElement.search(/[\{\}]+/gm);
 			if(resultExp>=0){	
-				let getText = txtElement.match(/[a-zA-Z\.]+/gm);
-				item.textContent = getText;
+				let getText = txtElement.match(/[a-zA-Z]+/gm);
+				let texto= getText[0];
+				item.textContent = eval("eval(texto)");
 			}
 		}
 		
@@ -17,5 +17,5 @@
 	},false);
 	
 	changeTitle = function(){
-		this.titlePage = "Page of Game";
+		titlePage = "Page of Game";
 	};
