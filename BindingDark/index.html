@@ -3,12 +3,20 @@
   <head>
     <link href="css/styles.css" rel="stylesheet">
 	<script src="js/scripts.js"></script>
+	<script>
+	  titlePage="page of game ";
+	  i=0;
+	  var changeTitle=()=>{
+	  i++;
+	  }
+	  
+	</script>
   </head>
   <body>
 
-    <h1 id="title">{{titlePage}}</h1>
+    <h1 id="title">{{titlePage,i}}</h1>
 
-    <p>This is my first website</p>
-    <button onclick="changeTitle()" style="font-size:15px;">{{i}}</button>
+    <p>This is my {{i}} website </p>
+    <button onclick="changeTitle()" style="font-size:80px;background-color:red;">{{i}}</button>
   </body>
 </html>		
