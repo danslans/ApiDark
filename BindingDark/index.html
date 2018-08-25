@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/styles.css" rel="stylesheet">
-	<script src="js/scripts.js"></script>
-	<script>
-	  titlePage="page of game ";
-	  i=0;
-	  var changeTitle=()=>{
-	  i++;
-	  }
-	  
-	</script>
-  </head>
-  <body>
 
-    <h1 id="title">{{titlePage,i}}</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="js/scripts.js"></script>
+  <script>
+    titlePage = "page of game ";
+    i = 0;
+    namePlayer = "Danslans";
+    var changeTitle = () => {
+      i++;
+    }
+  </script>
+</head>
 
-    <p>This is my {{i}} website </p>
-    <button onclick="changeTitle()" style="font-size:80px;background-color:red;">{{i}}</button>
-  </body>
-</html>		
+<body>
+
+  <h1 id="title">{{titlePage,i}}</h1>
+
+  <p>{{namePlayer}} you have {{i}} lives </p>
+  <button onclick="changeTitle()" style="font-size:80px;background-color:red;">war</button>
+</body>
+
+</html>

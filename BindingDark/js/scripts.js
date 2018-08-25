@@ -6,7 +6,7 @@
 		searchDocumentVariable();
 	},false);
 	
-	searchDocumentVariable=function(){
+	let searchDocumentVariable=function(){
 		for (let item of document.body.children){
 			let getAtt=item.getAttribute("bind");
 			let txtElement =getAtt!=null?getAtt:item.textContent;
@@ -15,12 +15,17 @@
 				att.value=txtElement;
 				item.setAttributeNode(att);
 				let searchVarBind = txtElement.match(/\{+[a-zA-Z\,]+\}+/gm);
-				let getText = searchVarBind[0].match(/[a-zA-Z]+/gm);
+				let getText = searchVarBind!=null?searchVarBind[0].match(/[a-zA-Z]+/gm):"";
 				let concatVar ="";
+				let textToElement = "";
 				for (let nameVar of getText){
 					concatVar+= eval("eval(nameVar)");
 				}
-				item.textContent= txtElement.replace(searchVarBind[0],concatVar);
+
+				for (let elementToReplace of searchVarBind){
+					textToElement += txtElement.replace(elementToReplace,concatVar);
+				}
+				item.textContent= textToElement;
 			}
 		}
 	};
