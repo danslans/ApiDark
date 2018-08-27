@@ -10,19 +10,21 @@
   <script src="js/scripts.js"></script>
   <script>
     titlePage = "page of game ";
-    i = 0;
+    i = 10;
     namePlayer = "Danslans";
+	nameButton="jugar";
     var changeTitle = () => {
-      i++;
+	  nameButton="stop";
+	  titlePage = "pagins de juegos";
     }
   </script>
 </head>
 <body>
 
-  <h1 id="title">{{titlePage,i}}</h1>
+  <h1 id="title">{{titlePage}}</h1>
 
-  <p>{{namePlayer}} you have {{i}} lives </p>
-  <button onclick="changeTitle()" style="font-size:80px;background-color:red;">war</button>
+  <p>{{namePlayer}} you have {{i++}} lives </p>
+  <button onclick="changeTitle()" style="font-size:80px;background-color:red;">{{nameButton}}</button>
 </body>
 
 </html>

@@ -19,8 +19,9 @@ let searchDocumentVariable = function () {
 			if(searchVarBind != null){
 				for (const varBind of searchVarBind) {
 					let concatVar = "";
-					let getText = searchVarBind != null ? varBind.match(/[a-zA-Z]+/gm) : "";
+					let getText = searchVarBind != null ? varBind.match(/[a-zA-Z\+\-]+/gm) : "";
 					for (let nameVar of getText) {
+						alert(nameVar);
 						concatVar += eval("eval(nameVar)");
 					}
 					textToElement = textToElement.replace(varBind, concatVar);
