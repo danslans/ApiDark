@@ -6,5 +6,23 @@ button{
   height:100px;
 }
 h1{
-  color:Yellow;
+  color:Blue;
 }
+.divP{
+  background-color:Orange;
+  height:80px;
+  width:80px;
+  text-align:center;
+  vertical-align:50%;
+}
+
+input[type=button]{
+  background-color: #cccccc !important;
+  border:none;
+  }
+button{
+  background-color: #cccccc !important;
+  border:none;
+  box-shadow:none;
+}
+
