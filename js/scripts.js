@@ -6,11 +6,6 @@ var functs = {
 			name: "div",
 			className: "d-topbar"
 		}
-	},{
-		element: {
-			name: "div",
-			className: "d-topbar"
-		}
 	}],
 	"d-principal-content": [{
 		element: {
