@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link href="css/styles.css" rel="stylesheet">
@@ -11,19 +11,43 @@
 </head>
 
 <body>
-  <d-topbar static orientation="horizontal" align="flex-end center" scroll>
-	
-	<d-icon type="search"></d-icon>
+  <d-topbar static orientation="horizontal" align="start center" scroll>
+	<h3 color="{text:white}">Iglesias Medellin</h3>
 	</d-topbar>
-  <d-principal-content>
-	<d-content>
+  <d-principal-content orientation align="space-between">
+	<d-content size="200" loop="5">
 	  <d-topbar align="start center">
-		<d-icon type="subMenu"></d-icon>
+		<h3>Central</h3>
 	  </d-topbar>
 	  <d-content-section>
-		<div size="100,200" ></div>
 	  </d-content-section>
 	</d-content>
+	
+	<!-- <d-content size="200">
+	  <d-topbar align="start center">
+		<h3>Bello</h3>
+	  </d-topbar>
+	  <d-content-section>
+		
+	  </d-content-section>
+	</d-content>
+	
+	<d-content size="200">
+	  <d-topbar align="start center">
+		<h3>Playon</h3>
+	  </d-topbar>
+	  <d-content-section>
+	  </d-content-section>
+	</d-content>
+	
+	<d-content size="200">
+	  <d-topbar align="start center">
+		<h3>Paris</h3>
+	  </d-topbar>
+	  <d-content-section>
+	  </d-content-section>
+	</d-content>
+	-->
   </d-principal-content>
 </body>
 
