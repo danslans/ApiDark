@@ -7,23 +7,34 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link href="css/styles.css" rel="stylesheet">
-  <script src="js/scripts.js"></script>
+	<script src="js/scripts.js"></script>
+	<script>
+	var iglesia="playon";
+
+	</script>
 </head>
 
 <body>
-  <d-topbar static orientation="horizontal" align="start center" scroll>
+		<d-content size="400">
+				<d-topbar align="start center">
+				<h3 color="{text:white}">{{iglesia}}</h3>
+				</d-topbar>
+				<d-content-section size=",200">
+				</d-content-section>
+			</d-content>
+  <!-- <d-topbar static orientation="horizontal" align="start center" scroll>
 	<h3 color="{text:white}">Iglesias Medellin</h3>
 	</d-topbar>
   <d-principal-content orientation align="space-between">
-	<d-content size="200" loop="5">
+	<d-content size="400" loop="5">
 	  <d-topbar align="start center">
-		<h3>Central</h3>
+		<h3 color="{text:white}">{{iglesia}}</h3>
 	  </d-topbar>
-	  <d-content-section>
+	  <d-content-section size=",200">
 	  </d-content-section>
 	</d-content>
 	
-	<!-- <d-content size="200">
+	<d-content size="200">
 	  <d-topbar align="start center">
 		<h3>Bello</h3>
 	  </d-topbar>
@@ -47,8 +58,8 @@
 	  <d-content-section>
 	  </d-content-section>
 	</d-content>
-	-->
-  </d-principal-content>
+	
+  </d-principal-content>-->
 </body>
 
 </html>
