@@ -9,32 +9,38 @@
   <link href="css/styles.css" rel="stylesheet">
 	<script src="js/scripts.js"></script>
 	<script>
-	var iglesia="playon";
+	var iglesias=["playon","central"];
 
 	</script>
 </head>
 
 <body>
-		<d-content size="400">
-				<d-topbar align="start center">
-				<h3 color="{text:white}">{{iglesia}}</h3>
-				</d-topbar>
-				<d-content-section size=",200">
-				</d-content-section>
-			</d-content>
-  <!-- <d-topbar static orientation="horizontal" align="start center" scroll>
-	<h3 color="{text:white}">Iglesias Medellin</h3>
+  <d-menu>
+	<d-item-menu>
+	  <p>Mapa</p>
+	</d-item-menu>
+	<d-item-menu onclick="dMenu()">
+	  <p>Contactenos</p>
+	</d-item-menu>
+  </d-menu>
+  
+   <d-topbar static orientation="horizontal" color="{backgroundColor:#006AD7,text:white}" align="space-between center" scroll>
+	 <div orientation="horizontal" align="space-between center" >
+	   <d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
+	 <h3>Iglesias Medellin</h3>
+	 </div>
+	 <d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
 	</d-topbar>
   <d-principal-content orientation align="space-between">
 	<d-content size="400" loop="5">
-	  <d-topbar align="start center">
-		<h3 color="{text:white}">{{iglesia}}</h3>
+	  <d-topbar align="start center" color="{backgroundColor:#008FA9,text:white}">
+		<h3>Central</h3>
 	  </d-topbar>
-	  <d-content-section size=",200">
+	  <d-content-section color="#F9F9F9" size=",200">
 	  </d-content-section>
 	</d-content>
 	
-	<d-content size="200">
+	<!--<d-content size="200">
 	  <d-topbar align="start center">
 		<h3>Bello</h3>
 	  </d-topbar>
@@ -58,8 +64,8 @@
 	  <d-content-section>
 	  </d-content-section>
 	</d-content>
-	
-  </d-principal-content>-->
+	-->
+  </d-principal-content>
 </body>
 
 </html>

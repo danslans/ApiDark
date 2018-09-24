@@ -306,8 +306,20 @@ function recortExpresion(valueToRecort) {
 
 function styleLoop(tagElement, value, div) {
 	let parent = tagElement.parentElement;
-	for (let i = 0; i < value; i++) {
-		let divLoop = document.createElement(tagElement.localName);
+	if(value>0){
+		for (let i = 0; i < value; i++) {
+		createLoopElements(tagElement,value,parent);
+		}
+	}else{
+		for(let elem of eval(value)){
+		createLoopElements(tagElement,value,parent);
+		}
+	}
+	
+}
+
+function createLoopElements(tagElement, value,parent){
+	let divLoop = document.createElement(tagElement.localName);
 		for (let atri of tagElement.attributes) {
 			if (atri.name != "loop") {
 				createAttribute(atri.name, atri.value, divLoop);
@@ -315,7 +327,6 @@ function styleLoop(tagElement, value, div) {
 		}
 		divLoop.innerHTML = tagElement.innerHTML;
 		parent.appendChild(divLoop);
-	}
 }
 
 function styleColor(value) {
