@@ -1,5 +1,6 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
+var attributes =["static","orientation","align","size","loop","color","scroll","type"];
 var functs = {
 	"d-topbar": [{
 		element: {
@@ -45,16 +46,11 @@ var functs = {
 		element: {
 			name: "div",
 			childs: [{
-				name: "label",
-				value: "hola mundo1",
-				className: "d-input-title"
-			}, {
 				name: "input",
 				type: "text",
 				value: "hola mundo",
 				className: "d-input"
-			}],
-			className: "d-input-content"
+			}]
 		}
 	}],
 	"d-icon": [{
@@ -202,6 +198,16 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					className += tagElement.localName + " ";
 					className += styleType(att.value);
 					break;
+				default:
+				if(att.value=="" && validateAttributes(att.name)==null ){
+					let varTag= att.name.split(".");
+					var tgValue= eval("eval(varTag[0])");
+					if(varTag.length>1){
+						var objDocument= eval("varTag[1]");
+						alert(eval("tgValue.objDocument"));
+					}
+				}
+				break;
 			}
 		}
 		div.style = style;
@@ -209,6 +215,12 @@ function loopDecideAttributesFromElement(tagElement, div) {
 	}
 }
 
+function validateAttributes(att){
+	return attributes.find(function(item){
+		return att==item;
+	});
+	
+}
 function convertStringToJson(valueToConvert) {
 	var regex = /[a-zA-Z0-9_\#\-\(\)\%\s]+/gm;
 	var stringJson = '{';
@@ -307,7 +319,7 @@ function recortExpresion(valueToRecort) {
 function styleLoop(tagElement, value, div) {
 	let parent = tagElement.parentElement;
 	if(value>0){
-		for (let i = 0; i < value; i++) {
+		for (let i = 1; i < value; i++) {
 		createLoopElements(tagElement,value,parent);
 		}
 	}else{

@@ -10,7 +10,10 @@
 	<script src="js/scripts.js"></script>
 	<script>
 	var iglesias=["playon","central"];
-
+    var generaltags={
+	orientation:"horizontal",
+	align:"space-between center"
+	};
 	</script>
 </head>
 
@@ -25,46 +28,23 @@
   </d-menu>
   
    <d-topbar static orientation="horizontal" color="{backgroundColor:#006AD7,text:white}" align="space-between center" scroll>
-	 <div orientation="horizontal" align="space-between center" >
+	 <div generalTags.align orientation="horizontal" align="space-between center" >
 	   <d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
-	 <h3>Iglesias Medellin</h3>
+	 <h4>Iglesias Medellin</h4>
 	 </div>
+	 <div orientation="horizontal" align="center center">
+	 <d-input></d-input>
 	 <d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
+	 </div>
 	</d-topbar>
-  <d-principal-content orientation align="space-between">
-	<d-content size="400" loop="5">
+  <d-principal-content orientation align="center">
+	<d-content size="400" loop="6">
 	  <d-topbar align="start center" color="{backgroundColor:#008FA9,text:white}">
 		<h3>Central</h3>
 	  </d-topbar>
 	  <d-content-section color="#F9F9F9" size=",200">
 	  </d-content-section>
 	</d-content>
-	
-	<!--<d-content size="200">
-	  <d-topbar align="start center">
-		<h3>Bello</h3>
-	  </d-topbar>
-	  <d-content-section>
-		
-	  </d-content-section>
-	</d-content>
-	
-	<d-content size="200">
-	  <d-topbar align="start center">
-		<h3>Playon</h3>
-	  </d-topbar>
-	  <d-content-section>
-	  </d-content-section>
-	</d-content>
-	
-	<d-content size="200">
-	  <d-topbar align="start center">
-		<h3>Paris</h3>
-	  </d-topbar>
-	  <d-content-section>
-	  </d-content-section>
-	</d-content>
-	-->
   </d-principal-content>
 </body>
 
