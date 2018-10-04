@@ -2,6 +2,11 @@ window.addEventListener("load", appDark, false);
 window.stateMenu = false;
 var attributes =["static","orientation","align","size","loop","color","scroll","type"];
 var functs = {
+	"d-content-topbars": [{
+		element: {
+			name: "div"
+		}
+	}],
 	"d-topbar": [{
 		element: {
 			name: "div",
@@ -204,7 +209,14 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					var tgValue= eval("eval(varTag[0])");
 					if(varTag.length>1){
 						var objDocument= eval("varTag[1]");
-						alert(eval("tgValue.objDocument"));
+						alert(eval("tgValue[objDocument]"));
+					}else{
+						let arrayTgValue = new Array;
+						arrayTgValue=tgValue;
+						//alert(tgValue);
+						/*for(let item of tgValue){
+							alert(item);
+						}*/
 					}
 				}
 				break;
@@ -250,9 +262,10 @@ function loopTagElement(tagElement) {
 }
 
 function styleStatic() {
-	let style = "display:flex !important;position:fixed !important;z-index:1 !important;";
+	let style = " position:fixed !important;z-index:1 !important; width:100vw";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
-	pContentDesign[0].style = "margin-top:65px !important;";
+	document.getElementByTagName("d-topbar");
+	pContentDesign[0].style = "position:absolute; margin-top:100px !important;";
 	return style;
 }
 
