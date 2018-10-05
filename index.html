@@ -27,8 +27,9 @@
 	</d-item-menu>
   </d-menu>
  
-   <d-topbar static orientation="horizontal" color="{backgroundColor:#006AD7,text:white}" align="space-between center">
-	 <div generalTags.align orientation="horizontal" align="space-between center" >
+	<d-content-topbars static>
+   <d-topbar  orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
+	 <div generalTags orientation="horizontal" align="space-between center" >
 	   <d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
 	 <h4>Iglesias Medellin</h4>
 	 </div>
@@ -37,13 +38,17 @@
 	 <d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
 	 </div>
 	</d-topbar>
-	
-  <d-principal-content orientation align="center">
-	<d-content size="400" loop="6">
+	<d-topbar>
+
+	</d-topbar>
+</d-content-topbars>
+
+  <d-principal-content orientation align="space-between center">
+	<d-content size="400" loop="16">
 	  <d-topbar align="start center" color="{backgroundColor:#008FA9,text:white}">
 		<h3>Central</h3>
 	  </d-topbar>
-	  <d-content-section color="#F9F9F9" size=",200">
+	  <d-content-section color="red" size=",200">
 	  </d-content-section>
 	</d-content>
   </d-principal-content>
