@@ -250,6 +250,7 @@ function convertStringToJson(valueToConvert) {
 }
 
 function createAttribute(name, value, element) {
+	alert(name);
 	var attr = document.createAttribute(name);
 	attr.value = value;
 	element.setAttributeNode(attr);
@@ -264,7 +265,7 @@ function loopTagElement(tagElement) {
 function styleStatic() {
 	let style = " position:fixed !important;z-index:1 !important; width:100vw";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
-	document.getElementByTagName("d-topbar");
+	//document.getElementByTagName("d-topbar");
 	pContentDesign[0].style = "position:absolute; margin-top:100px !important;";
 	return style;
 }
@@ -336,11 +337,18 @@ function styleLoop(tagElement, value, div) {
 		createLoopElements(tagElement,value,parent);
 		}
 	}else{
-		for(let elem of eval(value)){
+		let objectToBind={};
+		objectToBind.expresion=value;
+		let arrayFromExpresion = value.split(" ");
+		objectToBind.dataBind=arrayFromExpresion[0];
+		eval("for("+value+"){"+
+			""+
+			"createLoopElements(tagElement,objectToBind,parent);"
+		+"}");
+		/*for(let elem of eval(value)){
 		createLoopElements(tagElement,value,parent);
-		}
+		}*/
 	}
-	
 }
 
 function createLoopElements(tagElement, value,parent){
@@ -350,6 +358,8 @@ function createLoopElements(tagElement, value,parent){
 				createAttribute(atri.name, atri.value, divLoop);
 			}
 		}
+		alert(value.dataBind);
+		createAtrribute("bind","{{"+(value.dataBind)+"}}",divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
 		parent.appendChild(divLoop);
 }
