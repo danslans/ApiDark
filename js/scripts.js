@@ -250,7 +250,7 @@ function convertStringToJson(valueToConvert) {
 }
 
 function createAttribute(name, value, element) {
-	alert(name);
+	//alert(value);
 	var attr = document.createAttribute(name);
 	attr.value = value;
 	element.setAttributeNode(attr);
@@ -263,7 +263,7 @@ function loopTagElement(tagElement) {
 }
 
 function styleStatic() {
-	let style = " position:fixed !important;z-index:1 !important; width:100vw";
+	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
 //	document.getElementByTagName("d-topbar");
 	pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
@@ -358,8 +358,8 @@ function createLoopElements(tagElement, value,parent){
 				createAttribute(atri.name, atri.value, divLoop);
 			}
 		}
-		alert(value.dataBind);
-		createAtrribute("bind","{{"+(value.dataBind)+"}}",divLoop);
+		let concatValueBinding = "{{"+(value.dataBind)+"}}";
+		createAttribute("bind",concatValueBinding,divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
 		parent.appendChild(divLoop);
 }
