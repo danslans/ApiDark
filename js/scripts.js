@@ -86,7 +86,7 @@ function appDark() {
 	for (const item of document.body.children) {
 		validateTags(item);
 	}
-	bind({});
+	//bind({});
 }
 
 function validateTags(tag) {
@@ -209,7 +209,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					var tgValue= eval("eval(varTag[0])");
 					if(varTag.length>1){
 						var objDocument= eval("varTag[1]");
-						alert(eval("tgValue[objDocument]"));
+						//alert(eval("tgValue[objDocument]"));
 					}else{
 						let arrayTgValue = new Array;
 						arrayTgValue=tgValue;
@@ -265,8 +265,8 @@ function loopTagElement(tagElement) {
 function styleStatic() {
 	let style = " position:fixed !important;z-index:1 !important; width:100vw";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
-	//document.getElementByTagName("d-topbar");
-	pContentDesign[0].style = "position:absolute; margin-top:100px !important;";
+//	document.getElementByTagName("d-topbar");
+	pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
 	return style;
 }
 
