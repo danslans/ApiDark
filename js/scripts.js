@@ -264,12 +264,15 @@ function loopTagElement(tagElement) {
 
 function styleStatic(nameTag) {
 	debugger;
+	let contTopBar ="D-CONTENT-TOPBARS";
 	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
-	if(nameTag == "D-CONTENT-TOPBARS"){
+	if(nameTag == contTopBar){
 		var tagsTopBar = document.getElementsByTagName("d-topbar");
 		for (const i of tagsTopBar) {
-			
+			if(contTopBar == i.parentElement.tagName){
+				alert(i.clientHeigth);
+			}
 		}
 	}
 	if( nameTag == "d-topbar"){
