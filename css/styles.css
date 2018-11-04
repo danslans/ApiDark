@@ -62,11 +62,13 @@ body {
     top:0px;
     position: relative;
     display: flex;
-    padding: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-	margin-bottom:1px;
+    margin-bottom:1px;
+    width: 100vw;
 }
 
 .d-topbar {

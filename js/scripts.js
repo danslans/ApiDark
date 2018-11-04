@@ -178,7 +178,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 			style += styleScroll();*/
 			switch (att.name) {
 				case "static":
-					style += styleStatic();
+					style += styleStatic(tagElement.tagName);
 					break;
 				case "orientation":
 					style += styleOrientation(att.value);
@@ -262,10 +262,19 @@ function loopTagElement(tagElement) {
 	}
 }
 
-function styleStatic() {
+function styleStatic(nameTag) {
+	debugger;
 	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
-//	document.getElementByTagName("d-topbar");
+	if(nameTag == "D-CONTENT-TOPBARS"){
+		var tagsTopBar = document.getElementsByTagName("d-topbar");
+		for (const i of tagsTopBar) {
+			
+		}
+	}
+	if( nameTag == "d-topbar"){
+
+	}
 	pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
 	return style;
 }
