@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=3.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 	<script src="js/scripts.js"></script>
@@ -11,13 +11,18 @@
 </head>
 
 <body>
-	<d-topbar align="space-between center"  color="{text:red,backgroundColor:red}" static>
+  <d-content-topbars static>
+	<d-topbar align="space-between center"  color="{text:red,backgroundColor:red}">
 		<h3>WhatsApp</h3>
 	<div orientation size="50" align="space-between center">
 	  <d-icon type="search"></d-icon>
 	  <d-icon type="subMenu"></d-icon>
     </div>
 	</d-topbar>
+	<d-topbar color="#cccccc">
+	  
+	</d-topbar>
+  </d-content-topbars>
   <d-principal-content color="white">
 		<d-content color="red">
 		  <d-content-section size=",50"color="blue"  orientation="horizontal" loop="21">

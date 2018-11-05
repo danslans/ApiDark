@@ -27,7 +27,7 @@
 	</d-item-menu>
   </d-menu>
 	<!--<d-content-topbars static>-->
-   <d-topbar  orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
+   <d-topbar static  orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
 	 <div generalTags orientation="horizontal" align="space-between center" >
 	   <d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
 	 <h4>Iglesias Medellin</h4>
@@ -41,7 +41,7 @@
 	  </d-topbar>-->
 <!--	</d-content-topbars>-->
 	
-  <d-principal-content orientation align="space-between">
+  <d-principal-content orientation align="space-around">
 	<d-content size="400" loop="item of iglesias">
 	  <d-topbar align="start center" color="{backgroundColor:#008FA9,text:white}">
 		<h3>{{item}}</h3>
