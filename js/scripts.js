@@ -131,12 +131,23 @@ function hex2rgb(hex) {
 }
 
 function createElement(tagName, tagElement, config) {
+	let contPrincipal ="d-principal-content";
 	config.forEach(itemElement => {
+		let sumHeight= 0;
 		//alert(JSON.stringify(itemElement.element.name));
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
 		//alert(JSON.stringify(itemElement));
+		
+		if(contPrincipal==tagName){
+			debugger;
+			let dctopbar = document.getElementsByClassName("d-topbar");
+			for(const itemDTopbar of dctopbar){
+				sumHeight += itemDTopbar.clientHeight; 
+			}
+		}
+
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div);
 		if (tagElement.children.length > 0) {
@@ -148,14 +159,8 @@ function createElement(tagName, tagElement, config) {
 		} else {
 			tagElement.appendChild(div);
 		}
-		div.addEventListener("load",function(event){
-			alert("loader");
-		},false);
+		div.style.top = sumHeight + "px";
 	});
-}
-
-function loadElements(event){
-	alert("loader");
 }
 
 function createChildsElement(listChild, principalElement) {
@@ -270,11 +275,9 @@ function loopTagElement(tagElement) {
 }
 
 function styleStatic(nameTag) {
-	debugger;
-	let contTopBar ="D-CONTENT-TOPBARS";
 	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
-	var pContentDesign = document.getElementsByTagName("d-principal-content");
-	pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
+	//var pContentDesign = document.getElementsByTagName("d-principal-content");
+	//pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
 	return style;
 }
 
