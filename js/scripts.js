@@ -148,7 +148,14 @@ function createElement(tagName, tagElement, config) {
 		} else {
 			tagElement.appendChild(div);
 		}
+		div.addEventListener("load",function(event){
+			alert("loader");
+		},false);
 	});
+}
+
+function loadElements(event){
+	alert("loader");
 }
 
 function createChildsElement(listChild, principalElement) {
@@ -267,17 +274,6 @@ function styleStatic(nameTag) {
 	let contTopBar ="D-CONTENT-TOPBARS";
 	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
 	var pContentDesign = document.getElementsByTagName("d-principal-content");
-	if(nameTag == contTopBar){
-		var tagsTopBar = document.getElementsByTagName("d-topbar");
-		for (const i of tagsTopBar) {
-			if(contTopBar == i.parentElement.tagName){
-				alert(i.clientHeigth);
-			}
-		}
-	}
-	if( nameTag == "d-topbar"){
-
-	}
 	pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
 	return style;
 }
