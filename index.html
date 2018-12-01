@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link href="css/styles.css" rel="stylesheet">
+  <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link href="css/styles.css" rel="stylesheet">
 	<script src="js/scripts.js"></script>
-	<script>
-	var iglesias=["playon","central"];
-    var generaltags={
+<script>
+var lista=["lista ","daniel","itagui"];
+var generaltags={
 	orientation:"horizontal",
 	align:"space-between center"
-	};
-	</script>
-</head>
+};
+</script>
+  </head>
 
-<body>
-  <d-menu>
-	<d-item-menu>
-	  <p>Mapa</p>
-	</d-item-menu>
-	<d-item-menu onclick="dMenu()">
-	  <p>Contactenos</p>
-	</d-item-menu>
-  </d-menu>
-	<!--<d-content-topbars static>-->
-   <d-topbar static  orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
-	 <div generalTags orientation="horizontal" align="space-between center" >
-	   <d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
-	 <h4>Iglesias Medellin</h4>
-	 </div>
-	 <div orientation="horizontal" align="center center">
-	 <d-input></d-input>
-	 <d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
-	 </div>
-   </d-topbar>
-	  <!--<d-topbar orientation="horizontal" color="{backgroundColor:#008299,text:white}" align="space-between center">
-	  </d-topbar>-->
-<!--	</d-content-topbars>-->
-	
-  <d-principal-content orientation align="space-around">
-	<d-content size="400" loop="item of iglesias">
-	  <d-topbar align="start center" color="{backgroundColor:#008FA9,text:white}">
-		<h3>{{item}}</h3>
+  <body>
+	<d-menu>
+	  <d-item-menu>
+		<p>Mapa</p>
+	  </d-item-menu>
+	  <d-item-menu onclick="dMenu()">
+		<p>Contactenos</p>
+	  </d-item-menu>
+	</d-menu>
+	<d-content-topbars static>-->
+	  <d-topbar orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
+		<div generalTags orientation="horizontal" align="space-between center" >
+		  <d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
+		  <h4>Lista de :</h4>
+		</div>
+		<div orientation="horizontal" align="center center">
+		  <d-input></d-input>
+		  <d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
+		</div>
 	  </d-topbar>
-	  <d-content-section color="#D8D8D8" size=",200">
-	  </d-content-section>
-	</d-content>
-  </d-principal-content>
-</body>
+	  <d-topbar orientation="horizontal" color="{backgroundColor:#008299,text:white}" align="space-between center">
+	  </d-topbar>
+	</d-content-topbars>
+
+	<d-principal-content orientation align="space-around">
+	  <d-content size="400" loop="item of lista">
+		<d-topbar align="start center" color="{backgroundColor:#008FA9,text:white}">
+		  <h3>{{item}}</h3>
+		</d-topbar>
+		<d-content-section color="#D8D8D8" size=",200">
+		  <p></p>
+		</d-content-section>
+	  </d-content>
+	</d-principal-content>
+  </body>
 
 </html>

@@ -349,21 +349,26 @@ function styleLoop(tagElement, value, div) {
 		}
 	}else{
 		let objectToBind={};
+		let first=1;
 		objectToBind.expresion=value;
 		let arrayFromExpresion = value.split(" ");
 		objectToBind.dataBind=arrayFromExpresion[0];
 		eval("for("+value+"){"+
-			""+
-			"createLoopElements(tagElement,objectToBind,parent);"
-		+"}");
+			"if(first==1){"+
+				"tagElement.innerHTML= tagElement.innerHTML.replace('{{item}}' , eval(objectToBind.dataBind));  "+
+				"first++;"+
+			"}else{"+
+			"createLoopElements(tagElement,objectToBind,parent,eval(objectToBind.dataBind));"
+		+"}}");
 		/*for(let elem of eval(value)){
 		createLoopElements(tagElement,value,parent);
 		}*/
 	}
 }
 
-function createLoopElements(tagElement, value,parent){
+function createLoopElements(tagElement, value,parent,text){
 	let divLoop = document.createElement(tagElement.localName);
+	alert(tagElement.innerHTML);
 		for (let atri of tagElement.attributes) {
 			if (atri.name != "loop") {
 				createAttribute(atri.name, atri.value, divLoop);
@@ -372,6 +377,7 @@ function createLoopElements(tagElement, value,parent){
 		let concatValueBinding = "{{"+(value.dataBind)+"}}";
 		createAttribute("bind",concatValueBinding,divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
+		divLoop.innerHTML= divLoop.innerHTML.replace(concatValueBinding,text);
 		parent.appendChild(divLoop);
 }
 
