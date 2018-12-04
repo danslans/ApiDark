@@ -352,7 +352,9 @@ function styleLoop(tagElement, value, div) {
 		let first=1;
 		objectToBind.expresion=value;
 		let arrayFromExpresion = value.split(" ");
-		objectToBind.dataBind=arrayFromExpresion[0];
+		objectToBind.dataBind=arrayFromExpresion[0]; 
+		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
+		objectToBind.valueToReplace = tagElement.innerHTML.match(matchExpresion);
 		let valueFirst = "";
 		eval("for("+value+"){"+
 			"if(first==1){"+
@@ -375,8 +377,8 @@ function createLoopElements(tagElement, value,parent,text){
 				createAttribute(atri.name, atri.value, divLoop);
 			}
 		}
-		let concatValueBinding = "{{"+(value.dataBind)+"}}";
-		createAttribute("bind",concatValueBinding,divLoop);
+		alert(value.valueToReplace);
+		createAttribute("bind",value.valueToReplace,divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
 		divLoop.innerHTML= divLoop.innerHTML.replace(new RegExp("\\{."+(value.dataBind)+"\\}.", 'g'),text);
 		parent.appendChild(divLoop);
