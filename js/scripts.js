@@ -138,7 +138,8 @@ function createElement(tagName, tagElement, config) {
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
-		//alert(JSON.stringify(itemElement));
+		div.style = itemElement.element.style;
+		//alert(itemElement.element.style);
 		
 		if(contPrincipal==tagName){
 			debugger;
@@ -377,7 +378,9 @@ function createLoopElements(tagElement, value,parent,text){
 				createAttribute(atri.name, atri.value, divLoop);
 			}
 		}
-		alert(value.valueToReplace);
+		if(text instanceof Object){
+			alert(JSON.stringify(text));
+		}
 		createAttribute("bind",value.valueToReplace,divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
 		divLoop.innerHTML= divLoop.innerHTML.replace(new RegExp("\\{."+(value.dataBind)+"\\}.", 'g'),text);

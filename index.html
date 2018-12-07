@@ -9,13 +9,13 @@
 	<link href="css/styles.css" rel="stylesheet">
 	<script src="js/scripts.js"></script>
 	<script>
-		var lista = ["lista", "daniel", "itagui","itagui","itagui","itagui"];
+		var persons = [{name:"daniel",cedula:"1234"}, {name:"kira",cedula:"56789"}];
 		var menu = ["Videos","Fotos" ,"Juegos"];
 		this.functs.my_custom_tag=[
 		{
 		element: {
 			name: "div",
-			className: "test",
+			style:"position: relative;width: 100px;height: 100px;background-color:  red;"
 		}
 		}
 		];
@@ -24,15 +24,6 @@
 			align: "space-between center"
 		};
 	</script>
-	<style>
-		.test{
-			position: relative;
-			width: 100px;
-			height: 100px;
-			background-color:  red;
-
-		}
-	</style>
 </head>
 
 <body>
@@ -60,17 +51,17 @@
 		</d-topbar>
 		<!--<d-topbar orientation="horizontal" color="{backgroundColor:#008299,text:white}" align="space-between center">
 		</d-topbar>-->
-	  <my_custom_tag></my_custom_tag>>
+	  <my_custom_tag></my_custom_tag>
 	</d-content-topbars>
 
 	<d-principal-content orientation align="space-around">
-		<d-content size="400" loop="item of lista">
+		<d-content size="400" loop="item of persons">
 			<d-topbar align="space-between center" color="{backgroundColor:#008FA9,text:white}">
-				<h3>{{item}}</h3>
+				<h3>{{item.name}}</h3>
 			  <d-icon type="subMenu"></d-icon>
 			</d-topbar>
 			<d-content-section orientation="vertical" color="#D8D8D8" size=",200">
-				<p>{{item}}</p>
+				<p>{{item.cedula}}</p>
 				<b>{{item}}</b>
 				<i>{{item}}</i>
 			</d-content-section>
