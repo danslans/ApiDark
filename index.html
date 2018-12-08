@@ -11,11 +11,12 @@
 	<script>
 		var persons = [{name:"daniel",cedula:"1234"}, {name:"kira",cedula:"56789"}];
 		var menu = ["Videos","Fotos" ,"Juegos"];
-		this.functs.my_custom_tag=[
+		this.functs.example=[
 		{
 		element: {
 			name: "div",
-			style:"position: relative;width: 100px;height: 100px;background-color:  red;"
+			className:"d-topbar",
+			style:"background-color:red!important;"
 		}
 		}
 		];
@@ -23,6 +24,7 @@
 			orientation: "horizontal",
 			align: "space-between center"
 		};
+		var icon="Mapa";
 	</script>
 </head>
 
@@ -32,17 +34,17 @@
 			<a href="#">{{m}}</a>
 		</d-item-menu>
 		<d-item-menu>
-			<p>Mapa</p>
+			<p>{{icon}}</p>
 		</d-item-menu>
 		<d-item-menu onclick="dMenu()">
 			<p>Contactenos</p>
 		</d-item-menu>
 	</d-menu>
-	<d-content-topbars static>-->
+	<d-content-topbars static>
 		<d-topbar orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
 			<div generalTags orientation="horizontal" align="space-between center">
 				<d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
-				<h4>Lista de :</h4>
+				<h4>Lista de :{{icon}}</h4>
 			</div>
 			<div orientation="horizontal" align="center center">
 				<d-input></d-input>
@@ -51,10 +53,12 @@
 		</d-topbar>
 		<!--<d-topbar orientation="horizontal" color="{backgroundColor:#008299,text:white}" align="space-between center">
 		</d-topbar>-->
-	  <my_custom_tag></my_custom_tag>
+	  <example align="start center">
+		<d-input></d-input>
+	  </example>
 	</d-content-topbars>
 
-	<d-principal-content orientation align="space-around">
+	<!--<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons">
 			<d-topbar align="space-between center" color="{backgroundColor:#008FA9,text:white}">
 				<h3>{{item.name}}</h3>
@@ -64,9 +68,10 @@
 				<p>{{item.cedula}}</p>
 				<b>{{item}}</b>
 				<i>{{item}}</i>
+			  <d-input></d-input>
 			</d-content-section>
 		</d-content>
-	</d-principal-content>
+	</d-principal-content>-->
 </body>
 
 </html>

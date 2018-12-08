@@ -379,7 +379,11 @@ function createLoopElements(tagElement, value,parent,text){
 			}
 		}
 		if(text instanceof Object){
-			alert(JSON.stringify(text));
+			//alert(JSON.stringify(text));
+			//alert(value.valueToReplace);
+		}
+		for(var elem of  tagElement.children){
+			//alert(elem.localName);
 		}
 		createAttribute("bind",value.valueToReplace,divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
@@ -528,6 +532,7 @@ this.bind = function (data) {
 					for (let nameVar of getText) {
 						concatVar += eval("eval(nameVar)");
 					}
+					alert(concatVar);
 					textToElement = textToElement.replace(varBind, concatVar);
 				}
 			}
