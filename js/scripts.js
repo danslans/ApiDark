@@ -90,6 +90,7 @@ function appDark() {
 }
 
 function validateTags(tag) {
+	debugger;
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
@@ -142,7 +143,6 @@ function createElement(tagName, tagElement, config) {
 		//alert(itemElement.element.style);
 		
 		if(contPrincipal==tagName){
-			debugger;
 			let dctopbar = document.getElementsByClassName("d-topbar");
 			for(const itemDTopbar of dctopbar){
 				sumHeight += itemDTopbar.clientHeight; 
@@ -382,10 +382,8 @@ function createLoopElements(tagElement, value,parent,text){
 			//alert(JSON.stringify(text));
 			//alert(value.valueToReplace);
 		}
-		for(var elem of  tagElement.children){
-			//alert(elem.localName);
-		}
-		createAttribute("bind",value.valueToReplace,divLoop);
+		
+		//createAttribute("bind",value.valueToReplace,divLoop);
 		divLoop.innerHTML = tagElement.innerHTML;
 		divLoop.innerHTML= divLoop.innerHTML.replace(new RegExp("\\{."+(value.dataBind)+"\\}.", 'g'),text);
 		parent.appendChild(divLoop);
