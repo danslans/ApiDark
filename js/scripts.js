@@ -86,11 +86,19 @@ function appDark() {
 	for (const item of document.body.children) {
 		validateTags(item);
 	}
+	//alert(JSON.stringify(item));
 	//bind({});
 }
 
 function validateTags(tag) {
-	debugger;
+	if(tag.children.length==0){
+		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
+		let matchVar = /[a-zA-Z\.]+/gm;
+		let resultBinding = tag.innerHTML.match(matchExpresion);
+		let resultVar = resultBinding !=null? resultBinding[0].match(matchVar):"";
+		let s = eval(resultVar[0]);
+		//alert(s+ " , "+ resultVar[0]);
+	}
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
@@ -357,13 +365,14 @@ function styleLoop(tagElement, value, div) {
 		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
 		objectToBind.valueToReplace = tagElement.innerHTML.match(matchExpresion);
 		let valueFirst = "";
-		eval("for("+value+"){"+
+		eval("for(const "+value+"){"+
 			"if(first==1){"+
 				"valueFirst=eval(objectToBind.dataBind);"+
 				"first++;"+
 			"}else{"+
 			"createLoopElements(tagElement,objectToBind,parent,eval(objectToBind.dataBind));"
 		+"}}");
+		alert(valueFirst);
 		tagElement.innerHTML= tagElement.innerHTML.replace(new RegExp('\{.'+objectToBind.dataBind+'\}.','g') , valueFirst);
 		/*for(let elem of eval(value)){
 		createLoopElements(tagElement,value,parent);
