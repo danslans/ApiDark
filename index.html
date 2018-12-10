@@ -15,7 +15,7 @@
 		{
 		element: {
 			name: "div",
-			className:"d-topbar"
+			innerHTML:"/appDark.html"
 		}
 		}
 		];
@@ -23,18 +23,17 @@
 			orientation: "horizontal",
 			align: "space-between center"
 		};
-		var icon="Mapa";
+		var icon=["Mapa","Mapa1"];
 	</script>
 </head>
 
 <body>
-  <h1>{{icon}}</h1>
 	<!--<d-menu>
 		<d-item-menu loop="m of menu">
 			<a href="#">{{m}}</a>
 		</d-item-menu>
 		<d-item-menu>
-			<p>{{icon}}</p>
+			<p>{{icon[0]}}</p>
 		</d-item-menu>
 		<d-item-menu onclick="dMenu()">
 			<p>Contactenos</p>
@@ -53,11 +52,10 @@
 		</d-topbar>
 		<d-topbar orientation="horizontal" color="{backgroundColor:#008299,text:white}" align="space-between center">
 		</d-topbar>
-	  <example align="start center">
-		<d-input></d-input>
+	  <example>
 	  </example>
-	</d-content-topbars>-->
-
+	</d-content-topbars>
+-->
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons">
 			<d-topbar align="space-between center" color="{backgroundColor:#008FA9,text:white}">

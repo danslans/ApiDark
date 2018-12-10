@@ -1,6 +1,6 @@
 window.addEventListener("load", appDark, false);
 window.stateMenu = false;
-var attributes =["static","orientation","align","size","loop","color","scroll","type"];
+var attributes = ["static", "orientation", "align", "size", "loop", "color", "scroll", "type"];
 var functs = {
 	"d-content-topbars": [{
 		element: {
@@ -91,12 +91,16 @@ function appDark() {
 }
 
 function validateTags(tag) {
-	if(tag.children.length==0){
-		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
-		let matchVar = /[a-zA-Z\.]+/gm;
+	if (tag.children.length == 0) {
+		let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
+		let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
 		let resultBinding = tag.innerHTML.match(matchExpresion);
-		let resultVar = resultBinding !=null? resultBinding[0].match(matchVar):"";
-		let s = eval(resultVar[0]);
+		let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
+		try {
+			let rs = eval(resultVar[0]);
+			tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
+		} catch (error) {
+		}
 		//alert(s+ " , "+ resultVar[0]);
 	}
 	if (functs[tag.localName] != null) {
@@ -140,20 +144,20 @@ function hex2rgb(hex) {
 }
 
 function createElement(tagName, tagElement, config) {
-	let contPrincipal ="d-principal-content";
+	let contPrincipal = "d-principal-content";
 	config.forEach(itemElement => {
-		let sumHeight= 0;
+		let sumHeight = 0;
 		//alert(JSON.stringify(itemElement.element.name));
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
 		div.style = itemElement.element.style;
 		//alert(itemElement.element.style);
-		
-		if(contPrincipal==tagName){
+
+		if (contPrincipal == tagName) {
 			let dctopbar = document.getElementsByClassName("d-topbar");
-			for(const itemDTopbar of dctopbar){
-				sumHeight += itemDTopbar.clientHeight; 
+			for (const itemDTopbar of dctopbar) {
+				sumHeight += itemDTopbar.clientHeight;
 			}
 		}
 
@@ -225,22 +229,22 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					className += styleType(att.value);
 					break;
 				default:
-				if(att.value=="" && validateAttributes(att.name)==null ){
-					let varTag= att.name.split(".");
-					var tgValue= eval("eval(varTag[0])");
-					if(varTag.length>1){
-						var objDocument= eval("varTag[1]");
-						//alert(eval("tgValue[objDocument]"));
-					}else{
-						let arrayTgValue = new Array;
-						arrayTgValue=tgValue;
-						//alert(tgValue);
-						/*for(let item of tgValue){
-							alert(item);
-						}*/
+					if (att.value == "" && validateAttributes(att.name) == null) {
+						let varTag = att.name.split(".");
+						var tgValue = eval("eval(varTag[0])");
+						if (varTag.length > 1) {
+							var objDocument = eval("varTag[1]");
+							//alert(eval("tgValue[objDocument]"));
+						} else {
+							let arrayTgValue = new Array;
+							arrayTgValue = tgValue;
+							//alert(tgValue);
+							/*for(let item of tgValue){
+								alert(item);
+							}*/
+						}
 					}
-				}
-				break;
+					break;
 			}
 		}
 		div.style = style;
@@ -248,11 +252,11 @@ function loopDecideAttributesFromElement(tagElement, div) {
 	}
 }
 
-function validateAttributes(att){
-	return attributes.find(function(item){
-		return att==item;
+function validateAttributes(att) {
+	return attributes.find(function (item) {
+		return att == item;
 	});
-	
+
 }
 function convertStringToJson(valueToConvert) {
 	var regex = /[a-zA-Z0-9_\#\-\(\)\%\s]+/gm;
@@ -351,51 +355,70 @@ function recortExpresion(valueToRecort) {
 }
 
 function styleLoop(tagElement, value, div) {
+	debugger;
 	let parent = tagElement.parentElement;
-	if(value>0){
+	if (value > 0) {
 		for (let i = 1; i < value; i++) {
-		createLoopElements(tagElement,value,parent);
+			createLoopElements(tagElement, value, parent);
 		}
-	}else{
-		let objectToBind={};
-		let first=1;
-		objectToBind.expresion=value;
+	} else {
+		let objectToBind = {};
+		let first = 1;
+		objectToBind.expresion = value;
 		let arrayFromExpresion = value.split(" ");
-		objectToBind.dataBind=arrayFromExpresion[0]; 
+		objectToBind.dataBind = arrayFromExpresion[0];
 		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
 		objectToBind.valueToReplace = tagElement.innerHTML.match(matchExpresion);
 		let valueFirst = "";
-		eval("for(const "+value+"){"+
-			"if(first==1){"+
-				"valueFirst=eval(objectToBind.dataBind);"+
-				"first++;"+
-			"}else{"+
+		eval("for(const " + value + "){" +
+			"if(first==1){" +
+			"valueFirst=eval(objectToBind.dataBind);" +
+			"first++;" +
+			"}else{" +
 			"createLoopElements(tagElement,objectToBind,parent,eval(objectToBind.dataBind));"
-		+"}}");
-		alert(valueFirst);
-		tagElement.innerHTML= tagElement.innerHTML.replace(new RegExp('\{.'+objectToBind.dataBind+'\}.','g') , valueFirst);
+			+ "}}");
+		tagElement.innerHTML = tagElement.innerHTML.replace(new RegExp('\{.' + objectToBind.dataBind + '\}.', 'g'), valueFirst);
 		/*for(let elem of eval(value)){
 		createLoopElements(tagElement,value,parent);
 		}*/
 	}
 }
 
-function createLoopElements(tagElement, value,parent,text){
+function createLoopElements(tagElement, value, parent, text) {
 	let divLoop = document.createElement(tagElement.localName);
-		for (let atri of tagElement.attributes) {
-			if (atri.name != "loop") {
-				createAttribute(atri.name, atri.value, divLoop);
-			}
+	for (let atri of tagElement.attributes) {
+		if (atri.name != "loop") {
+			createAttribute(atri.name, atri.value, divLoop);
 		}
-		if(text instanceof Object){
-			//alert(JSON.stringify(text));
-			//alert(value.valueToReplace);
+	}
+	if (text instanceof Object) {
+		//alert(JSON.stringify(text));
+		//alert(value.valueToReplace);
+	}
+
+	for (const tag of tagElement.children) {
+		loopElementsFromStyleLoop(tag);
+	}
+
+	//createAttribute("bind",value.valueToReplace,divLoop);
+	divLoop.innerHTML = tagElement.innerHTML;
+	divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+	parent.appendChild(divLoop);
+}
+
+function loopElementsFromStyleLoop(tag) {
+	if (tag.children.length == 0) {
+		let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
+		let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
+		let resultBinding = tag.innerHTML.match(matchExpresion);
+		let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
+		try {
+			let rs = eval(resultVar[0]);
+			tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
+		} catch (error) {
 		}
-		
-		//createAttribute("bind",value.valueToReplace,divLoop);
-		divLoop.innerHTML = tagElement.innerHTML;
-		divLoop.innerHTML= divLoop.innerHTML.replace(new RegExp("\\{."+(value.dataBind)+"\\}.", 'g'),text);
-		parent.appendChild(divLoop);
+		//alert(s+ " , "+ resultVar[0]);
+	}
 }
 
 function styleColor(value) {
