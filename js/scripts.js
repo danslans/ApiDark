@@ -395,29 +395,35 @@ function createLoopElements(tagElement, value, parent, text) {
 		//alert(JSON.stringify(text));
 		//alert(value.valueToReplace);
 	}
-
-	for (const tag of tagElement.children) {
-		loopElementsFromStyleLoop(tag);
-	}
-
+	loopElementsFromStyleLoop(tagElement,text,value);
 	//createAttribute("bind",value.valueToReplace,divLoop);
 	divLoop.innerHTML = tagElement.innerHTML;
 	divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
 	parent.appendChild(divLoop);
 }
 
-function loopElementsFromStyleLoop(tag) {
-	if (tag.children.length == 0) {
-		let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
-		let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
-		let resultBinding = tag.innerHTML.match(matchExpresion);
-		let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
-		try {
-			let rs = eval(resultVar[0]);
-			tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
-		} catch (error) {
+function loopElementsFromStyleLoop(tagElement,object,value) {
+	for (const tag of tagElement.children) {
+		debugger;
+		if (tag.children.length == 0) {
+			let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
+			let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
+			let resultBinding = tag.innerHTML.match(matchExpresion);
+			let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
+			try {
+				let getPrincipalObject = resultVar[0].split(".");
+				if (getPrincipalObject){
+					let rs = eval(resultVar[0]);
+					tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
+				}else{
+					tag.innerHTML = tag.innerHTML.replace(resultBinding[0],object);
+				}
+				
+			} catch (error) {
+			}
+			//alert(s+ " , "+ resultVar[0]);
 		}
-		//alert(s+ " , "+ resultVar[0]);
+		loopElementsFromStyleLoop(tag,object,value);
 	}
 }
 
