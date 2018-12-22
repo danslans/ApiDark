@@ -23,27 +23,29 @@
 			orientation: "horizontal",
 			align: "space-between center"
 		};
-		var icon=["Mapa","Mapa1"];
+		var divInject = "<button>Button Inject</button>";
+		var icon=["Mapa","Busqueda"];
 	</script>
 </head>
 
 <body>
 	<d-menu>
 		<d-item-menu loop="m of menu">
-			<a href="#">{{m}}</a>
+			<a href="#">{{icon[0]="Social"}}</a>
 		</d-item-menu>
 		<d-item-menu>
-			<p>{{icon[0]}}</p>
+			<p>{{icon[1]}} de {{2*4}}</p>
 		</d-item-menu>
 		<d-item-menu onclick="dMenu()">
 			<p>Contactenos</p>
 		</d-item-menu>
 	</d-menu>
+	
 	<d-content-topbars static>
 		<d-topbar orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
 			<div generalTags orientation="horizontal" align="space-between center">
 				<d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
-				<h4>Lista de :{{icon}}</h4>
+				<h4>Pagina Principal {{generaltags.orientation}}</h4>
 			</div>
 			<div orientation="horizontal" align="center center">
 				<d-input></d-input>
@@ -58,12 +60,12 @@
 
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons">
-		  hola mundo {{icon}}
 			<d-topbar align="space-between center" color="{backgroundColor:#008FA9,text:white}">
 				<h3>{{item.name}}</h3>
 			  <d-icon type="subMenu"></d-icon>
 			</d-topbar>
 			<d-content-section orientation="vertical" color="#D8D8D8" size=",200">
+				{{divInject}}
 				<p>{{item.cedula}}</p>
 				<b>{{item}}</b>
 				<i>{{item}}</i>
@@ -71,6 +73,7 @@
 			</d-content-section>
 		</d-content>
 	</d-principal-content>
+
 </body>
 
 </html>

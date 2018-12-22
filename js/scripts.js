@@ -91,17 +91,8 @@ function appDark() {
 }
 
 function validateTags(tag) {
-		let matchExpresion = /\{+[a-zA-Z\,\+\*\-\=\(\)\"\/1-9]+\}+/gm;
-		let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
-		let resultBinding = tag.innerHTML.match(matchExpresion);
-		let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
-		try {
-			let rs = eval(resultVar[0]);
-			tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
-		} catch (error) {
-		}
 		//alert(s+ " , "+ resultVar[0]);
-	
+	bind.init(tag);
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
@@ -354,7 +345,6 @@ function recortExpresion(valueToRecort) {
 }
 
 function styleLoop(tagElement, value, div) {
-	debugger;
 	let parent = tagElement.parentElement;
 	if (value > 0) {
 		for (let i = 1; i < value; i++) {
@@ -403,7 +393,6 @@ function createLoopElements(tagElement, value, parent, text) {
 
 function loopElementsFromStyleLoop(tagElement,object,value) {
 	for (const tag of tagElement.children) {
-		debugger;
 		if (tag.children.length == 0) {
 			let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
 			let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
@@ -550,52 +539,30 @@ function showStorage(resul) {
 	alert(resul);
 }
 
-this.bind = function (data) {
-	var initBind = function (item) {
-		let getAtt = item.getAttribute("bind");
-		let txtElement = getAtt != null ? getAtt : item.textContent != "" ? item.textContent : item.value;
-		if (txtElement.search(/[\{\}]+/gm) >= 0) {
-			let att = document.createAttribute("bind");
-			att.value = txtElement;
-			item.setAttributeNode(att);
-			let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/1-9]+\}+/gm);
-			let textToElement = txtElement;
-			if (searchVarBind != null) {
-				for (const varBind of searchVarBind) {
-					let concatVar = "";
-					let getText = searchVarBind != null ? varBind.match(/[a-zA-Z\+\-\*\=\(\)\"\/1-9]+/gm) : "";
-					for (let nameVar of getText) {
-						concatVar += eval("eval(nameVar)");
-					}
-					alert(concatVar);
-					textToElement = textToElement.replace(varBind, concatVar);
-				}
-			}
-			//item.textContent = textToElement;
-			if (item.textContent != "") {
-				//item.textContent=textToElement;
-				item.innerHTML = textToElement;
-			} else {
-				item.value = textToElement;
-			}
-		}
-	};
-
-	var loopElements = function (element) {
-		if (element.children.length > 0) {
-			initBind(element);
-			for (let item of element.children) {
-				initBind(item);
-				loopElements(item);
-			}
-		} else {
-			initBind(element);
-		}
-	};
-
-	for (let item of document.body.children) {
-		loopElements(item);
-	}
-
+this.bind = function (tagElement) {
 
 };
+
+this.bind.init = function (tag){
+	let matchExpresion = /\{\{[a-zA-Z\,\+\*\-\=\(\)\"\/0-9\[\]\.]+\}\}+/gm;
+		let matchVar = /[a-zA-Z\,\+\*\-\=\(\)\"\/0-9\[\]\.]+/gm;
+		let resultBinding = tag.innerHTML.match(matchExpresion);
+		if(resultBinding!=null){
+			for (const expVarBind of resultBinding) {
+				let varBind = expVarBind.match(matchVar);
+				debugger;
+				try{
+					let realValue = eval("eval(varBind[0])");
+					tag.innerHTML = tag.innerHTML.replace(expVarBind,realValue);
+				}catch(error){
+					console.debug(error);
+				}
+			}
+		}
+	/*	try {
+			let rs = eval(resultVar[0]);
+			tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
+		} catch (error) {
+		}*/
+		
+}
