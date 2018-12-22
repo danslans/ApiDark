@@ -28,7 +28,7 @@
 </head>
 
 <body>
-	<!--<d-menu>
+	<d-menu>
 		<d-item-menu loop="m of menu">
 			<a href="#">{{m}}</a>
 		</d-item-menu>
@@ -55,9 +55,10 @@
 	  <example>
 	  </example>
 	</d-content-topbars>
--->
+
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons">
+		  hola mundo {{icon}}
 			<d-topbar align="space-between center" color="{backgroundColor:#008FA9,text:white}">
 				<h3>{{item.name}}</h3>
 			  <d-icon type="subMenu"></d-icon>

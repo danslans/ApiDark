@@ -91,8 +91,7 @@ function appDark() {
 }
 
 function validateTags(tag) {
-	if (tag.children.length == 0) {
-		let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
+		let matchExpresion = /\{+[a-zA-Z\,\+\*\-\=\(\)\"\/1-9]+\}+/gm;
 		let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
 		let resultBinding = tag.innerHTML.match(matchExpresion);
 		let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
@@ -102,7 +101,7 @@ function validateTags(tag) {
 		} catch (error) {
 		}
 		//alert(s+ " , "+ resultVar[0]);
-	}
+	
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {

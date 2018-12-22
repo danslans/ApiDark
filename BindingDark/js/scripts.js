@@ -12,6 +12,7 @@ this.bind=function (data) {
 			item.setAttributeNode(att);
 			let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/1-9]+\}+/gm);
 			let textToElement = txtElement;
+			alert(searchVarBind);
 			if(searchVarBind != null){
 				for (const varBind of searchVarBind) {
 					let concatVar = "";
