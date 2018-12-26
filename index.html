@@ -8,33 +8,16 @@
 	<title>Document</title>
 	<link href="css/styles.css" rel="stylesheet">
 	<script src="js/scripts.js"></script>
-	<script>
-		var persons = [{name:"daniel",cedula:"1234"}, {name:"kira",cedula:"56789"}];
-		var menu = ["Videos","Fotos" ,"Juegos"];
-		this.functs.example=[
-		{
-		element: {
-			name: "div",
-			innerHTML:"/appDark.html"
-		}
-		}
-		];
-		var generaltags = {
-			orientation: "horizontal",
-			align: "space-between center"
-		};
-		var divInject = "<button>Button Inject</button>";
-		var icon=["Mapa","Busqueda"];
-	</script>
+	<script src="js/scriptTest.js"></script>
 </head>
 
 <body>
 	<d-menu>
 		<d-item-menu loop="m of menu">
-			<a href="#">{{icon[0]="Social"}}</a>
+			<a href="#">{{m}}</a>
 		</d-item-menu>
 		<d-item-menu>
-			<p>{{icon[1]}} de {{2*4}}</p>
+			<a href="#">{{icon[1]}} de {{2*4}}</a>
 		</d-item-menu>
 		<d-item-menu onclick="dMenu()">
 			<p>Contactenos</p>
@@ -60,16 +43,12 @@
 
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons">
-			<d-topbar align="space-between center" color="{backgroundColor:#008FA9,text:white}">
-				<h3>{{item.name}}</h3>
-			  <d-icon type="subMenu"></d-icon>
-			</d-topbar>
 			<d-content-section orientation="vertical" color="#D8D8D8" size=",200">
-				{{divInject}}
 				<p>{{item.cedula}}</p>
-				<b>{{item}}</b>
-				<i>{{item}}</i>
 			  <d-input></d-input>
+			  <d-input></d-input>
+			  <d-input></d-input>
+			  {{divInject}}
 			</d-content-section>
 		</d-content>
 	</d-principal-content>

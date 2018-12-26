@@ -53,7 +53,7 @@ var functs = {
 			childs: [{
 				name: "input",
 				type: "text",
-				value: "hola mundo",
+				value: "",
 				className: "d-input"
 			}]
 		}
@@ -357,6 +357,7 @@ function styleLoop(tagElement, value, div) {
 		let arrayFromExpresion = value.split(" ");
 		objectToBind.dataBind = arrayFromExpresion[0];
 		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
+		
 		objectToBind.valueToReplace = tagElement.innerHTML.match(matchExpresion);
 		let valueFirst = "";
 		eval("for(const " + value + "){" +
@@ -365,8 +366,12 @@ function styleLoop(tagElement, value, div) {
 			"first++;" +
 			"}else{" +
 			"createLoopElements(tagElement,objectToBind,parent,eval(objectToBind.dataBind));"
-			+ "}}");
+			+ "}"+
+			"}"
+			);
+		replaceBind(tagElement, objectToBind,valueFirst);
 		tagElement.innerHTML = tagElement.innerHTML.replace(new RegExp('\{.' + objectToBind.dataBind + '\}.', 'g'), valueFirst);
+		
 		/*for(let elem of eval(value)){
 		createLoopElements(tagElement,value,parent);
 		}*/
@@ -380,15 +385,27 @@ function createLoopElements(tagElement, value, parent, text) {
 			createAttribute(atri.name, atri.value, divLoop);
 		}
 	}
-	if (text instanceof Object) {
-		//alert(JSON.stringify(text));
-		//alert(value.valueToReplace);
-	}
 	loopElementsFromStyleLoop(tagElement,text,value);
-	//createAttribute("bind",value.valueToReplace,divLoop);
 	divLoop.innerHTML = tagElement.innerHTML;
-	divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+	replaceBind(divLoop,value,text);
+	//createAttribute("bind",value.valueToReplace,divLoop);
 	parent.appendChild(divLoop);
+}
+
+function replaceBind(divLoop,value,text){
+	if(value.valueToReplace != null){
+	for(var objValue of value.valueToReplace){
+	let varToBind = objValue.match(/[a-zA-Z\,\+\*\-\=\(\)\"\/0-9\[\]\.]+/gm);
+	let getSubValue = varToBind[0].match(/[\.]/gm);
+		if(getSubValue!=null){
+			let realObject = varToBind[0].replace(value.dataBind,"text");
+			let getValueRealObject = eval(realObject);
+			divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
+		}else{
+			divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+		}
+	}
+	}
 }
 
 function loopElementsFromStyleLoop(tagElement,object,value) {
