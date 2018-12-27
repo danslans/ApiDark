@@ -124,7 +124,7 @@ button:active, input[type=button]:active {
   background-color:var(--d-color-content-active)
 }
 .d-menu {
-    display: none;
+   
     position: fixed;
     width: var(--d-width-menu);
     height: 100vh;
@@ -157,6 +157,7 @@ button:active, input[type=button]:active {
     height: 30px;
     border-radius: 40px 40px 40px 40px;
     border: none;
+    margin: 2px;
     text-align: center;
   -webkit-transition: width .35s ease-in-out;
   transition: width .35s ease-in-out;

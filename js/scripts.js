@@ -34,10 +34,13 @@ var functs = {
 	"d-menu": [{
 		element: {
 			name: "div",
-			className: "d-menu",
 			childs: [{
 				name: "div",
-				className: "d-header-menu"
+				className: "d-menu",
+				childs: [{
+					name: "div",
+					className: "d-header-menu"
+				}]
 			}]
 		}
 	}],
@@ -175,6 +178,9 @@ function createChildsElement(listChild, principalElement) {
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
 			principalElement.appendChild(element);
+			if(item.childs != null){
+				createChildsElement(item.childs,element);
+			}
 		});
 	}
 }
@@ -562,7 +568,6 @@ this.bind.init = function (tag){
 		if(resultBinding!=null){
 			for (const expVarBind of resultBinding) {
 				let varBind = expVarBind.match(matchVar);
-				debugger;
 				try{
 					let realValue = eval("eval(varBind[0])");
 					tag.innerHTML = tag.innerHTML.replace(expVarBind,realValue);
