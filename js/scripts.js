@@ -547,11 +547,6 @@ function getAttibutes(item, text, divB, att) {
 
 }
 
-
-function holamundo() {
-	return "hola mundo";
-}
-
 function showStorage(resul) {
 	alert(resul);
 }
