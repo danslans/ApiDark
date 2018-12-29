@@ -133,6 +133,12 @@ button:active, input[type=button]:active {
     padding: 0px;
     background-color: var(--d-color-principal)
 }
+.d-content-menu{
+  
+}
+.d-content-item{
+  
+}
 
 .d-item-menu {
     display:flex;

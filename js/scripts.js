@@ -34,13 +34,23 @@ var functs = {
 	"d-menu": [{
 		element: {
 			name: "div",
+			className:"d-menu",
 			childs: [{
 				name: "div",
-				className: "d-menu",
-				childs: [{
-					name: "div",
-					className: "d-header-menu"
-				}]
+				className:"",
+				childs: [
+					{
+						name: "div",
+						className: "d-header-menu"
+					},
+					{
+						name: "div",
+						className: "d-content-items"
+					}
+				]
+			},{
+				name: "div",
+				style:""
 			}]
 		}
 	}],
