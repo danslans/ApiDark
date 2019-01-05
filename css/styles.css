@@ -11,7 +11,7 @@
     --d-color-principal: #CE14E1;
 	--d-color-segcundario:#00E602;
     --d-width-menu: 30vw;
-	--d-width-menu-close:30vw;
+	--d-width-menu-close:70vw;
 }
 
 body {
@@ -128,7 +128,6 @@ button:active, input[type=button]:active {
     left: 0;
     padding: 0px;
     background-color: var(--d-color-principal)
-	flex-direction:row !important;
 }
 .d-content-menu{
   width:var(--d-width-menu);

@@ -45,7 +45,8 @@ var functs = {
 					},
 					{
 						name: "div",
-						className: "d-content-items"
+						className: "d-content-items",
+						isPrincipal:true
 					}
 				]		
 			},{
@@ -165,31 +166,37 @@ function createElement(tagName, tagElement, config) {
 		}
 
 		loopDecideAttributesFromElement(tagElement, div);
-		createChildsElement(itemElement.element.childs, div);
-		if (tagElement.children.length > 0) {
-			while (tagElement.firstElementChild) {
-				div.appendChild(tagElement.firstElementChild);
-			}
-			tagElement.appendChild(div);
-			loopTagElement(div);
-		} else {
-			tagElement.appendChild(div);
-		}
+		createChildsElement(itemElement.element.childs, div, tagElement);
+		asignTagToElementPrincipal(tagElement,itemElement,div);
 		div.style.top = sumHeight + "px";
 	});
 }
 
-function createChildsElement(listChild, principalElement) {
+function asignTagToElementPrincipal(tagElement,itemElement,div) {
+	if (tagElement.children.length > 0 && itemElement.isPrincipal) {
+		while (tagElement.firstElementChild) {
+			div.appendChild(tagElement.firstElementChild);
+		}
+		tagElement.appendChild(div);
+		loopTagElement(div);
+	} else {
+		tagElement.appendChild(div);
+	}
+}
+
+function createChildsElement(listChild, principalElement, tagElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
+			debugger;
 			let element = document.createElement(item.name);
 			element.className = item.className != null ? item.className : null;
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
-			principalElement.appendChild(element);
+			//principalElement.appendChild(element);
+			asignTagToElementPrincipal(tagElement,item,element);
 			if(item.childs != null){
-				createChildsElement(item.childs,element);
+				createChildsElement(item.childs,element, tagElement);
 			}
 		});
 	}
