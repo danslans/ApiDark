@@ -37,7 +37,7 @@ var functs = {
 			className:"d-menu",
 			childs: [{
 				name: "div",
-				className:"",
+				className:"d-content-menu",
 				childs: [
 					{
 						name: "div",
@@ -47,10 +47,10 @@ var functs = {
 						name: "div",
 						className: "d-content-items"
 					}
-				]
+				]		
 			},{
 				name: "div",
-				style:""
+				className:"d-close-menu"
 			}]
 		}
 	}],
