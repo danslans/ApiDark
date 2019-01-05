@@ -171,7 +171,6 @@ function createElement(tagName, tagElement, config) {
 		div.style.top = sumHeight + "px";
 	});
 }
-
 function asignTagToElementPrincipal(tagElement,itemElement,div) {
 	if (tagElement.children.length > 0 && itemElement.isPrincipal) {
 		while (tagElement.firstElementChild) {
@@ -183,7 +182,6 @@ function asignTagToElementPrincipal(tagElement,itemElement,div) {
 		tagElement.appendChild(div);
 	}
 }
-
 function createChildsElement(listChild, principalElement, tagElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
