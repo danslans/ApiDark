@@ -46,7 +46,6 @@ var functs = {
 					{
 						name: "div",
 						className: "d-content-items",
-						isPrincipal:true
 					}
 				]		
 			},{
@@ -166,18 +165,19 @@ function createElement(tagName, tagElement, config) {
 		}
 
 		loopDecideAttributesFromElement(tagElement, div);
-		createChildsElement(itemElement.element.childs, div, tagElement);
+		createChildsElement(itemElement.element.childs, div, div);
 		asignTagToElementPrincipal(tagElement,itemElement,div);
 		div.style.top = sumHeight + "px";
 	});
 }
 function asignTagToElementPrincipal(tagElement,itemElement,div) {
 	if (tagElement.children.length > 0 && itemElement.isPrincipal) {
+	//if ( itemElement.isPrincipal) {
 		while (tagElement.firstElementChild) {
 			div.appendChild(tagElement.firstElementChild);
 		}
 		tagElement.appendChild(div);
-		loopTagElement(div);
+		//loopTagElement(div);
 	} else {
 		tagElement.appendChild(div);
 	}
@@ -194,7 +194,7 @@ function createChildsElement(listChild, principalElement, tagElement) {
 			//principalElement.appendChild(element);
 			asignTagToElementPrincipal(tagElement,item,element);
 			if(item.childs != null){
-				createChildsElement(item.childs,element, tagElement);
+				createChildsElement(item.childs,element, element);
 			}
 		});
 	}
