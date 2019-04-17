@@ -46,6 +46,7 @@ var functs = {
 					{
 						name: "div",
 						className: "d-content-items",
+						inject:[{name:"d-item-menu"}]
 					}
 				]		
 			},{
@@ -96,7 +97,7 @@ function dMenu() {
 }
 
 function appDark() {
-	for (const item of document.body.children) {
+	for (let item of document.body.children) {
 		validateTags(item);
 	}
 	//alert(JSON.stringify(item));
@@ -104,8 +105,7 @@ function appDark() {
 }
 
 function validateTags(tag) {
-		//alert(s+ " , "+ resultVar[0]);
-	bind.init(tag);
+	//bind.init(tag);
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
@@ -186,6 +186,11 @@ function createChildsElement(listChild, principalElement, tagElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
 			debugger;
+			if(item.inject!=null){
+				item.inject.forEach(elementToInject=>{
+					injectElement(principalElement,elementToInject.name);
+				});
+			}
 			let element = document.createElement(item.name);
 			element.className = item.className != null ? item.className : null;
 			element.type = item.type != null ? item.type : null;
@@ -198,6 +203,17 @@ function createChildsElement(listChild, principalElement, tagElement) {
 			}
 		});
 	}
+}
+
+function injectElement(principalElement,tagName){
+	alert(tagName);
+	let elementsToInject = document.getElementsByTagName(tagName);
+	let numMaxElements=(elementsToInject.length-1);
+	for(let index =0;index<=numMaxElements;index++){
+		let objectTag = elementsToInject.item(0);
+		principalElement.appendChild(objectTag);
+	}
+	//createChildsElement();
 }
 
 function loopDecideAttributesFromElement(tagElement, div) {
