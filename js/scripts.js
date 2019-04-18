@@ -51,7 +51,8 @@ var functs = {
 				]		
 			},{
 				name: "div",
-				className:"d-close-menu"
+				className:"d-close-menu",
+				function:""
 			}]
 		}
 	}],
@@ -87,11 +88,11 @@ function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
 		tagMenu.style = tagMenu.style.cssText +
-			"display: inline;" +
-			" animation: animation-menu-show 0.3s";
+			"display: flex !important;" +
+			" animation: animation-menu-show 0.6s";
 		window.stateMenu = true;
 	} else {
-		tagMenu.style = tagMenu.style.cssText + "display:none;";
+		tagMenu.style = tagMenu.style.cssText + "display:none !important;";
 		window.stateMenu = false;
 	}
 }
@@ -185,18 +186,17 @@ function asignTagToElementPrincipal(tagElement,itemElement,div) {
 function createChildsElement(listChild, principalElement, tagElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
-			debugger;
-			if(item.inject!=null){
-				item.inject.forEach(elementToInject=>{
-					injectElement(principalElement,elementToInject.name);
-				});
-			}
 			let element = document.createElement(item.name);
 			element.className = item.className != null ? item.className : null;
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
 			//principalElement.appendChild(element);
+			if(item.inject!=null){
+				item.inject.forEach(elementToInject=>{
+					injectElement(element,elementToInject.name);
+				});
+			}
 			asignTagToElementPrincipal(tagElement,item,element);
 			if(item.childs != null){
 				createChildsElement(item.childs,element, element);
@@ -206,7 +206,6 @@ function createChildsElement(listChild, principalElement, tagElement) {
 }
 
 function injectElement(principalElement,tagName){
-	alert(tagName);
 	let elementsToInject = document.getElementsByTagName(tagName);
 	let numMaxElements=(elementsToInject.length-1);
 	for(let index =0;index<=numMaxElements;index++){
