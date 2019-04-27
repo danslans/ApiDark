@@ -178,7 +178,7 @@ function asignTagToElementPrincipal(tagElement,itemElement,div) {
 			div.appendChild(tagElement.firstElementChild);
 		}
 		tagElement.appendChild(div);
-		//loopTagElement(div);
+		loopTagElement(div);
 	} else {
 		tagElement.appendChild(div);
 	}

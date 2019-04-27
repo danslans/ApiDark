@@ -15,7 +15,7 @@
    #d-menu:{
      
    }#
-	<d-menu>
+	 <d-menu>
 		<d-item-menu class="d-item-menu">
 				<button onclick="dMenu()">cerrar</button>
 		</d-item-menu>
@@ -30,12 +30,12 @@
 		<d-item-menu class="d-item-menu">texto3 </d-item-menu>
 	</d-menu>
     <button onclick="dMenu()"></button>
-	
+
 	<d-content-topbars static>
 		<d-topbar orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
 			<div generalTags orientation="horizontal" align="space-between center">
 				<d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
-				<h4>Pagina Principal {{generaltags.orientation}}</h4>
+				<h4>Pagina Principal</h4>
 			</div>
 			<div orientation="horizontal" align="center center">
 				<d-input></d-input>
@@ -51,11 +51,11 @@
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons">
 			<d-content-section orientation="vertical" color="#D8D8D8" size=",200">
-				<p>{{item.cedula}}</p>
+				<p></p>
 			  <d-input></d-input>
 			  <d-input></d-input>
 			  <d-input></d-input>
-			  {{divInject}}
+			  
 			</d-content-section>
 		</d-content>
 	</d-principal-content>
