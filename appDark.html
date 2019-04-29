@@ -8,6 +8,11 @@
 	<title>Document</title>
 	<script src="js/scripts.js"></script>
 	<link rel="stylesheet" href="css/styles.css">
+	 <script>
+	   var listPersons = [
+	   {name:"Daniel C",time:"5:18 p:m",text:"Hello!! How are you?"}
+	   ];
+	 </script>
 </head>
 
 <body>
@@ -25,16 +30,16 @@
   </d-content-topbars>
   <d-principal-content color="white">
 		<d-content color="#cccccc">
-		  <d-content-section size=",50"color="white"  orientation="horizontal" loop="2">
+		  <d-content-section size=",50"color="white"  orientation="horizontal" loop="pers of listPersons">
 			<d-icon color="#cccccc"></d-icon>
 				<div align="space-between" size="{x:100%,padding:0px 5px 10px 10px }" orientation="vertical">
 				  <div align="space-between">
-						<h3>Daniel</h3>
-						<p>5:18 p:m</p>
+						<h3>{{pers.name}}</h3>
+						<p>{{pers.time}}</p>
 					</div>
 					<div align="space-between center">
-						<h5>texto mensaje</h5>
-					  <h6>text</h6>
+						<h5 color="{text:blue,backgroundColor:red,text-shadow:2px 2px}">{{pers.text}}</h5>
+					  <h6>✓✓</h6>
 					</div>
 				</div>
 			</d-content-section>

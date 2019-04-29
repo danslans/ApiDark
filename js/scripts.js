@@ -52,7 +52,7 @@ var functs = {
 			},{
 				name: "div",
 				className:"d-close-menu",
-				function:""
+				function:"dMenu()"
 			}]
 		}
 	}],
@@ -172,7 +172,7 @@ function createElement(tagName, tagElement, config) {
 	});
 }
 function asignTagToElementPrincipal(tagElement,itemElement,div) {
-	if (tagElement.children.length > 0 && itemElement.isPrincipal) {
+	if (tagElement.children.length > 0) {
 	//if ( itemElement.isPrincipal) {
 		while (tagElement.firstElementChild) {
 			div.appendChild(tagElement.firstElementChild);
@@ -191,13 +191,13 @@ function createChildsElement(listChild, principalElement, tagElement) {
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
-			//principalElement.appendChild(element);
+			principalElement.appendChild(element);
 			if(item.inject!=null){
 				item.inject.forEach(elementToInject=>{
 					injectElement(element,elementToInject.name);
 				});
 			}
-			asignTagToElementPrincipal(tagElement,item,element);
+			//asignTagToElementPrincipal(tagElement,item,element);
 			if(item.childs != null){
 				createChildsElement(item.childs,element, element);
 			}

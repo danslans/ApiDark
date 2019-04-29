@@ -1,12 +1,15 @@
-var persons = [{name:"daniel",cedula:"1234",nameButton:"Aceptar"}, 
+var persons = [
+{name:"daniel",cedula:"1234",nameButton:"Aceptar"}, 
 {name:"kira",cedula:"56789",nameButton:"Elimimar"},
- {name:"kira",cedula:"56789",nameButton:"Actualizar"}];
+{name:"juan cito",cedula:"56789",nameButton:"Actualizar"},
+{name:"kira",cedula:"56789",nameButton:"Actualizar"}
+];
 var menu = ["Videos","Fotos" ,"Juegos"];
 this.functs.example = [
 	{
 		element: {
 			name: "div",
-			innerHTML:"/appDark.html"
+			style:"height:100px;width:100px;background-color:red"
 		}
 	}
 ];
