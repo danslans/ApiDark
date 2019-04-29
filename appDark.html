@@ -10,7 +10,9 @@
 	<link rel="stylesheet" href="css/styles.css">
 	 <script>
 	   var listPersons = [
-	   {name:"Daniel C",time:"5:18 p:m",text:"Hello!! How are you?"}
+		 {name:"Daniel C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:red}"},
+		 {name:"Juan C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:green}"},
+		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}"}
 	   ];
 	 </script>
 </head>
@@ -38,7 +40,7 @@
 						<p>{{pers.time}}</p>
 					</div>
 					<div align="space-between center">
-						<h5 color="{text:blue,backgroundColor:red,text-shadow:2px 2px}">{{pers.text}}</h5>
+						<h5 color="{{pers.color}}">{{pers.text}}</h5>
 					  <h6>✓✓</h6>
 					</div>
 				</div>
