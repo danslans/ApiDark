@@ -256,18 +256,33 @@ function loopDecideAttributesFromElement(tagElement, div) {
 					break;
 				default:
 					if (att.value == "" && validateAttributes(att.name) == null) {
-						let varTag = att.name.split(".");
-						var tgValue = eval("eval(varTag[0])");
-						if (varTag.length > 1) {
-							var objDocument = eval("varTag[1]");
-							//alert(eval("tgValue[objDocument]"));
-						} else {
-							let arrayTgValue = new Array;
-							arrayTgValue = tgValue;
-							//alert(tgValue);
-							/*for(let item of tgValue){
-								alert(item);
-							}*/
+						//let varTag = att.name.split(".");
+						let varTag = att.name;
+						try{
+							var tgValue = eval("eval(varTag)");
+							if (tgValue instanceof Array) {
+								tgValue.forEach(attri=>{
+									var arrayAtt = attri.split("=");
+									createAttribute(arrayAtt[0].trim(),arrayAtt[1].trim(),div);
+									});
+							} else {
+								let typeData = typeof tgValue;
+								switch(typeData){
+									case "string":
+										let names= varTag.split(".");
+										let nameTagToInject= names[names.length-1];
+										createAttribute(nameTagToInject,tgValue,div);
+									break;
+									case "object":
+										let nameKeys= Object.keys(tgValue);
+										for(let key of nameKeys){
+											createAttribute(key,tgValue[key],div);
+										}
+									break;
+								}
+							}
+						}catch(Error){
+							console.info(Error);
 						}
 					}
 					break;

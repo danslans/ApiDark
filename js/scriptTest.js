@@ -13,9 +13,13 @@ this.functs.example = [
 		}
 	}
 ];
-var generaltags = {
-	orientation: "horizontal",
-	align: "space-between center"
+var general_att = [
+	"orientation = horizontal",
+	"align = space-between center"
+];
+var general_h = {
+	orientation :"horizontal",
+	align : "space-between center"
 };
 var divInject = "<button>{{item.nameButton}}</button>";
 var icon=["Mapa","Busqueda"];
