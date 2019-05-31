@@ -21,30 +21,33 @@
 	</d-menu>
 
 	<d-content-topbars static>
-		<d-topbar orientation="horizontal" color="{backgroundColor:#008FA9,text:white}" align="space-between center">
-		  <div general_h>
+		<d-topbar general_attributes color="{backgroundColor:#008FA9,text:white}" >
+		  <div general_attributes>
 				<d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
 				<h4>Pagina Principal</h4>
 			</div>
-			<div orientation="horizontal" align="center center">
+			<div general_attributes.orientation align="center center">
 				<d-input></d-input>
 				<d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
 			</div>
 		</d-topbar>
-		<d-topbar orientation="horizontal" color="{backgroundColor:#008299,text:white}" align="space-between center">
+		<d-topbar general_attributes color="{backgroundColor:#008299,text:white}">
 		</d-topbar>
 	</d-content-topbars>
 
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons" atr="">
-			<d-content-section orientation="vertical" color="#D8D8D8" size=",200">
+			<d-topbar general_attributes>
+					<d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
+					<h4>Pagina Principal</h4>
+			</d-topbar>
+			<d-content-section orientation="vertical" color="#D8D8D8" size=",300">
 				<p>{{item.name}}</p>
-			  <d-input color="blue"></d-input>
+			  <d-input></d-input>
 			  <d-input></d-input>
 			  <d-input placeholder="mundo"></d-input>
 			  <input type="text" placeholder="{{item.name}}">
-			  <example></example>
-			  {{divInject}}
+			  <example></example>			  
 			</d-content-section>
 		</d-content>
 	</d-principal-content>

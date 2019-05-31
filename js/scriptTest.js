@@ -9,7 +9,7 @@ this.functs.example = [
 	{
 		element: {
 			name: "div",
-			style:"height:100px;width:100px;background-color:red"
+			style:"height:100px;width:100px;background-color:yellow"
 		}
 	}
 ];
@@ -17,7 +17,7 @@ var general_att = [
 	"orientation = horizontal",
 	"align = space-between center"
 ];
-var general_h = {
+var general_attributes = {
 	orientation :"horizontal",
 	align : "space-between center"
 };

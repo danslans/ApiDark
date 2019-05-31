@@ -264,6 +264,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 								tgValue.forEach(attri=>{
 									var arrayAtt = attri.split("=");
 									createAttribute(arrayAtt[0].trim(),arrayAtt[1].trim(),div);
+									//loopDecideAttributesFromElement(div,div);
 									});
 							} else {
 								let typeData = typeof tgValue;
@@ -277,6 +278,7 @@ function loopDecideAttributesFromElement(tagElement, div) {
 										let nameKeys= Object.keys(tgValue);
 										for(let key of nameKeys){
 											createAttribute(key,tgValue[key],div);
+											//loopDecideAttributesFromElement(div,div);
 										}
 									break;
 								}
