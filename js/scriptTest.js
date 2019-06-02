@@ -21,7 +21,10 @@ var general_att = [
 var general_attributes = {
 	orientation :"horizontal",
 	align : "space-between center",
-	color:"{backgroundColor:red,text:white}"
+	color:"{backgroundColor:red,text:white}",
+	click:function(){
+
+	}
 };
 var divInject = "<button>{{item.nameButton}}</button>";
 var icon=["Mapa","Busqueda"];
