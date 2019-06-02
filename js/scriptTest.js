@@ -15,11 +15,13 @@ this.functs.example = [
 ];
 var general_att = [
 	"orientation = horizontal",
-	"align = space-between center"
+	"align = space-between center",
+	"color={backgroundColor:#cccccc,text:white}" 
 ];
 var general_attributes = {
 	orientation :"horizontal",
-	align : "space-between center"
+	align : "space-between center",
+	color:"{backgroundColor:red,text:white}"
 };
 var divInject = "<button>{{item.nameButton}}</button>";
 var icon=["Mapa","Busqueda"];
