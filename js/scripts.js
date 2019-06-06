@@ -468,6 +468,9 @@ function replaceBind(divLoop, value, text) {
 			if (getSubValue != null) {
 				let realObject = varToBind[0].replace(value.dataBind, "text");
 				let getValueRealObject = eval(realObject);
+				let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
+				let resultMatch = getValueRealObject.match(matchExpresion);
+				alert(resultMatch);
 				divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
 			} else {
 				divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
