@@ -10,6 +10,7 @@ var functs = {
 	"d-topbar": [{
 		element: {
 			name: "div",
+
 			className: "d-topbar"
 		}
 	}],
@@ -83,7 +84,7 @@ var functs = {
 		}
 	}]
 };
-
+var contPrincHaveStatic = "";
 function dMenu() {
 	var tagMenu = document.querySelector(".d-menu");
 	if (!window.stateMenu) {
@@ -98,11 +99,18 @@ function dMenu() {
 }
 
 function appDark() {
+	loadGlobalVar();
 	for (let item of document.body.children) {
 		validateTags(item);
 	}
 	//alert(JSON.stringify(item));
 	//bind({});
+}
+
+function loadGlobalsVar(){
+	document.designMode="on";
+	contPrincHaveStatic = document.querySelector("d-content-topbars").attributes;
+	alert(contPrincHaveStatic);
 }
 
 function validateTags(tag) {
@@ -148,28 +156,36 @@ function hex2rgb(hex) {
 }
 
 function createElement(tagName, tagElement, config) {
-	let contPrincipal = "d-principal-content";
+	
 	config.forEach(itemElement => {
-		let sumHeight = 0;
+		
 		//alert(JSON.stringify(itemElement.element.name));
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
 		div.style = itemElement.element.style;
 		//alert(itemElement.element.style);
-
-		if (contPrincipal == tagName) {
-			let dctopbar = document.getElementsByClassName("d-topbar");
-			for (const itemDTopbar of dctopbar) {
-				sumHeight += itemDTopbar.clientHeight;
-			}
-		}
-
+		
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div, div);
 		asignTagToElementPrincipal(tagElement, itemElement, div);
-		div.style.top = sumHeight + "px";
+		calculatePixelsTopBarStatic(tagName,div);
 	});
+}
+
+function calculatePixelsTopBarStatic(tagName,div){
+	let contPrincipal = "d-principal-content";
+	let sumHeight = 0;
+	if (contPrincipal == tagName && (contPrincHaveStatic.length>0 && "static"==contPrincHaveStatic["static"].name)) {
+			let dctopbar = document.getElementsByClassName("d-topbar");
+			for (const itemDTopbar of dctopbar) {
+				//alert(itemDTopbar.attributes[1].name);
+
+				sumHeight += itemDTopbar.clientHeight;
+			}
+			alert(sumHeight);
+			div.style.top = sumHeight + "px";
+		}
 }
 function asignTagToElementPrincipal(tagElement, itemElement, div) {
 	if (tagElement.children.length > 0) {
@@ -470,7 +486,7 @@ function replaceBind(divLoop, value, text) {
 				let getValueRealObject = eval(realObject);
 				let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
 				let resultMatch = getValueRealObject.match(matchExpresion);
-				alert(resultMatch);
+				//alert(resultMatch);
 				divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
 			} else {
 				divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);

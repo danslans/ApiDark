@@ -10,37 +10,47 @@
 	<link rel="stylesheet" href="css/styles.css">
 	 <script>
 	   var listPersons = [
-		 {name:"Daniel C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:red}",state:"✓✓"},
-		 {name:"Juan C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:green}",state:"✓✓"},
-		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓"}
+		 {name:"Daniel C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:red}",state:"✓✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"},
+		 {name:"Juan C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:green}",state:"✓✓",img:"https://cdn2.iconfinder.com/data/icons/lightly-icons/30/user-480.png"},
+		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://static.thenounproject.com/png/17235-200.png"},
+		 {name:"Young C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://www.margna.ch/images/content/team/Luzi-Seiler.jpg"},
+		 {name:"and C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"},
+		 {name:"free C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"},
+		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"},
+		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"},
+		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"},
+		 {name:"Evert C",time:"5:18 p:m",text:"Hello!! How are you?",color:"{text:blue}",state:"✓",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue"}
+		 
 	   ];
 	 </script>
 </head>
 
 <body>
-  <d-content-topbars static>
+  <d-menu>
+  </d-menu>
+ <d-content-topbars static color="red">
 	<d-topbar align="space-between center"  color="{text:white,backgroundColor: #008080}">
 		<h3>WhatsApp</h3>
 	<div orientation size="50" align="space-between center">
 	  <d-icon type="search"></d-icon>
-	  <d-icon type="subMenu"></d-icon>
+	  <d-icon type="subMenu" onclick="dMenu()"></d-icon>
     </div>
 	</d-topbar>
-	<d-topbar color=" #006666">
-	  
+	<d-topbar color=" #006666">  
 	</d-topbar>
   </d-content-topbars>
+  
   <d-principal-content color="white">
 		<d-content color="#cccccc">
 		  <d-content-section size=",50"color="white"  orientation="horizontal" loop="pers of listPersons">
 			<d-icon color="#AAAC0C">
 			  
-				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDd1YJpktrpphzbJR4MU6SbCYyf4jBLC1fyqe3hNVfFx6P9Bue" class="d-icon">
+				<img src="{{pers.img}}" class="d-icon">
 				  
 			</d-icon>
 				<div align="space-between" size="{x:100%,padding:0px 5px 10px 10px }" orientation="vertical">
 				  <div align="space-between">
-						<h3>{{pers.name}}</h3>
+					  <h3>{{pers.name}}</h3>
 						<p>{{pers.time}}</p>
 					</div>
 					<div align="space-between center">
