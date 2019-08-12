@@ -109,8 +109,10 @@ function appDark() {
 
 function loadGlobalsVar(){
 	document.designMode="on";
-	contPrincHaveStatic = document.querySelector("d-content-topbars").attributes;
-	alert(contPrincHaveStatic);
+	contPrincHaveStatic = document.querySelector("d-content-topbars");
+	if(contPrincHaveStatic){
+		contPrincHaveStatic=contPrincHaveStatic.attributes;
+	}
 }
 
 function validateTags(tag) {
@@ -179,11 +181,8 @@ function calculatePixelsTopBarStatic(tagName,div){
 	if (contPrincipal == tagName && (contPrincHaveStatic.length>0 && "static"==contPrincHaveStatic["static"].name)) {
 			let dctopbar = document.getElementsByClassName("d-topbar");
 			for (const itemDTopbar of dctopbar) {
-				//alert(itemDTopbar.attributes[1].name);
-
 				sumHeight += itemDTopbar.clientHeight;
 			}
-			alert(sumHeight);
 			div.style.top = sumHeight + "px";
 		}
 }
@@ -430,6 +429,7 @@ function recortExpresion(valueToRecort) {
 
 function styleLoop(tagElement, value, div) {
 	let parent = tagElement.parentElement;
+	alert(value);
 	if (value > 0) {
 		for (let i = 1; i < value; i++) {
 			createLoopElements(tagElement, value, parent);
