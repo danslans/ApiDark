@@ -99,7 +99,7 @@ function dMenu() {
 }
 
 function appDark() {
-	loadGlobalVar();
+	loadGlobalsVar();
 	for (let item of document.body.children) {
 		validateTags(item);
 	}
