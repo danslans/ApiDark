@@ -225,6 +225,7 @@ function injectElement(principalElement, tagName) {
 	let numMaxElements = (elementsToInject.length - 1);
 	for (let index = 0; index <= numMaxElements; index++) {
 		let objectTag = elementsToInject.item(0);
+		createElement(objectTag.tagName,principalElement,functs[objectTag.tagName.toLowerCase()]);
 		principalElement.appendChild(objectTag);
 	}
 	//createChildsElement();
@@ -429,7 +430,6 @@ function recortExpresion(valueToRecort) {
 
 function styleLoop(tagElement, value, div) {
 	let parent = tagElement.parentElement;
-	alert(value);
 	if (value > 0) {
 		for (let i = 1; i < value; i++) {
 			createLoopElements(tagElement, value, parent);
