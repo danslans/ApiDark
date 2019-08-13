@@ -108,7 +108,7 @@ function appDark() {
 }
 
 function loadGlobalsVar(){
-	document.designMode="on";
+	//document.designMode="on";
 	contPrincHaveStatic = document.querySelector("d-content-topbars");
 	if(contPrincHaveStatic){
 		contPrincHaveStatic=contPrincHaveStatic.attributes;
