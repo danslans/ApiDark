@@ -10,7 +10,6 @@ var functs = {
 	"d-topbar": [{
 		element: {
 			name: "div",
-
 			className: "d-topbar"
 		}
 	}],
@@ -103,6 +102,12 @@ function appDark() {
 	for (let item of document.body.children) {
 		validateTags(item);
 	}
+	for(const element of document.all){
+		let attributePending = element.getAttribute("isPending");
+		if(attributePending != null){
+			validateTags(element);
+		}
+	};
 	//alert(JSON.stringify(item));
 	//bind({});
 }
@@ -166,13 +171,23 @@ function createElement(tagName, tagElement, config) {
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
 		div.style = itemElement.element.style;
+		
 		//alert(itemElement.element.style);
 		
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div, div);
+		validateChildsElementAndSetOriginalText(itemElement,tagElement,div);
 		asignTagToElementPrincipal(tagElement, itemElement, div);
 		calculatePixelsTopBarStatic(tagName,div);
+		
 	});
+}
+
+function validateChildsElementAndSetOriginalText(itemElement,tagElement,div) {
+	if(itemElement.element.childs==undefined && tagElement.children.length==0){
+		div.innerText = tagElement.innerText;
+		tagElement.innerText="";	
+	}	
 }
 
 function calculatePixelsTopBarStatic(tagName,div){
@@ -225,10 +240,11 @@ function injectElement(principalElement, tagName) {
 	let numMaxElements = (elementsToInject.length - 1);
 	for (let index = 0; index <= numMaxElements; index++) {
 		let objectTag = elementsToInject.item(0);
-		createElement(objectTag.tagName,principalElement,functs[objectTag.tagName.toLowerCase()]);
+		objectTag.setAttribute("isPending","true");
 		principalElement.appendChild(objectTag);
 	}
 	//createChildsElement();
+	//createElement(objectTag.tagName,objectTag,functs[objectTag.tagName.toLowerCase()]);
 }
 
 function loopDecideAttributesFromElement(tagElement, div) {
@@ -236,13 +252,6 @@ function loopDecideAttributesFromElement(tagElement, div) {
 		var style = "";
 		var className = "";
 		for (let att of tagElement.attributes) {
-			/*style += styleStatic();
-			style += styleOrientation(att.value);
-			style += styleAlign(att.value);
-			style += styleSize(att.value);
-			styleLoop(tagElement,att.value,div);
-			style += styleColor(att.value);
-			style += styleScroll();*/
 			let resultStyle = getStyleByAttribute(att, tagElement, div);
 			style += resultStyle.style;
 			className += resultStyle.className;
