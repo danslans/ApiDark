@@ -4,20 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/styles.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/scripts.min.js"></script>
     <title>Document</title>
 </head>
 <body> 
     <d-menu></d-menu>
-    <d-topbar orientation align="start center" size=",40" color="#4267B2">
-        
+	<d-content-topbar>
+    <d-topbar orientation align="start center" size=",45" color="#4267B2">
+	  <d-icon loop="5"></d-icon>
     </d-topbar>
-    <d-principal-content color="#E9EBEE" orientation align="space-between">
-        <d-content size="100,50"></d-content>
-        <d-content size="500,50"></d-content>
-        <d-content size="400,50"></d-content>
-        <d-content size="200,50"></d-content>
+	<d-topbar color="white" align="space-between center" orientation>
+	  <d-icon >
+		<img class="d-icon" />
+	  </d-icon>
+	  <d-input></d-input>
+	  <d-icon>
+		<img class="d-icon" />
+	  </d-icon>
+	</d-topbar>
+	</d-content-topbar>
+    <d-principal-content color="#E9EBEE">
+	  <d-content>
+		<d-topbar size=",20" color="white" align="space-between" orientation>
+		  <div><b>Historias</b></div>
+		  <div><p>Tu archivo</p></div>
+		</d-topbar>
+		<d-content-section>
+		  
+		</d-content-section>
+	  </d-content>
     </d-principal-content>
 </body>
 </html>
