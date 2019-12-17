@@ -451,7 +451,7 @@ function styleLoop(tagElement, value, div) {
 		objectToBind.dataBind = arrayFromExpresion[0];
 		let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
 
-		objectToBind.valueToReplace = tagElement.innerHTML.match(matchExpresion);
+		objectToBind.valueToReplace = tagElement.outerHTML.match(matchExpresion);
 		let valueFirst = "";
 		eval("for(const " + value + "){" +
 			"if(first==1){" +
@@ -478,7 +478,7 @@ function createLoopElements(tagElement, value, parent, text) {
 			createAttribute(atri.name, atri.value, divLoop);
 		}
 	}
-	loopElementsFromStyleLoop(tagElement, text, value);
+	//loopElementsFromStyleLoop(tagElement, text, value);
 	divLoop.innerHTML = tagElement.innerHTML;
 	replaceBind(divLoop, value, text);
 	//createAttribute("bind",value.valueToReplace,divLoop);
@@ -494,9 +494,12 @@ function replaceBind(divLoop, value, text) {
 				let realObject = varToBind[0].replace(value.dataBind, "text");
 				let getValueRealObject = eval(realObject);
 				let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
-				let resultMatch = getValueRealObject.match(matchExpresion);
+				let resultMatch = getValueRealObject!=null? getValueRealObject.match(matchExpresion):null;
 				//alert(resultMatch);
 				divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
+				for (let attDiv of divLoop.attributes){
+					attDiv.nodeValue = attDiv.nodeValue.replace(objValue, getValueRealObject);
+				}
 			} else {
 				divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
 			}
@@ -509,9 +512,10 @@ function loopElementsFromStyleLoop(tagElement, object, value) {
 		if (tag.children.length == 0) {
 			let matchExpresion = /\{\{[a-zA-Z\.\[\]0-9]+\}\}/gm;
 			let matchVar = /[a-zA-Z\.\[\]0-9]+/gm;
-			let resultBinding = tag.innerHTML.match(matchExpresion);
+			let resultBinding = tag.outerHTML.match(matchExpresion);
 			let resultVar = resultBinding != null ? resultBinding[0].match(matchVar) : "";
-			try {
+			replaceBind(tag,value);
+			/*try {
 				let getPrincipalObject = resultVar[0].split(".");
 				if (getPrincipalObject) {
 					let rs = eval(resultVar[0]);
@@ -521,7 +525,7 @@ function loopElementsFromStyleLoop(tagElement, object, value) {
 				}
 
 			} catch (error) {
-			}
+			}*/
 			//alert(s+ " , "+ resultVar[0]);
 		}
 		loopElementsFromStyleLoop(tag, object, value);

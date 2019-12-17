@@ -5,24 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/scripts.min.js"></script>
+    
     <title>Document</title>
 	<script>
 	  var imgs=[
-	  {color:"red"},
+	  {color:"red",colorD:"grey"},
 	  {color:"yellow"},
 	  {color:"green"},
 	  {color:"blue"},
 	  {color:"orange"},
 	  {color:"red"}
 	  ];
+	  
+	  var persons = ()=>{
+		  fetch("http://192.168.0.6:5000/").then(res=>{
+			  console.log(res);
+			  
+		  });
+		  return ["hola"];
+	  }
 	</script>
+	<script src="../js/scripts.js"></script>
 </head>
 <body> 
     <d-menu></d-menu>
-	<d-content-topbar>
-    <d-topbar orientation align="space-between center" color="#4267B2">
-		
+	<d-content-topbars>
+    <d-topbar orientation align="center center" color="#4267B2">
+			<div loop="img of imgs"  color="{{img.color}}">
+				<div color="{{img.colorD}}" ></div>
+			</div>
     </d-topbar>
 	<d-topbar color="white" align="space-between center" orientation>
 	  <d-icon >
@@ -33,7 +44,7 @@
 		<img class="d-icon" />
 	  </d-icon>
 	</d-topbar>
-	</d-content-topbar>
+	</d-content-topbars>
     <d-principal-content color="#E9EBEE">
 	  <d-content>
 		<d-topbar size=",20" color="white" align="space-between" orientation>
@@ -41,9 +52,9 @@
 		  <div><p>Tu archivo</p></div>
 		</d-topbar>
 		<d-content-section size=",150" color="white" align="center center" scroll orientation >
-		  <div size="{margin:1px 0px 1px 1px,x:100px,y:150px}" color="#cccccc" loop="9">
-			<img src="" />
-		  </div>
+		 <div loop="per of persons()">
+			 
+		 </div>
 		</d-content-section>
 	  </d-content>
     </d-principal-content>
