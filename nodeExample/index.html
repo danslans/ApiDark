@@ -18,9 +18,10 @@
 	  ];
 	  
 	  var persons = ()=>{
-		  fetch("http://192.168.0.6:5000/").then(res=>{
-			  console.log(res);
-			  
+		  fetch("http://192.168.0.6:5000/").then(res=>{		  
+			  return res.json();
+		  }).then(json=>{
+			console.log(json);
 		  });
 		  return ["hola"];
 	  }
@@ -53,7 +54,7 @@
 		</d-topbar>
 		<d-content-section size=",150" color="white" align="center center" scroll orientation >
 		 <div loop="per of persons()">
-			 
+
 		 </div>
 		</d-content-section>
 	  </d-content>
