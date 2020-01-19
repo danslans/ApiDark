@@ -193,13 +193,15 @@ function validateChildsElementAndSetOriginalText(itemElement,tagElement,div) {
 function calculatePixelsTopBarStatic(tagName,div){
 	let contPrincipal = "d-principal-content";
 	let sumHeight = 0;
-	if (contPrincipal == tagName && (contPrincHaveStatic.length>0 && "static"==contPrincHaveStatic["static"].name)) {
+	if (contPrincHaveStatic) {
+		if (contPrincipal == tagName && (contPrincHaveStatic.length>0 && "static"==contPrincHaveStatic["static"].name)) {
 			let dctopbar = document.getElementsByClassName("d-topbar");
 			for (const itemDTopbar of dctopbar) {
 				sumHeight += itemDTopbar.clientHeight;
 			}
 			div.style.top = sumHeight + "px";
-		}
+		}	
+	}	
 }
 function asignTagToElementPrincipal(tagElement, itemElement, div) {
 	if (tagElement.children.length > 0) {
