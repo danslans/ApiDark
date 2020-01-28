@@ -201,8 +201,9 @@ function calculatePixelsTopBarStatic(tagName,div){
 			}
 			div.style.top = sumHeight + "px";
 		}	
-	}	
+	}
 }
+
 function asignTagToElementPrincipal(tagElement, itemElement, div) {
 	if (tagElement.children.length > 0) {
 		//if ( itemElement.isPrincipal) {
