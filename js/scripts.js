@@ -52,7 +52,11 @@ var functs = {
 			}, {
 				name: "div",
 				className: "d-close-menu",
-				function: "dMenu()"
+				functions:{
+					onclick:event=>{
+						dMenu();
+					}
+				}
 			}]
 		}
 	}],
@@ -165,15 +169,13 @@ function hex2rgb(hex) {
 function createElement(tagName, tagElement, config) {
 	
 	config.forEach(itemElement => {
-		
-		//alert(JSON.stringify(itemElement.element.name));
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
-		div.style = itemElement.element.style;
-		
-		//alert(itemElement.element.style);
-		
+		div.style = itemElement.element.style;	
+		if(itemElement.functions){
+			Object.assign(div,{...itemElement.functions});
+		}	
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div, div);
 		validateChildsElementAndSetOriginalText(itemElement,tagElement,div);
@@ -224,6 +226,9 @@ function createChildsElement(listChild, principalElement, tagElement) {
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
+			if(item.functions){			
+				Object.assign(element,{...item.functions});
+			}
 			principalElement.appendChild(element);
 			if (item.inject != null) {
 				item.inject.forEach(elementToInject => {

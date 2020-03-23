@@ -1,5 +1,5 @@
 :root {
-    --d-color-toolbar: #04B900;
+    --d-color-toolbar: #512DA8;
     --d-color-sombra-toolbar: #fffefe;
     --d-color-content: rgb(255, 255, 255);
     --d-color-sombra-content: rgb(255, 255, 255);
@@ -11,10 +11,11 @@
     --d-color-button-hover: rgb(189, 188, 188);
     --d-color-principal: rgb(255, 255, 255);
     --d-color-segcundario:#00E602;
-    --d-color-menu-close:rgb(255, 115, 255);
+    --d-color-menu-close:rgba(0, 0, 0, 0.505);
     --d-color-menu-header:rgb(0, 132, 194);
-    --d-width-menu: 30vw;
-	--d-width-menu-close:70vw;
+    --d-color-content-items:rgb(255, 255, 255);
+    --d-width-menu: 20vw;
+	--d-width-menu-close:80vw;
 }
 
 body {
@@ -131,30 +132,29 @@ button:active, input[type=button]:active {
     z-index: 2;
     left: 0;
     padding: 0px;
-    background-color: var(--d-color-principal)
 }
 .d-content-menu{
   width:var(--d-width-menu);
   height:100%;
   position:relative;
   overflow: scroll;
-  background-color:Yellow;
 }
 .d-close-menu{
   width:var(--d-width-menu-close);
   height:100vh;
   position:relative;
-  background-color:var(--d-color-menu-close)
+  background-color:var(--d-color-menu-close);
+  opacity: 0.5;
 }
 .d-content-items{
   display: flex ;
   flex-direction: column;
   align-content: center ;
   position:relative;
-  width:100%;
+  width:100vw;
   height:100%;
-  background-color:Orange;
   overflow: scroll;
+  background-color: var(--d-color-content-items);
 }
 
 .d-item-menu {

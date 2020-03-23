@@ -20,7 +20,7 @@ this.functs.example = [
 	{
 		element: {
 			name: "div",
-			style:"height:100px;width:200px;background-color:yellow;overflow: scroll;"
+			style:"height:100px;width:200px;overflow: scroll;"
 		}
 	}
 ];
@@ -32,7 +32,8 @@ var general_att = [
 var general_attributes = {
 	orientation :"horizontal",
 	align : "space-between center",
-	color:"{backgroundColor:red,text:white}",
+	color:"{text:white}",
 };
 var divInject = "<button>{{item.nameButton}}</button>";
 var icon=["Mapa","Busqueda"];
+
