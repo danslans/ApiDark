@@ -460,15 +460,16 @@ function styleLoop(tagElement, value, div) {
 
 		objectToBind.valueToReplace = tagElement.outerHTML.match(matchExpresion);
 		let valueFirst = "";
-		eval("for(const " + value + "){" +
-			"if(first==1){" +
-			"valueFirst=eval(objectToBind.dataBind);" +
-			"first++;" +
-			"}else{" +
-			"createLoopElements(tagElement,objectToBind,parent,eval(objectToBind.dataBind));"
-			+ "}" +
-			"}"
-		);
+		eval(`
+		for (const ${value}) {
+			if (first == 1) {
+				valueFirst = eval(objectToBind.dataBind);
+				first++;
+			} else {
+				createLoopElements(tagElement, objectToBind, parent, eval(objectToBind.dataBind));
+			}
+		}
+		`);
 		replaceBind(tagElement, objectToBind, valueFirst);
 		tagElement.innerHTML = tagElement.innerHTML.replace(new RegExp('\{.' + objectToBind.dataBind + '\}.', 'g'), valueFirst);
 
@@ -502,16 +503,37 @@ function replaceBind(divLoop, value, text) {
 				let getValueRealObject = eval(realObject);
 				let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
 				let resultMatch = getValueRealObject!=null? getValueRealObject.match(matchExpresion):null;
-				//alert(resultMatch);
-				divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
-				for (let attDiv of divLoop.attributes){
-					attDiv.nodeValue = attDiv.nodeValue.replace(objValue, getValueRealObject);
+				if(resultMatch){
+					let objectPrincipalToReplace = Object.assign({},value);
+					objectPrincipalToReplace.valueToReplace = resultMatch;
+					getValueRealObject = replaceBind(getValueRealObject, objectPrincipalToReplace,text);
+				}
+				if (validateTypeOf(divLoop)) {
+					divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
+					for (let attDiv of divLoop.attributes) {
+						attDiv.nodeValue = attDiv.nodeValue.replace(objValue, getValueRealObject);
+					}	
+				}else{
+					divLoop = divLoop.replace(objValue, getValueRealObject);
 				}
 			} else {
+				if (validateTypeOf(divLoop)) {
 				divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+				}else{
+					divLoop = divLoop.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+				}
 			}
 		}
+		return validateTypeOf(divLoop) ? null : divLoop;
 	}
+	return null;
+}
+
+function validateTypeOf(variable){
+	if((typeof variable) === "object"){
+		return true;
+	}
+	return false;
 }
 
 function loopElementsFromStyleLoop(tagElement, object, value) {
