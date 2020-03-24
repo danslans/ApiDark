@@ -20,14 +20,14 @@ this.functs.example = [
 	{
 		element: {
 			name: "div",
-			style:"height:100px;width:100%;overflow: scroll;"
+			style:"height:100px;width:100%;overflow: auto;"
 		}
 	}
 ];
 var general_att = [
 	"orientation = horizontal",
 	"align = space-between center",
-	"color={backgroundColor:#cccccc,text:white}" 
+	"color={backgroundColor:#751aff,text:white}" 
 ];
 var general_attributes = {
 	orientation :"horizontal",
