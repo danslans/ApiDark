@@ -20,7 +20,7 @@ this.functs.example = [
 	{
 		element: {
 			name: "div",
-			style:"height:100px;width:200px;overflow: scroll;"
+			style:"height:100px;width:100%;overflow: scroll;"
 		}
 	}
 ];

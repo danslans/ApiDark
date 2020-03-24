@@ -31,7 +31,7 @@
 				<d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
 			</div>
 		</d-topbar>
-		<d-topbar general_attributes color="{backgroundColor:#008299,text:white}">
+		<d-topbar general_attributes color="{text:white}">
 		  <div>
 			
 		  </div>
@@ -40,7 +40,8 @@
 
 	<d-principal-content orientation align="space-around">
 		<d-content size="400" loop="item of persons" atr="">
-		  <d-topbar general_attributes>
+		  {{item.design}}
+		 <!-- <d-topbar general_attributes>
 			<d-icon type='subMenu' size='{margin:0 0 3px 10px}' onclick='dMenu()'></d-icon>
 			<h4>Pagina Principal</h4>
 			</d-topbar>
@@ -52,8 +53,8 @@
 			  <d-input></d-input>
 			  <button>guardar</button>
 			  </example> 
-			</d-content-section>
-		</d-content>
+			</d-content-section>-->
+		</d-content>  
 	</d-principal-content>
 </body>
 

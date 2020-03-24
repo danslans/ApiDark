@@ -10,12 +10,16 @@ var server = http.createServer(function (req, res) {   // 2 - creating server
         //httpUrl.parse(req.url);
         console.log(req.url);
         res.writeHead(200,{ 'Content-Type': 'application/json' });
-        mongoose.connect("mongodb://192.168.0.6:27017",(error,db)=>{
+        mongoose.connect("mongodb://192.168.0.5:27017",(error,db)=>{
           var dbo =  db.db("danslans");
-          dbo.collection("users").findOne();
+          dbo.collection("users").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    res.write(JSON.stringify(result));
+    db.close();
+res.end();
+  });
         });
-        res.write('{"persons":[{"name":"Daniel"},{"name":"Daniel"},{"name":"Daniel"},{"name":"Daniel"}]}');
-        res.end();
+        
     }
 });
 
