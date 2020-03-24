@@ -120,7 +120,7 @@ function loadGlobalsVar(){
 	//document.designMode="on";
 	contPrincHaveStatic = document.querySelector("d-content-topbars");
 	if(contPrincHaveStatic){
-		contPrincHaveStatic=contPrincHaveStatic.attributes;
+		contPrincHaveStatic=contPrincHaveStatic;
 	}
 }
 
@@ -196,13 +196,12 @@ function calculatePixelsTopBarStatic(tagName,div){
 	let contPrincipal = "d-principal-content";
 	let sumHeight = 0;
 	if (contPrincHaveStatic) {
-		if (contPrincipal == tagName && (contPrincHaveStatic.length>0 && "static"==contPrincHaveStatic["static"].name)) {
-			let dctopbar = document.getElementsByClassName("d-topbar");
-			for (const itemDTopbar of dctopbar) {
+		if (contPrincipal == tagName && (contPrincHaveStatic.attributes.length > 0 && "static" == contPrincHaveStatic.attributes["static"].name)) {
+			for (const itemDTopbar of contPrincHaveStatic.children) {
 				sumHeight += itemDTopbar.clientHeight;
 			}
 			div.style.top = sumHeight + "px";
-		}	
+		}
 	}
 }
 
