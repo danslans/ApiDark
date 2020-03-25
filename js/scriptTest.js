@@ -35,6 +35,7 @@ var general_attributes = {
 	align : "space-between center",
 	color:"{text:white}",
 };
-var divInject = `<button onclick="bind({icon:['wis']})">{{icon[0]}}</button>`;
-var icon=["Mapa","Busqueda"];
+var icon = "holiwis";
+var divInject = `<button onclick="bind(icon='holiwis1')">{{icon}}</button>`;
+
 

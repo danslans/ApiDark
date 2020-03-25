@@ -685,11 +685,10 @@ this.bind=function (data) {
 		let txtElement = getAtt != null ? getAtt : item.textContent!=""?item.textContent:item.value ;
 		if(txtElement){
 		if (txtElement.search(/[\{\}]+/gm) >= 0) {
-			alert("entro");
 			let att = document.createAttribute("bind");
 			att.value = txtElement;
 			item.setAttributeNode(att);
-			let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/1-9]+\}+/gm);
+			let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/0-9]+\}+/gm);
 			let textToElement = txtElement;
 			//alert(searchVarBind);
 			if(searchVarBind != null){
@@ -699,16 +698,16 @@ this.bind=function (data) {
 					for (let nameVar of getText) {
 						concatVar += eval("eval(nameVar)");
 					}
-					textToElement = textToElement.replace(varBind, concatVar);
+					item.innerHTML = item.innerHTML.replace(varBind, concatVar);
 				}
 			}
 			//item.textContent = textToElement;
-			if(item.textContent!=""){
+			/*if(item.textContent!=""){
 				//item.textContent=textToElement;
 				item.innerHTML = textToElement;
 			}else{
 			 item.value=textToElement; 
-			 }
+			 }*/
 		}
 		}
 	};
