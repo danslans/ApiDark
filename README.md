@@ -3,19 +3,21 @@
 
 Include the project in the event "load" 
 ```
-<body onload="appDark()"></body>
-
-$(document).ready(function(){appDark()});
+<script src="https://danslans.github.io/ApiDark/js/scripts.js" ></script>
 ```
 Example:
 * To create a tag "button" in HTML
 ```
 <d-button> name </d-button>
 ```
-----------------------------------------------------------------
-* To Reference to a page 
-
+You can create a custom element with property "this.functs"
 ```
-<d-button goto="namePage.html"> name </d-button>
+this.functs.example = [
+	{
+		element: {
+			name: "div",
+			style:"height:100px;width:100%;overflow: auto;"
+		}
+	}
+];
 ```
-----------------------------------------------------------------
