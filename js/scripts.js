@@ -124,7 +124,6 @@ function loadGlobalsVar(){
 }
 
 function validateTags(tag) {
-	//bind.init(tag);
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
@@ -166,7 +165,6 @@ function hex2rgb(hex) {
 }
 
 function createElement(tagName, tagElement, config) {
-	
 	config.forEach(itemElement => {
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
@@ -180,42 +178,22 @@ function createElement(tagName, tagElement, config) {
 		validateChildsElementAndSetOriginalText(itemElement,tagElement,div);
 		asignTagToElementPrincipal(tagElement, itemElement, div);
 		calculatePixelsTopBarStatic(tagName,div);
-		
 	});
 }
-
-function validateChildsElementAndSetOriginalText(itemElement,tagElement,div) {
-	if(itemElement.element.childs==undefined && tagElement.children.length==0){
-		div.innerText = tagElement.innerText;
-		tagElement.innerText="";	
-	}	
-}
-
-function calculatePixelsTopBarStatic(tagName,div){
-	let contPrincipal = "d-principal-content";
-	let sumHeight = 0;
-	if (contPrincHaveStatic) {
-		if (contPrincipal == tagName && (contPrincHaveStatic.attributes.length > 0 && "static" == contPrincHaveStatic.attributes["static"].name)) {
-			for (const itemDTopbar of contPrincHaveStatic.children) {
-				sumHeight += itemDTopbar.clientHeight;
-			}
-			div.style.top = sumHeight + "px";
+function loopDecideAttributesFromElement(tagElement, div) {
+	if (tagElement.attributes.length > 0) {
+		var style = "";
+		var className = "";
+		for (let att of tagElement.attributes) {
+			let resultStyle = getStyleByAttribute(att, tagElement, div);
+			style += resultStyle.style;
+			className += resultStyle.className;
 		}
+		div.style = style;
+		className != "" ? div.className = className : className = "";
 	}
 }
 
-function asignTagToElementPrincipal(tagElement, itemElement, div) {
-	if (tagElement.children.length > 0) {
-		//if ( itemElement.isPrincipal) {
-		while (tagElement.firstElementChild) {
-			div.appendChild(tagElement.firstElementChild);
-		}
-		tagElement.appendChild(div);
-		loopTagElement(div);
-	} else {
-		tagElement.appendChild(div);
-	}
-}
 function createChildsElement(listChild, principalElement, tagElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
@@ -224,8 +202,8 @@ function createChildsElement(listChild, principalElement, tagElement) {
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
-			if(item.functions){			
-				Object.assign(element,{...item.functions});
+			if (item.functions) {
+				Object.assign(element, { ...item.functions });
 			}
 			principalElement.appendChild(element);
 			if (item.inject != null) {
@@ -241,6 +219,39 @@ function createChildsElement(listChild, principalElement, tagElement) {
 	}
 }
 
+function validateChildsElementAndSetOriginalText(itemElement,tagElement,div) {
+	if(itemElement.element.childs==undefined && tagElement.children.length==0){
+		div.innerText = tagElement.innerText;
+		tagElement.innerText="";	
+	}	
+}
+
+function asignTagToElementPrincipal(tagElement, itemElement, div) {
+	if (tagElement.children.length > 0) {
+		//if ( itemElement.isPrincipal) {
+		while (tagElement.firstElementChild) {
+			div.appendChild(tagElement.firstElementChild);
+		}
+		tagElement.appendChild(div);
+		loopTagElement(div);
+	} else {
+		tagElement.appendChild(div);
+	}
+}
+
+function calculatePixelsTopBarStatic(tagName,div){
+	let contPrincipal = "d-principal-content";
+	let sumHeight = 0;
+	if (contPrincHaveStatic) {
+		if (contPrincipal == tagName && (contPrincHaveStatic.attributes.length > 0 && "static" == contPrincHaveStatic.attributes["static"].name)) {
+			for (const itemDTopbar of contPrincHaveStatic.children) {
+				sumHeight += itemDTopbar.clientHeight;
+			}
+			div.style.top = sumHeight + "px";
+		}
+	}
+}
+
 function injectElement(principalElement, tagName) {
 	let elementsToInject = document.getElementsByTagName(tagName);
 	let numMaxElements = (elementsToInject.length - 1);
@@ -253,19 +264,6 @@ function injectElement(principalElement, tagName) {
 	//createElement(objectTag.tagName,objectTag,functs[objectTag.tagName.toLowerCase()]);
 }
 
-function loopDecideAttributesFromElement(tagElement, div) {
-	if (tagElement.attributes.length > 0) {
-		var style = "";
-		var className = "";
-		for (let att of tagElement.attributes) {
-			let resultStyle = getStyleByAttribute(att, tagElement, div);
-			style += resultStyle.style;
-			className += resultStyle.className;
-		}
-		div.style = style;
-		className != "" ? div.className = className : className = "";
-	}
-}
 function getStyleByAttribute(att, tagElement, div) {
 	var style = "";
 	var className = "";
@@ -378,8 +376,6 @@ function loopTagElement(tagElement) {
 
 function styleStatic(nameTag) {
 	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
-	//var pContentDesign = document.getElementsByTagName("d-principal-content");
-	//pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
 	return style;
 }
 
