@@ -15,7 +15,6 @@
 <body>
 	 <d-menu>
 		<d-item-menu >
-		<button onclick="dMenu()">cerrar</button>
 		  <p>texto de prueba</p>
 		</d-item-menu>
 	    <d-item-menu loop="5">texto1 </d-item-menu>
@@ -31,30 +30,20 @@
 				<d-icon type="search" size="{margin:0 0 3px 10px}"></d-icon>
 			</div>
 		</d-topbar>
-		<d-topbar general_attributes color="{backgroundColor:#008299,text:white}">
+		<d-topbar general_attributes color="{text:white}">
 		  <div>
-			
+			<div>{{divInject}}</div>
 		  </div>
 		</d-topbar>
+		
 	</d-content-topbars>
 
 	<d-principal-content orientation align="space-around">
-		<d-content size="400" loop="item of persons" atr="">
-		  <d-topbar general_attributes>
-			<d-icon type='subMenu' size='{margin:0 0 3px 10px}' onclick='dMenu()'></d-icon>
-			<h4>Pagina Principal</h4>
-			</d-topbar>
-		  <d-content-section orientation='vertical' color='#D8D8D8' size=',300'>
-			<b>{{item.name}}</b>
-			<d-input placeholder='mundo'></d-input>
-			<input type='text' placeholder='{{item.name}}'>
-			<example>
-			  <d-input></d-input>
-			  <button>guardar</button>
-			  </example> 
-			</d-content-section>
+		<d-content size="400" loop="item of persons">
+			{{item.design}}
 		</d-content>
 	</d-principal-content>
+  
 </body>
 
 </html>

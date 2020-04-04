@@ -139,7 +139,7 @@ button:active, input[type=button]:active {
   width:var(--d-width-menu);
   height:100%;
   position:relative;
-  overflow: scroll;
+  overflow-x: hidden;
 }
 .d-close-menu{
   width:var(--d-width-menu-close);
@@ -153,19 +153,18 @@ button:active, input[type=button]:active {
   flex-direction: column;
   align-content: center ;
   position:relative;
-  width:100vw;
+  width:100%;
   height:100%;
-  overflow: scroll;
+  overflow-x: hidden;
   background-color: var(--d-color-content-items);
 }
 
 .d-item-menu {
     display:flex;
-    padding-left: 5px;
+    padding: 3px;
     position: relative;
     width: 100%;
-    height: 60px;
-	left:1px;
+    height: 50px;
     margin-top: 1px;
 	align-items:center;
     background-color: var(--d-color-button)

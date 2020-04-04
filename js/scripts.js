@@ -120,20 +120,18 @@ function appDark() {
 			validateTags(element);
 		}
 	};
-	//alert(JSON.stringify(item));
-	//bind({});
+	bind({});
 }
 
 function loadGlobalsVar(){
 	//document.designMode="on";
 	contPrincHaveStatic = document.querySelector("d-content-topbars");
 	if(contPrincHaveStatic){
-		contPrincHaveStatic=contPrincHaveStatic.attributes;
+		contPrincHaveStatic=contPrincHaveStatic;
 	}
 }
 
 function validateTags(tag) {
-	//bind.init(tag);
 	if (functs[tag.localName] != null) {
 		createElement(tag.localName, tag, functs[tag.localName]);
 	} else {
@@ -175,7 +173,6 @@ function hex2rgb(hex) {
 }
 
 function createElement(tagName, tagElement, config) {
-	
 	config.forEach(itemElement => {
 		let div = document.createElement(itemElement.element.name);
 		div.className = itemElement.element.className;
@@ -189,43 +186,22 @@ function createElement(tagName, tagElement, config) {
 		validateChildsElementAndSetOriginalText(itemElement,tagElement,div);
 		asignTagToElementPrincipal(tagElement, itemElement, div);
 		calculatePixelsTopBarStatic(tagName,div);
-		
 	});
 }
-
-function validateChildsElementAndSetOriginalText(itemElement,tagElement,div) {
-	if(itemElement.element.childs==undefined && tagElement.children.length==0){
-		div.innerText = tagElement.innerText;
-		tagElement.innerText="";	
-	}	
-}
-
-function calculatePixelsTopBarStatic(tagName,div){
-	let contPrincipal = "d-principal-content";
-	let sumHeight = 0;
-	if (contPrincHaveStatic) {
-		if (contPrincipal == tagName && (contPrincHaveStatic.length>0 && "static"==contPrincHaveStatic["static"].name)) {
-			let dctopbar = document.getElementsByClassName("d-topbar");
-			for (const itemDTopbar of dctopbar) {
-				sumHeight += itemDTopbar.clientHeight;
-			}
-			div.style.top = sumHeight + "px";
-		}	
-	}
-}
-
-function asignTagToElementPrincipal(tagElement, itemElement, div) {
-	if (tagElement.children.length > 0) {
-		//if ( itemElement.isPrincipal) {
-		while (tagElement.firstElementChild) {
-			div.appendChild(tagElement.firstElementChild);
+function loopDecideAttributesFromElement(tagElement, div) {
+	if (tagElement.attributes.length > 0) {
+		var style = "";
+		var className = "";
+		for (let att of tagElement.attributes) {
+			let resultStyle = getStyleByAttribute(att, tagElement, div);
+			style += resultStyle.style;
+			className += resultStyle.className;
 		}
-		tagElement.appendChild(div);
-		loopTagElement(div);
-	} else {
-		tagElement.appendChild(div);
+		div.style = style;
+		className != "" ? div.className = className : className = "";
 	}
 }
+
 function createChildsElement(listChild, principalElement, tagElement) {
 	if (listChild != null) {
 		listChild.forEach(item => {
@@ -234,8 +210,8 @@ function createChildsElement(listChild, principalElement, tagElement) {
 			element.type = item.type != null ? item.type : null;
 			element.textContent = item.value != null ? item.value : null;
 			element.value = item.value != null ? item.value : null;
-			if(item.functions){			
-				Object.assign(element,{...item.functions});
+			if (item.functions) {
+				Object.assign(element, { ...item.functions });
 			}
 			principalElement.appendChild(element);
 			if (item.inject != null) {
@@ -251,6 +227,39 @@ function createChildsElement(listChild, principalElement, tagElement) {
 	}
 }
 
+function validateChildsElementAndSetOriginalText(itemElement,tagElement,div) {
+	if(itemElement.element.childs==undefined && tagElement.children.length==0){
+		div.innerText = tagElement.innerText;
+		tagElement.innerText="";	
+	}	
+}
+
+function asignTagToElementPrincipal(tagElement, itemElement, div) {
+	if (tagElement.children.length > 0) {
+		//if ( itemElement.isPrincipal) {
+		while (tagElement.firstElementChild) {
+			div.appendChild(tagElement.firstElementChild);
+		}
+		tagElement.appendChild(div);
+		loopTagElement(div);
+	} else {
+		tagElement.appendChild(div);
+	}
+}
+
+function calculatePixelsTopBarStatic(tagName,div){
+	let contPrincipal = "d-principal-content";
+	let sumHeight = 0;
+	if (contPrincHaveStatic) {
+		if (contPrincipal == tagName && (contPrincHaveStatic.attributes.length > 0 && "static" == contPrincHaveStatic.attributes["static"].name)) {
+			for (const itemDTopbar of contPrincHaveStatic.children) {
+				sumHeight += itemDTopbar.clientHeight;
+			}
+			div.style.top = sumHeight + "px";
+		}
+	}
+}
+
 function injectElement(principalElement, tagName) {
 	let elementsToInject = document.getElementsByTagName(tagName);
 	let numMaxElements = (elementsToInject.length - 1);
@@ -263,19 +272,6 @@ function injectElement(principalElement, tagName) {
 	//createElement(objectTag.tagName,objectTag,functs[objectTag.tagName.toLowerCase()]);
 }
 
-function loopDecideAttributesFromElement(tagElement, div) {
-	if (tagElement.attributes.length > 0) {
-		var style = "";
-		var className = "";
-		for (let att of tagElement.attributes) {
-			let resultStyle = getStyleByAttribute(att, tagElement, div);
-			style += resultStyle.style;
-			className += resultStyle.className;
-		}
-		div.style = style;
-		className != "" ? div.className = className : className = "";
-	}
-}
 function getStyleByAttribute(att, tagElement, div) {
 	var style = "";
 	var className = "";
@@ -388,8 +384,6 @@ function loopTagElement(tagElement) {
 
 function styleStatic(nameTag) {
 	let style = " position:fixed !important;z-index:1 !important; width:100% !important;";
-	//var pContentDesign = document.getElementsByTagName("d-principal-content");
-	//pContentDesign.length>0 ? pContentDesign[0].style = "position:absolute; margin-top:100px !important;" : "";
 	return style;
 }
 
@@ -469,15 +463,16 @@ function styleLoop(tagElement, value, div) {
 
 		objectToBind.valueToReplace = tagElement.outerHTML.match(matchExpresion);
 		let valueFirst = "";
-		eval("for(const " + value + "){" +
-			"if(first==1){" +
-			"valueFirst=eval(objectToBind.dataBind);" +
-			"first++;" +
-			"}else{" +
-			"createLoopElements(tagElement,objectToBind,parent,eval(objectToBind.dataBind));"
-			+ "}" +
-			"}"
-		);
+		eval(`
+		for (const ${value}) {
+			if (first == 1) {
+				valueFirst = eval(objectToBind.dataBind);
+				first++;
+			} else {
+				createLoopElements(tagElement, objectToBind, parent, eval(objectToBind.dataBind));
+			}
+		}
+		`);
 		replaceBind(tagElement, objectToBind, valueFirst);
 		tagElement.innerHTML = tagElement.innerHTML.replace(new RegExp('\{.' + objectToBind.dataBind + '\}.', 'g'), valueFirst);
 
@@ -511,16 +506,37 @@ function replaceBind(divLoop, value, text) {
 				let getValueRealObject = eval(realObject);
 				let matchExpresion = /\{\{[a-zA-Z\.]+\}\}/gm;
 				let resultMatch = getValueRealObject!=null? getValueRealObject.match(matchExpresion):null;
-				//alert(resultMatch);
-				divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
-				for (let attDiv of divLoop.attributes){
-					attDiv.nodeValue = attDiv.nodeValue.replace(objValue, getValueRealObject);
+				if(resultMatch){
+					let objectPrincipalToReplace = Object.assign({},value);
+					objectPrincipalToReplace.valueToReplace = resultMatch;
+					getValueRealObject = replaceBind(getValueRealObject, objectPrincipalToReplace,text);
+				}
+				if (validateTypeOf(divLoop)) {
+					divLoop.innerHTML = divLoop.innerHTML.replace(objValue, getValueRealObject);
+					for (let attDiv of divLoop.attributes) {
+						attDiv.nodeValue = attDiv.nodeValue.replace(objValue, getValueRealObject);
+					}	
+				}else{
+					divLoop = divLoop.replace(objValue, getValueRealObject);
 				}
 			} else {
+				if (validateTypeOf(divLoop)) {
 				divLoop.innerHTML = divLoop.innerHTML.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+				}else{
+					divLoop = divLoop.replace(new RegExp("\\{." + (value.dataBind) + "\\}.", 'g'), text);
+				}
 			}
 		}
+		return validateTypeOf(divLoop) ? null : divLoop;
 	}
+	return null;
+}
+
+function validateTypeOf(variable){
+	if((typeof variable) === "object"){
+		return true;
+	}
+	return false;
 }
 
 function loopElementsFromStyleLoop(tagElement, object, value) {
@@ -667,6 +683,63 @@ function showStorage(resul) {
 	alert(resul);
 }
 
+this.bind=function (data) {
+	var initBind = function(item){
+		let getAtt = item.getAttribute("bind");
+		let txtElement = getAtt != null ? getAtt : item.textContent!=""?item.textContent:item.value ;
+		if(txtElement){
+		if (txtElement.search(/[\{\}]+/gm) >= 0) {
+			let att = document.createAttribute("bind");
+			att.value = txtElement;
+			item.setAttributeNode(att);
+			let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/0-9]+\}+/gm);
+			let textToElement = txtElement;
+			//alert(searchVarBind);
+			if(searchVarBind != null){
+				for (const varBind of searchVarBind) {
+					let concatVar = "";
+					let getText = searchVarBind != null ? varBind.match(/[a-zA-Z\+\-\*\=\(\)\"\/1-9]+/gm) : "";
+					for (let nameVar of getText) {
+						concatVar += eval("eval(nameVar)");
+					}
+					item.innerHTML = item.innerHTML.replace(varBind, concatVar);
+				}
+			}
+			//item.textContent = textToElement;
+			/*if(item.textContent!=""){
+				//item.textContent=textToElement;
+				item.innerHTML = textToElement;
+			}else{
+			 item.value=textToElement; 
+			 }*/
+		}
+		}
+	};
+	
+	var loopElements = function(element){
+		if(element.children.length>0){
+			initBind(element);
+			for (let item of element.children){
+			initBind(item);
+			loopElements(item);
+			}
+		}else{
+			initBind(element);
+		}
+	};
+	
+	for (let item of document.body.children) {
+		loopElements(item);	
+	}
+	
+	
+};
+
+
+
+
+
+/*
 this.bind = function (tagElement) {
 
 };
@@ -690,6 +763,6 @@ this.bind.init = function (tag) {
 			let rs = eval(resultVar[0]);
 			tag.innerHTML = tag.innerHTML.replace(resultBinding[0], rs);
 		} catch (error) {
-		}*/
+		}
 
-}
+}*/

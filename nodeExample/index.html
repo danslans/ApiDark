@@ -17,14 +17,17 @@
 	  {color:"red"}
 	  ];
 	  
-	  var persons = ()=>{
-		  fetch("http://192.168.0.6:5000/").then(res=>{		  
+	  var persons =function (){
+	  var array=[];
+		  fetch("http://192.168.0.5:5000/").then(function(res){	
+		 alert(JSON.stringify( res.json()));
 			  return res.json();
-		  }).then(json=>{
-			console.log(json);
+		  }).then(function(json){
+			array= JSON.parse(json);
+			alert(array);
 		  });
-		  return ["hola"];
-	  }
+	  return array;
+	  };
 	</script>
 	<script src="../js/scripts.js"></script>
 </head>
@@ -54,7 +57,7 @@
 		</d-topbar>
 		<d-content-section size=",150" color="white" align="center center" scroll orientation >
 		 <div loop="per of persons()">
-
+		   
 		 </div>
 		</d-content-section>
 	  </d-content>
