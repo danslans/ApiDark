@@ -15,7 +15,9 @@
     --d-color-menu-header:rgb(0, 132, 194);
     --d-color-content-items:rgb(255, 255, 255);
     --d-width-menu: 20vw;
-	--d-width-menu-close:80vw;
+    --d-width-menu-close:80vw;
+    --d-color-loader-principal:#f3f3f3;
+    --d-color-loader-loading:#2600ff;
 }
 
 body {
@@ -362,3 +364,33 @@ button:active, input[type=button]:active {
     from {background-color: red;}
     to {background-color: yellow;}
 }*/
+
+/********* LOADER ***************/
+
+.d-loader {
+    border: 10px solid var(--d-color-loader-principal);
+    border-radius: 50%;
+    border-top: 10px solid var(--d-color-loader-loading);
+    width: 50px;
+    height: 50px;
+    -webkit-animation: d-loader 2s linear infinite;
+    animation: d-loader 2s linear infinite;
+}
+
+@-webkit-keyframes d-loader{
+    0%{
+        -webkit-transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes d-loader{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}

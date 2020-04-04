@@ -85,7 +85,15 @@ var functs = {
 				name: "div",
 			}]
 		}
-	}]
+	}],
+	"d-loader":[
+		{
+			element:{
+				name:"div",
+				className:"d-loader"
+			}
+		}
+	]
 };
 var contPrincHaveStatic = "";
 function dMenu() {
