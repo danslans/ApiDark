@@ -25,6 +25,7 @@ this.functs.example = [
 		}
 	}
 ];
+var mostrarLoader=true;
 var general_att = [
 	"orientation = horizontal",
 	"align = space-between center",

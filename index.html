@@ -9,17 +9,25 @@
 	<link href="css/styles.css" rel="stylesheet">
 	<script src="js/scripts.js"></script>
 	<script src="js/scriptTest.js"></script>
-	
+	<script> 
+	  function showLoad(){
+	  alert("hola");
+	  bind(mostrarLoader="false");
+	  }
+	  </script>
 </head>
 
 <body>
-	 <d-menu>
+	<!-- <d-menu>
 		<d-item-menu >
 		  <p>texto de prueba</p>
 		</d-item-menu>
 	    <d-item-menu loop="5">texto1 </d-item-menu>
 	</d-menu>
-	<d-content-topbars static>
+	-->
+  <div>{{divInject}}</div>
+  <d-loader visible="{{mostrarLoader}}"></d-loader>
+	<!--<d-content-topbars static>
 		<d-topbar general_att >
 		  <div general_attributes.orientation general_attributes.align>
 				<d-icon type="subMenu" size="{margin:0 0 3px 10px}" onclick="dMenu()"></d-icon>
@@ -32,7 +40,7 @@
 		</d-topbar>
 		<d-topbar general_attributes color="{text:white}">
 		  <div>
-			<div>{{divInject}}</div>
+			
 		  </div>
 		</d-topbar>
 		
@@ -42,11 +50,12 @@
 		<d-content size="400" loop="item of persons">
 			{{item.design}}
 		</d-content>
-		<d-content>
-			<d-loader></d-loader>
-		</d-content>
+		<div>
+		  <button onclick="showLoad()">mostrar</button>
+		  
+		</div>
 	</d-principal-content>
-  
+  -->
 </body>
 
 </html>

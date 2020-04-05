@@ -302,6 +302,9 @@ function getStyleByAttribute(att, tagElement, div) {
 			className += tagElement.localName + " ";
 			className += styleType(att.value);
 			break;
+		case "visible":
+			style += styleVisible(att.value);
+			break;
 		default:
 			if (att.value == "" && validateAttributes(att.name) == null) {
 				//let varTag = att.name.split(".");
@@ -480,6 +483,13 @@ function styleLoop(tagElement, value, div) {
 		createLoopElements(tagElement,value,parent);
 		}*/
 	}
+}
+
+function styleVisible(isVisible){
+	if(eval(isVisible)){
+		return "display:inline-block;";
+	}
+	return "display:none;";
 }
 
 function createLoopElements(tagElement, value, parent, text) {
