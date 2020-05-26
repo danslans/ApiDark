@@ -179,7 +179,7 @@ function createElement(tagName, tagElement, config) {
 		div.value = itemElement.element.value;
 		div.style = itemElement.element.style;	
 		if(itemElement.element.functions){
-			Object.assign(div,{...itemElement.functions});
+			Object.assign(div,{...itemElement.element.functions});
 		}	
 		loopDecideAttributesFromElement(tagElement, div);
 		createChildsElement(itemElement.element.childs, div, div);
