@@ -178,7 +178,7 @@ function createElement(tagName, tagElement, config) {
 		div.className = itemElement.element.className;
 		div.value = itemElement.element.value;
 		div.style = itemElement.element.style;	
-		if(itemElement.functions){
+		if(itemElement.element.functions){
 			Object.assign(div,{...itemElement.functions});
 		}	
 		loopDecideAttributesFromElement(tagElement, div);
