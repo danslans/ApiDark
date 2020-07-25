@@ -10,7 +10,7 @@ Example:
 ```
 <d-button> name </d-button>
 ```
-You can create a custom element with property "this.functs"
+You can create a custom element adding properties on this variable "this.functs"
 ```
 this.functs.example = [
 	{
