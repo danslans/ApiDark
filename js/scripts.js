@@ -305,7 +305,7 @@ function getStyleByAttribute(att, tagElement, div) {
 		case "visible":
 			style += styleVisible(att.value);
 			break;
-		case "style:
+		case "style":
 			style += att.value;
 			break;
 		default:
