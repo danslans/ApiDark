@@ -305,6 +305,9 @@ function getStyleByAttribute(att, tagElement, div) {
 		case "visible":
 			style += styleVisible(att.value);
 			break;
+		case "style:
+			style += att.value;
+			break;
 		default:
 			if (att.value == "" && validateAttributes(att.name) == null) {
 				//let varTag = att.name.split(".");
