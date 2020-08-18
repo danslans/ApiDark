@@ -193,6 +193,11 @@ function loopDecideAttributesFromElement(tagElement, div) {
 		var style = "";
 		var className = "";
 		for (let att of tagElement.attributes) {
+			let valueToReplace = att.value.match(/\{\{[a-zA-Z\.]+\}\}/gm);
+			if (valueToReplace) {
+				let value = att.value.match(/[a-zA-Z\,\+\*\-\=\(\)\"\/0-9\[\]\.]+/gm);
+				replaceBind(div, { dataBind: value[0], valueToReplace: valueToReplace }, eval("eval(value[0])"));	
+			}
 			let resultStyle = getStyleByAttribute(att, tagElement, div);
 			style += resultStyle.style;
 			className += resultStyle.className;
