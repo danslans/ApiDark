@@ -702,35 +702,52 @@ function showStorage(resul) {
 }
 
 this.bind=function (data) {
-	var initBind = function(item){
+	var initBind = function (item) {
 		let getAtt = item.getAttribute("bind");
-		let txtElement = getAtt != null ? getAtt : item.textContent!=""?item.textContent:item.value ;
-		if(txtElement){
-		if (txtElement.search(/[\{\}]+/gm) >= 0) {
-			let att = document.createAttribute("bind");
-			att.value = txtElement;
-			item.setAttributeNode(att);
-			let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/0-9]+\}+/gm);
-			let textToElement = txtElement;
-			//alert(searchVarBind);
-			if(searchVarBind != null){
-				for (const varBind of searchVarBind) {
-					let concatVar = "";
-					let getText = searchVarBind != null ? varBind.match(/[a-zA-Z\+\-\*\=\(\)\"\/1-9]+/gm) : "";
-					for (let nameVar of getText) {
-						concatVar += eval("eval(nameVar)");
+		let txtElement =  "";
+
+		if (getAtt != null) {
+			txtElement = getAtt;
+		} else if (item.textContent != "") {
+			txtElement = item.textContent;
+		} else if (item.value !=null && item.value !== "") {
+			txtElement = item.value;
+		} else  {
+			txtElement = item.outerHTML;
+		} 
+
+		let regex = /[\{\}]+/gm;
+		if (txtElement) {
+			if (regex.test(txtElement)) {
+				let att = document.createAttribute("bind");
+				att.value = txtElement;
+				item.setAttributeNode(att);
+				let searchVarBind = txtElement.match(/\{+[a-zA-Z\,\+\*\-\=\(\)\"\/0-9]+\}+/gm);
+				let textToElement = txtElement;
+				//alert(searchVarBind);
+				if (searchVarBind != null) {
+					for (const varBind of searchVarBind) {
+						let concatVar = "";
+						let getText = searchVarBind != null ? varBind.match(/[a-zA-Z\+\-\*\=\(\)\"\/1-9]+/gm) : "";
+						for (let nameVar of getText) {
+							concatVar += eval("eval(nameVar)");
+						}
+						if (regex.test(item.innerHTML) ) {
+							item.innerHTML = item.innerHTML.replace(varBind, concatVar);
+						} else if (regex.test(item.outerHTML)){
+							item.outerHTML = item.outerHTML.replace(varBind, concatVar);
+						}
+						
 					}
-					item.innerHTML = item.innerHTML.replace(varBind, concatVar);
 				}
+				//item.textContent = textToElement;
+				/*if(item.textContent!=""){
+					//item.textContent=textToElement;
+					item.innerHTML = textToElement;
+				}else{
+				 item.value=textToElement; 
+				 }*/
 			}
-			//item.textContent = textToElement;
-			/*if(item.textContent!=""){
-				//item.textContent=textToElement;
-				item.innerHTML = textToElement;
-			}else{
-			 item.value=textToElement; 
-			 }*/
-		}
 		}
 	};
 	

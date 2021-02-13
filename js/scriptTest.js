@@ -29,7 +29,7 @@ var mostrarLoader=true;
 var general_att = [
 	"orientation = horizontal",
 	"align = space-between center",
-	"color={backgroundColor:#751aff,text:white}" 
+	"color={backgroundColor:blue,text:white}" 
 ];
 var general_attributes = {
 	orientation :"horizontal",

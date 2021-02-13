@@ -12,7 +12,8 @@
 	<script> 
 	  function showLoad(){
 	  alert("hola");
-	  bind(mostrarLoader="false");
+	  mostrarLoader = "false";
+	  bind();
 	  }
 	  </script>
 </head>
@@ -25,8 +26,8 @@
 	    <d-item-menu loop="5">texto1 </d-item-menu>
 	</d-menu>
 	-->
-  <div>{{divInject}}</div>
-  <d-loader visible="{{mostrarLoader}}"></d-loader>
+	<d-loader visible="{{mostrarLoader}}"></d-loader>
+	<button onclick="showLoad()">mostrar</button>
 	<!--<d-content-topbars static>
 		<d-topbar general_att >
 		  <div general_attributes.orientation general_attributes.align>
