@@ -1,15 +1,12 @@
 # ApiDark
 | By: Danslans |
 
-Include the project in the event "load" 
+Include library
 ```
 <script src="https://danslans.github.io/ApiDark/js/scripts.js" ></script>
 ```
 Example:
-* To create a tag "button" in HTML
-```
-<d-button> name </d-button>
-```
+
 You can create a custom element adding properties on this variable "this.functs"
 ```
 this.functs.example = [
@@ -20,4 +17,7 @@ this.functs.example = [
 		}
 	}
 ];
+```
+```
+<example> name </example>
 ```
