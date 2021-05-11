@@ -44,7 +44,7 @@ Now write in your HTML file the new created element
     </script>
 </head>
 <body>
-    <example> name </example>
+    <example> This is a custom element </example>
 </body>
 </html>
 ```
