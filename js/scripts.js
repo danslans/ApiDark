@@ -119,7 +119,7 @@ function appDark() {
 		if(attributePending != null){
 			validateTags(element);
 		}
-	};
+	}
 	bind({});
 }
 

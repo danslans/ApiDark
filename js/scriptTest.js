@@ -29,12 +29,12 @@ var mostrarLoader=true;
 var general_att = [
 	"orientation = horizontal",
 	"align = space-between center",
-	"color={backgroundColor:blue,text:white}" 
+	"color={backgroundColor:#000521,text:white}",
 ];
 var general_attributes = {
 	orientation :"horizontal",
 	align : "space-between center",
-	color:"{text:white}",
+	color:"{text:white,backgroundColor:#000839}",
 };
 var icon = "holiwis";
 var divInject = `<button onclick="bind(icon='holiwis1')">{{icon}}</button>`;
